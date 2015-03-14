@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.LinkedList;
 
-public class DataAccess {
+public class DataAccess implements DataAccessInterface{
     
     private LinkedList <User> users;
     private LinkedList <Bookmark> bookmarks;
@@ -15,6 +15,27 @@ public class DataAccess {
     public DataAccess(){
         this.bookmarks = new LinkedList<Bookmark>();
         this.destinations = new LinkedList<Destination>();
+    }
+    
+    public String getID(String email){
+        String id="This user is not valid";
+        try{
+            Class.forName("org.sqlite.JDBC"); 
+             
+            Connection connessione = DriverManager.getConnection("jdbc:sqlite:booksync.db"); 
+            Statement stat = connessione.createStatement(); 
+ 
+            ResultSet result = stat.executeQuery("SELECT * FROM users");
+            while (result.next()) { 
+                if(result.getString("email").equals(email))
+                    id=result.getString("ID");
+            } 
+            result.close();
+            connessione.close(); 
+        } catch ( Exception e ) {
+          e.printStackTrace();
+        }
+        return id;
     }
     
     private void loadUserBookmarks(String id){
