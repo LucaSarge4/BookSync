@@ -42,7 +42,7 @@ public class DataAccess implements DataAccessInterface{
         try{
             Class.forName("org.sqlite.JDBC"); 
              
-            Connection connessione = DriverManager.getConnection("jdbc:sqlite:students.db"); 
+            Connection connessione = DriverManager.getConnection("jdbc:sqlite:booksync.db"); 
             Statement stat = connessione.createStatement(); 
  
             ResultSet result = stat.executeQuery("SELECT * FROM bookmarks WHERE ID = "+id);
@@ -69,7 +69,7 @@ public class DataAccess implements DataAccessInterface{
         try{
             Class.forName("org.sqlite.JDBC"); 
 
-            Connection connessione = DriverManager.getConnection("jdbc:sqlite:students.db"); 
+            Connection connessione = DriverManager.getConnection("jdbc:sqlite:booksync.db"); 
             Statement stat = connessione.createStatement();
             ResultSet result = stat.executeQuery("SELECT * FROM destinations WHERE ID = "+id);
             Destination des = new Destination();
@@ -146,5 +146,24 @@ public class DataAccess implements DataAccessInterface{
         } catch ( Exception e ) {
           e.printStackTrace();
         } 
-    }  
+    } 
+    
+    public boolean login(String id,String username,String password){
+        boolean response = false;
+        try{
+            Class.forName("org.sqlite.JDBC"); 
+
+            Connection connessione = DriverManager.getConnection("jdbc:sqlite:booksync.db"); 
+            Statement stat = connessione.createStatement();
+            ResultSet result = stat.executeQuery("SELECT * FROM users WHERE ID = "+id);
+            if(result.getString("username").equals(username) && 
+                    result.getString("password").equals(password))
+                response=true;
+            result.close(); 
+            connessione.close(); 
+        } catch ( Exception e ) {
+          e.printStackTrace();
+        }
+        return response;
+    }
 }
