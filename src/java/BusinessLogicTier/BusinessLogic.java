@@ -13,7 +13,7 @@ import DataAccessTier.Destination;
 import java.util.LinkedList;
 
 
-public class BusinessLogic {
+public class BusinessLogic implements BusinessLogicInterface{
     
     DataAccessInterface dt;
     
