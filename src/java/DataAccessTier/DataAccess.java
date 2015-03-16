@@ -17,7 +17,7 @@ public class DataAccess implements DataAccessInterface{
         this.destinations = new LinkedList<Destination>();
     }
     
-    public String getID(String email){
+    public String getID(String username){
         String id="This user is not valid";
         try{
             Class.forName("org.sqlite.JDBC"); 
@@ -27,7 +27,7 @@ public class DataAccess implements DataAccessInterface{
  
             ResultSet result = stat.executeQuery("SELECT * FROM users");
             while (result.next()) { 
-                if(result.getString("email").equals(email))
+                if(result.getString("username").equals(username))
                     id=result.getString("ID");
             } 
             result.close();
@@ -148,7 +148,7 @@ public class DataAccess implements DataAccessInterface{
         } 
     } 
     
-    public boolean login(String id,String username,String password){
+    public boolean login(String id,String password){
         boolean response = false;
         try{
             Class.forName("org.sqlite.JDBC"); 
@@ -156,8 +156,7 @@ public class DataAccess implements DataAccessInterface{
             Connection connessione = DriverManager.getConnection("jdbc:sqlite:booksync.db"); 
             Statement stat = connessione.createStatement();
             ResultSet result = stat.executeQuery("SELECT * FROM users WHERE ID = "+id);
-            if(result.getString("username").equals(username) && 
-                    result.getString("password").equals(password))
+            if(result.getString("password").equals(password))
                 response=true;
             result.close(); 
             connessione.close(); 
