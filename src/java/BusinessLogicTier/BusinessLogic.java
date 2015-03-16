@@ -5,12 +5,29 @@
  */
 package BusinessLogicTier;
 
+import DataAccessTier.DataAccessInterface;
 import DataAccessTier.DataAccess;
 import DataAccessTier.User;
 import DataAccessTier.Bookmark;
 import DataAccessTier.Destination;
+import java.util.LinkedList;
 
 
 public class BusinessLogic {
     
+    DataAccessInterface dt;
+    
+    public BusinessLogic(){
+        this.dt = new DataAccess();
+    }
+    
+    public LinkedList getBookmarks(String username){
+        return this.dt.getBookmarks(this.dt.getID(username));
+    }
+    public LinkedList getDestinations(String username){
+        return this.dt.getDestinations(this.dt.getID(username));
+    }
+    public boolean login(String username,String password){
+        return this.dt.login(this.dt.getID(username),password);
+    }
 }
