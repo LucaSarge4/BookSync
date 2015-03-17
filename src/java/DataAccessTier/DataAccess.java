@@ -20,8 +20,7 @@ public class DataAccess implements DataAccessInterface{
     public String getID(String username){
         String id="This user is not valid";
         try{
-            Class.forName("org.sqlite.JDBC"); 
-             
+            Class.forName("org.sqlite.JDBC");
             Connection connessione = DriverManager.getConnection("jdbc:sqlite:booksync.db"); 
             Statement stat = connessione.createStatement(); 
  
@@ -65,6 +64,7 @@ public class DataAccess implements DataAccessInterface{
           e.printStackTrace();
         }
     }
+    
     private void loadUserDestinations(String id){
         try{
             Class.forName("org.sqlite.JDBC"); 
