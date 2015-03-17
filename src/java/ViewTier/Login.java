@@ -25,14 +25,7 @@ public class Login extends HttpServlet {
         "<!doctype html public \"-//w3c//dtd html 4.0 " +
         "transitional//en\">\n";
         if(bl.login(request.getParameter("user"), request.getParameter("psw")))
-            out.println(docType +
-                  "<html>\n" +
-                  "<head><title>" + title + "</title></head>\n" +
-                  "<body bgcolor=\"#f0f0f0\">\n" +
-                  "<h1 align=\"center\">" + title + "</h1>\n" +
-                  //"<ul>\n " + login effettuato con successo +"</ul>\n" +  
-                  "<ul>\n login effettuato con successo </ul>\n" +
-                  "<a href=\"index.html\">Back</a></body></html>");
+            request.getRequestDispatcher("mybookmarks.html").forward(request, response);
         else 
             out.println(docType +
                   "<html>\n" +
