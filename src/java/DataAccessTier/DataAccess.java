@@ -22,13 +22,9 @@ public class DataAccess implements DataAccessInterface{
         try{
             Class.forName("org.sqlite.JDBC");
             Connection connessione = DriverManager.getConnection("jdbc:sqlite:booksync.db"); 
-            Statement stat = connessione.createStatement(); 
- 
-            ResultSet result = stat.executeQuery("SELECT * FROM users");
-            while (result.next()) { 
-                if(result.getString("username").equals(username))
-                    id=result.getString("ID");
-            } 
+            Statement stat = connessione.createStatement();
+            ResultSet result = stat.executeQuery("SELECT * FROM users WHERE username = \""+username+"\"");
+            id=result.getString("ID");
             result.close();
             connessione.close(); 
         } catch ( Exception e ) {
