@@ -120,8 +120,38 @@ public class DataAccess implements DataAccessInterface{
             Statement stato = connessione.createStatement(); 
  
             stato.executeUpdate("INSERT INTO bookmarks (ID,title,url,lasteditdate,fatherpath,destination,type) VALUES "
-                    + "('"+id+"', '"+title+"', '"+url+"', '"+lasteditdate+"', '"+fatherpath+"', '"+destination+"', '"+type+"')"); 
+                    + "('"+title+"', '"+url+"', '"+lasteditdate+"', '"+fatherpath+"', '"+destination+"', '"+type+"')"); 
+            connessione.close();
+            preferred(id);
+        } catch ( Exception e ) {
+          e.printStackTrace();
+        } 
+    }
+    
+    private void preferred(String id){
+        String bookid="";
+        try{
+            Class.forName("org.sqlite.JDBC"); 
              
+            Connection connessione = DriverManager.getConnection("jdbc:sqlite:booksync.db"); 
+            Statement stat = connessione.createStatement(); 
+            ResultSet result = stat.executeQuery( "SELECT * FROM bookmarks;" );
+            while ( result.next() ) {
+                   bookid=result.getString("BookID");
+            }
+            result.close();
+            stat.close();
+            connessione.close();
+        } catch ( Exception e ) {
+          System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+          System.exit(0);
+        }
+        try{
+            Class.forName("org.sqlite.JDBC"); 
+             
+            Connection connessione = DriverManager.getConnection("jdbc:sqlite:booksync.db"); 
+            Statement stat = connessione.createStatement(); 
+            stat.executeUpdate("INSERT INTO preferred VALUES "+ "('"+id+"', '"+bookid+"')");
             connessione.close();
         } catch ( Exception e ) {
           e.printStackTrace();
@@ -135,14 +165,44 @@ public class DataAccess implements DataAccessInterface{
             Connection connessione = DriverManager.getConnection("jdbc:sqlite:booksync.db"); 
             Statement stato = connessione.createStatement(); 
  
-            stato.executeUpdate("INSERT INTO destination (ID,device,os,browser) VALUES "
-                    + "('"+id+"', '"+device+"', '"+os+"', '"+browser+"')"); 
+            stato.executeUpdate("INSERT INTO destination (device,os,browser) VALUES "
+                    + "('"+device+"', '"+os+"', '"+browser+"')"); 
              
             connessione.close();
+            ownership(id);
         } catch ( Exception e ) {
           e.printStackTrace();
         } 
     } 
+    
+    private void ownership(String id){
+        String destid="";
+        try{
+            Class.forName("org.sqlite.JDBC"); 
+             
+            Connection connessione = DriverManager.getConnection("jdbc:sqlite:booksync.db"); 
+            Statement stat = connessione.createStatement(); 
+            ResultSet result = stat.executeQuery( "SELECT * FROM destination;" );
+            while ( result.next() ) {
+                   destid=result.getString("DestinationID");
+            }
+            result.close();
+            stat.close();
+            connessione.close();
+        } catch ( Exception e ) {
+          e.printStackTrace();
+        }
+        try{
+            Class.forName("org.sqlite.JDBC"); 
+             
+            Connection connessione = DriverManager.getConnection("jdbc:sqlite:booksync.db"); 
+            Statement stat = connessione.createStatement(); 
+            stat.executeUpdate("INSERT INTO ownership VALUES "+ "('"+id+"', '"+destid+"')");
+            connessione.close();
+        } catch ( Exception e ) {
+          e.printStackTrace();
+        } 
+    }
     
     public boolean login(String id,String password){
         boolean response = false;
