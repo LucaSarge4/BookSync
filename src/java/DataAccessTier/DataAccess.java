@@ -39,19 +39,21 @@ public class DataAccess implements DataAccessInterface{
              
             Connection connessione = DriverManager.getConnection("jdbc:sqlite:booksync.db"); 
             Statement stat = connessione.createStatement(); 
- 
-            ResultSet result = stat.executeQuery("SELECT * FROM bookmarks WHERE ID = "+id);
-            Bookmark bm = new Bookmark();
+            String bookid="";
+            ResultSet result = stat.executeQuery("SELECT * FROM preferred WHERE ID = "+id);
+            ResultSet result1;
             while (result.next()) { 
-                bm.setID(id);
-                bm.setTitle(result.getString("title"));
-                bm.setUrl(result.getString("url"));
-                bm.setLastEditDate(result.getString("lasteditdate"));
-                bm.setFatherFolder(result.getString("fatherfolder"));
-                bm.setTag(result.getString("tag"));
-                bm.setDestination(result.getString("destination"));
-                bm.setType(result.getString("type"));
-                bm.setIcon(result.getString("icon"));
+                bookid=result.getString("BookID");
+                result1=stat.executeQuery("SELECT * FROM bookmarks WHERE ID = "+bookid);
+                Bookmark bm = new Bookmark();
+                bm.setBookID(result1.getString("BookID"));
+                bm.setTitle(result1.getString("title"));
+                bm.setUrl(result1.getString("url"));
+                bm.setLastEditDate(result1.getString("lasteditdate"));
+                bm.setFatherFolder(result1.getString("fatherfolder"));
+                bm.setTag(result1.getString("tag"));
+                bm.setType(result1.getString("type"));
+                bm.setIcon(result1.getString("icon"));
                 
               this.bookmarks.add(bm); 
             } 
@@ -67,13 +69,18 @@ public class DataAccess implements DataAccessInterface{
 
             Connection connessione = DriverManager.getConnection("jdbc:sqlite:booksync.db"); 
             Statement stat = connessione.createStatement();
-            ResultSet result = stat.executeQuery("SELECT * FROM destinations WHERE ID = "+id);
-            Destination des = new Destination();
+            String destid="";
+            ResultSet result = stat.executeQuery("SELECT * FROM ownership WHERE ID = "+id);
+            ResultSet result1;
             while (result.next()) { 
-                des.setID(id);
+                destid=result.getString("DestinationID");
+                result1=stat.executeQuery("SELECT * FROM destination WHERE ID = "+destid);
+                Destination des = new Destination();
+                des.setDestinationID(result.getString("DestinationID"));
                 des.setDevice(result.getString("device"));
                 des.setOS(result.getString("os"));
                 des.setBrowser(result.getString("browser"));
+                des.setDropPath(result.getString("dropboxpath"));
 
               this.destinations.add(des); 
             } 
@@ -112,15 +119,15 @@ public class DataAccess implements DataAccessInterface{
     }
     
     public void aggiungiBookmark(String id,String title,String url,String lasteditdate,
-                                String fatherpath,String destination,String type){
+                                String fatherpath,String type){
         try{
             Class.forName("org.sqlite.JDBC"); 
              
             Connection connessione = DriverManager.getConnection("jdbc:sqlite:booksync.db"); 
             Statement stato = connessione.createStatement(); 
  
-            stato.executeUpdate("INSERT INTO bookmarks (ID,title,url,lasteditdate,fatherpath,destination,type) VALUES "
-                    + "('"+title+"', '"+url+"', '"+lasteditdate+"', '"+fatherpath+"', '"+destination+"', '"+type+"')"); 
+            stato.executeUpdate("INSERT INTO bookmarks (ID,title,url,lasteditdate,fatherpath,type) VALUES "
+                    + "('"+title+"', '"+url+"', '"+lasteditdate+"', '"+fatherpath+"', '"+type+"')"); 
             connessione.close();
             preferred(id);
         } catch ( Exception e ) {
@@ -198,6 +205,19 @@ public class DataAccess implements DataAccessInterface{
             Connection connessione = DriverManager.getConnection("jdbc:sqlite:booksync.db"); 
             Statement stat = connessione.createStatement(); 
             stat.executeUpdate("INSERT INTO ownership VALUES "+ "('"+id+"', '"+destid+"')");
+            connessione.close();
+        } catch ( Exception e ) {
+          e.printStackTrace();
+        } 
+    }
+    
+    public void localized(String bookid,String destid){
+        try{
+            Class.forName("org.sqlite.JDBC"); 
+             
+            Connection connessione = DriverManager.getConnection("jdbc:sqlite:booksync.db"); 
+            Statement stat = connessione.createStatement(); 
+            stat.executeUpdate("INSERT INTO localized VALUES "+ "('"+bookid+"', '"+destid+"')");
             connessione.close();
         } catch ( Exception e ) {
           e.printStackTrace();

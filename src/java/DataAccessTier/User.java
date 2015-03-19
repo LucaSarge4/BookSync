@@ -2,9 +2,9 @@ package DataAccessTier;
 
 public class User {
     private String ID;
+    private String username;
     private String firstname;
     private String lastname;
-    private String username;
     private String password;
     private String email;
     private String country;
@@ -16,6 +16,10 @@ public class User {
     
     public String getID(){
         return this.ID;
+    }
+    
+    public void setID(String ID){
+        this.ID=ID;
     }
     
     public String getFirstName(){

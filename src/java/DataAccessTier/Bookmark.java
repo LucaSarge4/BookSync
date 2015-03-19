@@ -1,13 +1,12 @@
 package DataAccessTier;
 
 public class Bookmark {
-    private String ID;
+    private String BookID;
     private String title;
     private String url;
     private String lasteditdate;
     private String fatherfolder;
     private String tag;
-    private String destination;
     private String type;
     private String icon;
     
@@ -15,12 +14,12 @@ public class Bookmark {
         
     }
     
-    public String getID(){
-        return this.ID;
+    public String getBookID(){
+        return this.BookID;
     }
     
-    public void setID(String ID){
-        this.ID = ID;
+    public void setBookID(String bookid){
+        this.BookID=bookid;
     }
     
     public String getTitle(){
@@ -61,14 +60,6 @@ public class Bookmark {
     
     public void setTag(String tag){
         this.tag = tag;
-    }
-    
-    public String getDestination(){
-        return this.destination;
-    }
-    
-    public void setDestination(String destination){
-        this.destination = destination;
     }
     
     public String getType(){

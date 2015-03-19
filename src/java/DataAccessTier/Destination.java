@@ -2,21 +2,22 @@ package DataAccessTier;
 
 public class Destination {
     
-    private String ID;
+    private String DestinationID;
     private String device;
     private String os;
     private String browser;
+    private String droppath;
     
     public Destination(){
         
     }
     
-    public String getID(){
-        return this.ID;
+    public String getDestinationID(){
+        return this.DestinationID;
     }
     
-    public void setID(String ID){
-        this.ID = ID;
+    public void setDestinationID(String destinationid){
+        this.DestinationID = destinationid;
     }
     
     public String getDevice(){
@@ -41,5 +42,13 @@ public class Destination {
     
     public void setBrowser(String browser){
         this.browser = browser;
+    }
+    
+    public String getDropPath(){
+        return this.droppath;
+    }
+    
+    public void setDropPath(String droppath){
+        this.droppath = droppath;
     }
 }
