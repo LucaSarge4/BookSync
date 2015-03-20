@@ -7,6 +7,7 @@ public class Bookmark {
     private String lasteditdate;
     private String fatherfolder;
     private String tag;
+    private String description;
     private String type;
     private String icon;
     
@@ -60,6 +61,14 @@ public class Bookmark {
     
     public void setTag(String tag){
         this.tag = tag;
+    }
+    
+    public String getDescription(){
+        return this.description;
+    }
+    
+    public void setDescription(String desc){
+        this.description = desc;
     }
     
     public String getType(){

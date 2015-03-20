@@ -101,7 +101,7 @@ public class DataAccess implements DataAccessInterface{
         return this.destinations;
     }
     
-    public void aggiungiUser(String username,String firstname,String lastname,
+    public void aaddUser(String username,String firstname,String lastname,
                                     String password,String email,String country,String regdate){
         try{
             Class.forName("org.sqlite.JDBC"); 
@@ -118,7 +118,7 @@ public class DataAccess implements DataAccessInterface{
         }
     }
     
-    public void aggiungiBookmark(String id,String title,String url,String lasteditdate,
+    public void addBookmark(String id,String title,String url,String lasteditdate,
                                 String fatherpath,String type){
         try{
             Class.forName("org.sqlite.JDBC"); 
@@ -165,7 +165,7 @@ public class DataAccess implements DataAccessInterface{
         } 
     }
     
-    public void aggiungiDes(String id,String device,String os,String browser){
+    public void addDestination(String id,String device,String os,String browser){
         try{
             Class.forName("org.sqlite.JDBC"); 
              
