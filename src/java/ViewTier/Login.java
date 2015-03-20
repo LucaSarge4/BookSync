@@ -25,7 +25,7 @@ public class Login extends HttpServlet {
         "<!doctype html public \"-//w3c//dtd html 4.0 " +
         "transitional//en\">\n";
         if(bl.login(request.getParameter("user"), request.getParameter("psw")))
-            request.getRequestDispatcher("mybookmarks.html").forward(request, response);
+            request.getRequestDispatcher("mybookmarks.jsp").forward(request, response);
         else 
             out.println(docType +
                   "<html>\n" +

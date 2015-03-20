@@ -1,3 +1,10 @@
+<%-- 
+    Document   : mybookmarks
+    Created on : 20-mar-2015, 18.14.32
+    Author     : Luca
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     
