@@ -23,6 +23,7 @@
         <!-- Include all compiled plugins (below), or include individual
         files as needed -->
         <script src="js/bootstrap.min.js"></script>
+        
         <div class="cover">
             <div class="navbar navbar-default">
                 <div class="container">
@@ -63,19 +64,35 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <form action="Login" method="post">
                             <div class="form-group has-error">
                                 <label class="control-label" for="exampleInputUsername">Username</label>
-                                <input class="form-control" id="exampleInputUsername"
+                                <input class="form-control" id="inputUsername"
                                        placeholder="Enter Username" type="text" name="user">
                             </div>
                             <div class="form-group has-error">
                                 <label class="control-label" for="exampleInputPassword1">Password</label>
-                                <input class="form-control" id="exampleInputPassword1"
+                                <input class="form-control" id="inputPassword"
                                        placeholder="Password" type="password" name="psw">
                             </div>
-                            <input type="submit" value="Login" class="active btn btn-success">
-                        </form>
+                        <input type="button" value="Login" class="active btn btn-success" onclick="myFunction()">
+                        
+                        <!-- Include md5-->
+                        <script src="js/md5.js"></script>
+                        <script>
+                        function myFunction(){
+                            var user = document.getElementById("inputUsername").value.toString();
+                            var password = document.getElementById("inputPassword").value.toString();
+                            var psw = CryptoJS.MD5(password).toString();
+                            console.log("Name: "+user);
+                            console.log("Password: "+password+" "+psw);
+                            var params = "user="+user+"&psw="+psw;
+                            var xhr = new XMLHttpRequest();
+                            xhr.open("POST", "Login", true);
+                            //Send the proper header information along with the request
+                            xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                            xhr.send(params);
+                        }
+                        </script>
                     </div>
                 </div>
             </div>

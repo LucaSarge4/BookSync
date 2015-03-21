@@ -1,15 +1,10 @@
 package DataAccessTier;
 
-import java.math.BigInteger;
-import java.nio.charset.Charset;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.LinkedList;
-import java.util.Locale;
 
 public class DataAccess implements DataAccessInterface{
     
@@ -115,7 +110,7 @@ public class DataAccess implements DataAccessInterface{
             Statement stato = connessione.createStatement(); 
  
             stato.executeUpdate("INSERT INTO users (username,firstname,lastname,password,email,country,regdate) VALUES "
-                    + "('"+username+"', '"+firstname+"', '"+lastname+"', '"+getMD5(password)+"', '"+email+"', '"+country+"', '"+regdate+"')"); 
+                    + "('"+username+"', '"+firstname+"', '"+lastname+"', '"+password+"', '"+email+"', '"+country+"', '"+regdate+"')"); 
              
             connessione.close();
         } catch ( Exception e ) {
@@ -237,7 +232,7 @@ public class DataAccess implements DataAccessInterface{
             Connection connessione = DriverManager.getConnection("jdbc:sqlite:booksync.db"); 
             Statement stat = connessione.createStatement();
             ResultSet result = stat.executeQuery("SELECT * FROM users WHERE ID = "+id);
-            if(result.getString("password").equals(getMD5(password)))
+            if(result.getString("password").equals(password))
                 response=true;
             result.close(); 
             connessione.close(); 
@@ -245,18 +240,5 @@ public class DataAccess implements DataAccessInterface{
           e.printStackTrace();
         }
         return response;
-    }
-    
-    private String getMD5(String password) {
-        String md5 = null;
-        MessageDigest md;
-        try {
-            md = MessageDigest.getInstance("MD5");
-            md.update(password.getBytes(Charset.forName("UTF-8")));
-            md5 = String.format(Locale.ROOT, "%032x", new BigInteger(1, md.digest()));
-        } catch (NoSuchAlgorithmException e) {
-            throw new IllegalStateException(e);
-        }
-        return md5;
     }
 }
