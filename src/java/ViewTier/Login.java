@@ -20,20 +20,10 @@ public class Login extends HttpServlet {
         bl = new BusinessLogic();
         
         PrintWriter out = response.getWriter();
-        String title = "Login Result";
-        String docType =
-        "<!doctype html public \"-//w3c//dtd html 4.0 " +
-        "transitional//en\">\n";
         if(bl.login(request.getParameter("user"), request.getParameter("psw")))
-            request.getRequestDispatcher("mybookmarks.jsp").forward(request, response);
+            out.print(true);
         else 
-            out.println(docType +
-                  "<html>\n" +
-                  "<head><title>" + title + "</title></head>\n" +
-                  "<body bgcolor=\"#f0f0f0\">\n" +
-                  "<h1 align=\"center\">" + title + "</h1>\n" +
-                  "<ul>\n login non effettuato</ul>\n" +
-                  "<a href=\"index.html\">Back</a></body></html>");
+            out.print(false);
     }
 // Method to handle POST method request.
 public void doPost(HttpServletRequest request,
