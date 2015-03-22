@@ -1,0 +1,58 @@
+.navbar-default{
+    background-color: #01678D;
+    border-color: #A5B7C1;
+}
+
+.navbar-default .navbar-nav > li > a {
+  color: #EDEEF0;
+}
+
+.text-danger {
+  color: #EDEEF0;
+}
+
+.text-warning {
+  color: #EDEEF0;
+}
+
+.has-error .control-label{
+    color: #EDEEF0;
+}
+
+.has-error .form-control {
+  border-color: #02A5C1;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+}
+.has-error .form-control:focus {
+  border-color: #02A5C1;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 6px #ce8483;
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 6px #ce8483;
+}
+
+
+
+.btn-success {
+  color: #EDEEF0;
+  background-color: #01678D;
+  border-color: #01678D;
+}
+
+.btn-success:hover,
+.btn-success:focus,
+.btn-success.focus,
+.btn-success:active,
+.btn-success.active,
+.open > .dropdown-toggle.btn-success {
+  color: #EDEEF0;
+  background-color: #01678D;
+  border-color: #01678D;
+}
+
+.text-primary {
+  color: #EDEEF0;
+}
+
+.navbar-default .navbar-brand {
+  color: #EDEEF0;
+}

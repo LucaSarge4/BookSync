@@ -15,9 +15,10 @@
         <title>My Bookmarks</title>
         <!-- Bootstrap -->
         <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/booksync.css" rel="stylesheet">
         <style>
             body{
-                background-color: #888;
+                background-color: #EDEEF0;
                 }
         </style>
     </head>
