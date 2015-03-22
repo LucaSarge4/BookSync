@@ -6,7 +6,7 @@ function login(username,password){
                             onLogin();
                         }
                         else 
-                           console.log("login non effettuato"); 
+                           window.alert("Invalid username or password")
                     }
         );   
 }
