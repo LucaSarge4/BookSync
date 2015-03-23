@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>BookSync new acccount</title>
+        <!-- Bootstrap -->
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/booksync.css" rel="stylesheet">
+        
+        <style>
+            body{
+                background-image: url("images/background.jpg");
+                background-size: 100% auto;
+                background-color: #04718E;
+                }
+        </style>
+    </head>
+    
+    <body>
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <!-- Include all compiled plugins (below), or include individual
+        files as needed -->
+        <script src="js/bootstrap.min.js"></script>
+        
+        
+        <div class="navbar-default">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-ex-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand"><img height="20" alt="Brand" src="images/logo.png" class="img-rounded"></a>
+                </div>
+                <div class="collapse navbar-collapse" id="navbar-ex-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="#">Home</a>
+                        </li>
+                        <li>
+                            <a href="#">Plugin</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <h1 class="text-danger">BookSync</h1>
+                        <p class="text-warning">Add new user.</p>
+                        <br>
+                        <br>
+                        <br>
+                    </div>
+                </div>
+            </div>
+        <div class="section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 col-md-offset-4">
+                        <div class="form-group has-error">
+                            <label class="control-label" >Username</label>
+                            <input class="form-control" id="inputUsername"
+                                   placeholder="Enter Username" type="text" name="user">
+                        </div>
+                        <div class="form-group has-error">
+                            <label class="control-label" >Password</label>
+                            <input class="form-control" id="inputPassword"
+                                   placeholder="Password" type="password" name="psw">
+                        </div>
+                        <div class="form-group has-error">
+                            <label class="control-label" >First Name</label>
+                            <input class="form-control" id="inputFirstName"
+                                   placeholder="FirstName" type="text" name="firstName">
+                        </div>
+                        <div class="form-group has-error">
+                                <label class="control-label">Last Name</label>
+                                <input class="form-control" id="inputLastName"
+                                       placeholder="LastName" type="text" name="lastName">
+                        </div>
+                        <div class="form-group has-error">
+                            <label class="control-label" >Email</label>
+                            <input class="form-control" id="inputEmail"
+                                   placeholder="Email" type="text" name="email">
+                        </div>
+                        <div class="form-group has-error">
+                                <label class="control-label">Country</label>
+                                <input class="form-control" id="inputCountry"
+                                       placeholder="Country" type="text" name="country">
+                        </div>
+
+                        <input type="button" value="Confirm" class="active btn btn-success" onclick="regFunction()">
+                        
+                        <!-- Include md5-->
+                        <script src="js/md5.js"></script>
+                        <script src="js/login.js"></script>
+                        <script> 
+                        function regFunction(){
+                            var user = document.getElementById("inputUsername").value.toString();
+                            var password = document.getElementById("inputPassword").value.toString();
+                            var psw = CryptoJS.MD5(password).toString();
+                            var firstName = document.getElementById("inputFirstName").value.toString();
+                            var lastName = document.getElementById("inputLastName").value.toString();
+                            var email = document.getElementById("inputEmail").value.toString();
+                            var country = document.getElementById("inputCountry").value.toString();
+                            registration(user,psw,firstName,lastName,email,country);
+                        }
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+
+</html>

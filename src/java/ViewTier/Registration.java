@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-public class Login extends HttpServlet {
+public class Registration extends HttpServlet {
 
     BusinessLogicInterface bl;
     
@@ -19,11 +19,11 @@ public class Login extends HttpServlet {
           throws ServletException, IOException{
         bl = new BusinessLogic();
         
-        PrintWriter out = response.getWriter();
-        if(bl.login(request.getParameter("user"), request.getParameter("psw")))
+        /*PrintWriter out = response.getWriter();
+        if(bl.registartion(request.getParameter("user"), request.getParameter("psw")))
             out.print(true);
         else 
-            out.print(false);
+            out.print(false);*/
     }
     // Method to handle POST method request.
     public void doPost(HttpServletRequest request,
