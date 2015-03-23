@@ -16,6 +16,7 @@
         <!-- Bootstrap -->
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/booksync.css" rel="stylesheet">
+        <link rel="icon" href="images\logo.png" type="image/png" />
         <style>
             body{
                 background-color: #EDEEF0;
@@ -23,13 +24,20 @@
         </style>
     </head>
     
-    <body>
+    <body onload="getUserName()">
+        <script src="js/getCookie.js"></script>
+        <script> 
+            function getUserName(){
+                var name = getCookie('username');
+                console.log(name)
+            }
+        </script>
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src="//code.jquery.com/jquery.js"></script>
         <!-- Include all compiled plugins (below), or include individual
         files as needed -->
         <script src="js/bootstrap.min.js"></script>
-        <div class="navbar navbar-default navbar-fixed-top">
+        <div class="navbar navbar-default">
             <div class="container">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-ex-collapse">
@@ -90,6 +98,7 @@
                 </div>
             </div>
         </div>
+           
     </body>
 
 </html>

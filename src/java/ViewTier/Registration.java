@@ -19,8 +19,8 @@ public class Registration extends HttpServlet {
           throws ServletException, IOException{
         bl = new BusinessLogic();
         
-        /*PrintWriter out = response.getWriter();
-        if(bl.registartion(request.getParameter("user"), request.getParameter("psw")))
+        PrintWriter out = response.getWriter();
+        /*if(bl.addUser(request.getParameter("user"), request.getParameter("psw")))
             out.print(true);
         else 
             out.print(false);*/

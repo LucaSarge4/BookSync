@@ -56,3 +56,7 @@
 .navbar-default .navbar-brand {
   color: #EDEEF0;
 }
+
+#helloText { 
+    color: black;
+}
