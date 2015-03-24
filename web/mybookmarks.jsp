@@ -24,12 +24,19 @@
         </style>
     </head>
     
-    <body onload="getUserName()">
+    <body onload="loadPage()">
         <script src="js/getCookie.js"></script>
+        <script src="js/createBookmarksTable.js"></script>
+        <script> 
+            function loadPage(){
+                createBookmarksTable(getUserName());
+            }
+        </script>
         <script> 
             function getUserName(){
                 var name = getCookie('username');
-                console.log(name)
+                console.log(name);
+                return name; 
             }
         </script>
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -98,7 +105,46 @@
                 </div>
             </div>
         </div>
-           
+        
+        <table class="table table-hover" id="bookmarksTable">
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Url</th>
+                <th>Last Edit Date</th>
+                <th>Folder</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr>
+                <th>Facebook</th>
+                <th>www.facebook.it</th>
+                <th>oggi</th>
+                <th>root</th>
+              </tr>
+              
+              <tr>
+                <th>Youtube</th>
+                <th>www.youtube.it</th>
+                <th>oggi</th>
+                <th>root</th>
+              </tr>
+              
+              <tr>
+                <th>xda</th>
+                <th>www.xda-devopler.com</th>
+                <th>oggi</th>
+                <th>root</th>
+              </tr>
+            </tbody>
+            <script>
+                    $(document).ready(function(){
+                        $("tr").click(function(){
+                            $(this).css("background-color", "#02A5C1");
+                        });
+                    });
+            </script>
+          </table>       
     </body>
 
 </html>
