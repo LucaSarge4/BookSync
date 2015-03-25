@@ -1,17 +1,25 @@
-function registration(username,password,firstName,lastName,email,country){
+function registration(username,firstName,lastName,password,email,country){
     var d = new Date();
     var dataString = d.toLocaleDateString()+ " "+d.toLocaleTimeString();
     $.post( "Registration", 
-            {user: username,psw:password,firstName: firstName,lastName: lastName,
-                email: email,country: country,data:dataString},
+            {user: username,firstName: firstName,lastName: lastName,psw:password,
+                email: email,country: country,regdate:dataString},
             function(responseText) {
-                       if(responseText=="true"){
+                       //if(responseText=="true"){
                             onReg();
-                        }
-                        else 
-                           window.alert("Invalid data");
+                            setCookie("username",username,1);
+                        //}
+                        ///else 
+                          // window.alert("Invalid data");
                     }
         ); 
+}
+
+function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    var expires = "expires="+d.toUTCString();
+    document.cookie = cname + "=" + cvalue + "; " + expires;
 }
 
 function onReg(){

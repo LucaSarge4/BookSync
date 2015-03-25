@@ -100,18 +100,19 @@
                         <input type="button" value="Confirm" class="active btn btn-success" onclick="regFunction()">
                         
                         <!-- Include md5-->
-                        <script src="js/md5.js"></script>
-                        <script src="js/login.js"></script>
+                        <script src="js/md5.js" ></script>
+                        <script src="js/login.js" ></script>
+                        <script src="js/registration.js" ></script>
                         <script> 
                         function regFunction(){
                             var user = document.getElementById("inputUsername").value.toString();
-                            var password = document.getElementById("inputPassword").value.toString();
-                            var psw = CryptoJS.MD5(password).toString();
                             var firstName = document.getElementById("inputFirstName").value.toString();
                             var lastName = document.getElementById("inputLastName").value.toString();
+                            var password = document.getElementById("inputPassword").value.toString();
+                            var psw = CryptoJS.MD5(password).toString();
                             var email = document.getElementById("inputEmail").value.toString();
                             var country = document.getElementById("inputCountry").value.toString();
-                            registration(user,psw,firstName,lastName,email,country);
+                            registration(user,firstName,lastName,psw,email,country);
                         }
                         </script>
                     </div>
