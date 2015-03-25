@@ -25,10 +25,21 @@
     </head>
     
     <body onload="loadPage()">
+        <script>
+        function find_os_version() {
+            var OSName="Unknown OS";
+            if (navigator.appVersion.indexOf("Win")!=-1) OSName="Windows";
+            if (navigator.appVersion.indexOf("Mac")!=-1) OSName="MacOS";
+            if (navigator.appVersion.indexOf("X11")!=-1) OSName="UNIX";
+            if (navigator.appVersion.indexOf("Linux")!=-1) OSName="Linux";
+            console.log("Your OS: "+OSName);
+        }
+</script>
         <script src="js/getCookie.js"></script>
         <script src="js/createBookmarksTable.js"></script>
         <script> 
             function loadPage(){
+                find_os_version();
                 createBookmarksTable(getUserName());
             }
         </script>
@@ -53,49 +64,49 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#"><span>BookSync</span></a>
+                    <a class="navbar-brand" ><span>BookSync</span></a>
                 </div>
                 <div class="collapse navbar-collapse" id="#navbar-ex-collapse">
                     <ul class="nav navbar-left navbar-nav"></ul>
                     <p class="navbar-text navbar-right"></p>
                     <ul class="nav navbar-nav navbar-right">
-                        <li class="">
-                            <a href="#">Open</a>
+                        <li class="" >
+                            <a onclick="" >Open</a>
                         </li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                             aria-expanded="false">New <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
                                 <li>
-                                    <a href="#">Bookmark</a>
+                                    <a onclick="" >Bookmark</a>
                                 </li>
                                 <li class="divider"></li>
                                 <li>
-                                    <a href="#">Folder</a>
+                                    <a onclick="" >Folder</a>
                                 </li>
                             </ul>
                         </li>
                         <li>
-                            <a href="#">Delete</a>
+                            <a onclick="" >Delete</a>
                         </li>
                         <li>
-                            <a href="#">Details</a>
+                            <a onclick="" >Details</a>
                         </li>
                         <li>
-                            <a href="#">Search</a>
+                            <a onclick="" >Search</a>
                         </li>
                         <li class="dropdown">
                             <ul class="dropdown-menu" role="menu">
                                 <li>
-                                    <a href="#">Devices</a>
+                                    <a onclick="" >Devices</a>
                                 </li>
                                 <li class="divider"></li>
                                 <li>
-                                    <a href="#">Add Dropbox Folder</a>
+                                    <a onclick="" >Add Dropbox Folder</a>
                                 </li>
                                 <li class="divider"></li>
                                 <li>
-                                    <a href="#">Add Drive Folder</a>
+                                    <a onclick="" >Add Drive Folder</a>
                                 </li>
                             </ul>
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"

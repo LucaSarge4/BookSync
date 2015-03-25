@@ -61,3 +61,13 @@
     color: black;
 }
 
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:focus {
+  color: #EDEEF0;
+  background-color: transparent;
+}
+
+.navbar-nav{
+    cursor: pointer;
+}
+

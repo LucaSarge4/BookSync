@@ -4,12 +4,32 @@ function login(username,password){
             function(responseText) {
                        if(responseText=="true"){
                            setCookie("username",username,1);
+                           console.log(find_os_version());
                            onLogin();
                         }
                         else 
                            window.alert("Invalid username or password")
                     }
         );   
+}
+
+function find_os_version() {
+  var ua = navigator.userAgent.toLowerCase();
+  if (ua.indexOf("windows nt 5.0") != -1) {
+    return 'win2k';
+  }
+  if (ua.indexOf("windows nt 5.1") != -1) {
+    return 'winXP';
+  }
+  if (ua.indexOf("windows nt 6.0") != -1) {
+    return 'winVista';
+  }
+  if (ua.indexOf("windows nt 6.1") != -1) {
+    return 'win7';
+  }
+  if (ua.indexOf("windows nt 6.2") != -1) {
+    return 'win8';
+  }
 }
 
 function onLogin(){
