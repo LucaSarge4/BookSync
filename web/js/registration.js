@@ -6,6 +6,7 @@ function registration(username,firstName,lastName,password,email,country){
                 email: email,country: country,regdate:dataString},
             function(responseText) {
                        //if(responseText=="true"){
+                            console.log(responseText);
                             onReg();
                             setCookie("username",username,1);
                         //}

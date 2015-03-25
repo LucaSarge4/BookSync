@@ -24,6 +24,7 @@ public class Registration extends HttpServlet {
                 request.getParameter("lastName"),request.getParameter("psw"),
                     request.getParameter("email"),request.getParameter("country"),
                     request.getParameter("regdate"));
+        out.print("add");
     }
     // Method to handle POST method request.
     public void doPost(HttpServletRequest request,
