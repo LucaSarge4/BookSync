@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="BusinessLogicTier.BusinessLogicInterface.*" %>
 <!DOCTYPE html>
 <html>
     
@@ -25,22 +26,10 @@
     </head>
     
     <body onload="loadPage()">
-        <script>
-        function find_os_version() {
-            var OSName="Unknown OS";
-            if (navigator.appVersion.indexOf("Win")!=-1) OSName="Windows";
-            if (navigator.appVersion.indexOf("Mac")!=-1) OSName="MacOS";
-            if (navigator.appVersion.indexOf("X11")!=-1) OSName="UNIX";
-            if (navigator.appVersion.indexOf("Linux")!=-1) OSName="Linux";
-            console.log("Your OS: "+OSName);
-        }
-</script>
         <script src="js/getCookie.js"></script>
-        <script src="js/createBookmarksTable.js"></script>
         <script> 
             function loadPage(){
-                find_os_version();
-                createBookmarksTable(getUserName());
+                createBookmarksTable(getUserName(),20);
             }
         </script>
         <script> 
@@ -50,6 +39,39 @@
                 return name; 
             }
         </script>
+        <script>
+            function createBookmarksTable(username,length){
+                for(i=0; i<length; i++)
+                    //addBookmarksTableRow(title,url,ldate,folder);
+                    addBookmarksTableRow("1","2","3","4");
+            }
+        </script>
+        <script>
+            function addBookmarksTableRow(title,url,ldate,folder){
+                var table = document.getElementById("bookmarksTable");
+                var row = table.insertRow(-1);
+                var cell1 = row.insertCell(0);
+                var cell2 = row.insertCell(1);
+                var cell3 = row.insertCell(2);
+                var cell4 = row.insertCell(3);
+                cell1.innerHTML = title;
+                cell2.innerHTML = url;
+                cell3.innerHTML = ldate;
+                cell4.innerHTML = folder;
+                addSelection ();
+            }
+        </script>
+        <script>
+                function addSelection (){
+                $(document).ready(function(){
+                    $("tr").click(function(){
+                        $(this).css("background-color", "#02A5C1");
+                    });
+                });
+            }
+        </script>
+        
+        
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src="//code.jquery.com/jquery.js"></script>
         <!-- Include all compiled plugins (below), or include individual
@@ -127,34 +149,9 @@
               </tr>
             </thead>
             <tbody>
-                <tr>
-                <th>Facebook</th>
-                <th>www.facebook.it</th>
-                <th>oggi</th>
-                <th>root</th>
-              </tr>
-              
-              <tr>
-                <th>Youtube</th>
-                <th>www.youtube.it</th>
-                <th>oggi</th>
-                <th>root</th>
-              </tr>
-              
-              <tr>
-                <th>xda</th>
-                <th>www.xda-devopler.com</th>
-                <th>oggi</th>
-                <th>root</th>
-              </tr>
+             
             </tbody>
-            <script>
-                    $(document).ready(function(){
-                        $("tr").click(function(){
-                            $(this).css("background-color", "#02A5C1");
-                        });
-                    });
-            </script>
+            
           </table>       
     </body>
 
