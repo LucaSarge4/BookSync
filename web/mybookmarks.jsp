@@ -26,22 +26,7 @@
         </style>
     </head>
     
-    <body onload="loadPage()">
-        <script src="js/getCookie.js"></script>
-        <script> 
-            function loadPage(){
-                createBookmarksTable(getUserName(),20);
-            }
-        </script>
-        <script> 
-            function getUserName(){
-                var name = getCookie('username');
-                console.log(name);
-                return name; 
-            }
-        </script>
-        
-        
+    <body>      
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src="//code.jquery.com/jquery.js"></script>
         <!-- Include all compiled plugins (below), or include individual
@@ -120,16 +105,28 @@
             </thead>
             <tbody>
                 <%  BusinessLogic bl = new BusinessLogic();
-                    String text="";
-                    for(int i=0;i<3;i++){
+                    String username="";
+                    Cookie cookie = null;
+                    Cookie[] cookies = null;
+                    // Get an array of Cookies associated with this domain
+                    cookies = request.getCookies();
+                    for (int i = 0; i < cookies.length; i++){
+                        cookie = cookies[i];
+                        if(cookie.getName().equals("username"))
+                            username=cookie.getValue();
+                    }
+                    
+                    String text=username;
+                    for(int i=1;i<4;i++){
                         out.write("<tr>");
                         for(int j=1;j<5;j++){
-                            text = bl.getBookElement("LucaSarge4", i, j);
-                            out.write("<th>"+text+"</th>");
+                            //text = bl.getBookElement(username, i, j);
+                            out.write("<td id=bookText>"+text+"</td>");
                         }
                         out.write("</tr>");
-                    }  
+                    }
                 %>
+                
             </tbody>
             
           </table>       

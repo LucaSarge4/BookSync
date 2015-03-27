@@ -39,12 +39,13 @@ public class DataAccess implements DataAccessInterface{
              
             Connection connessione = DriverManager.getConnection("jdbc:sqlite:booksync.db"); 
             Statement stat = connessione.createStatement(); 
+            Statement stat1 = connessione.createStatement(); 
             String bookid="";
-            ResultSet result = stat.executeQuery("SELECT * FROM preferred WHERE ID = "+id);
+            ResultSet result = stat.executeQuery("SELECT * FROM preferred WHERE UserID = "+id);
             ResultSet result1;
             while (result.next()) { 
                 bookid=result.getString("BookID");
-                result1=stat.executeQuery("SELECT * FROM bookmarks WHERE ID = "+bookid);
+                result1=stat1.executeQuery("SELECT * FROM bookmarks WHERE BookID = "+bookid);
                 Bookmark bm = new Bookmark();
                 bm.setBookID(result1.getString("BookID"));
                 bm.setTitle(result1.getString("title"));
@@ -57,7 +58,8 @@ public class DataAccess implements DataAccessInterface{
                 
               this.bookmarks.add(bm); 
             } 
-            result.close();connessione.close(); 
+            result.close();
+            connessione.close(); 
         } catch ( Exception e ) {
           e.printStackTrace();
         }
@@ -69,12 +71,13 @@ public class DataAccess implements DataAccessInterface{
 
             Connection connessione = DriverManager.getConnection("jdbc:sqlite:booksync.db"); 
             Statement stat = connessione.createStatement();
+            Statement stat1 = connessione.createStatement(); 
             String destid="";
             ResultSet result = stat.executeQuery("SELECT * FROM ownership WHERE ID = "+id);
             ResultSet result1;
             while (result.next()) { 
                 destid=result.getString("DestinationID");
-                result1=stat.executeQuery("SELECT * FROM destination WHERE ID = "+destid);
+                result1=stat1.executeQuery("SELECT * FROM destination WHERE ID = "+destid);
                 Destination des = new Destination();
                 des.setDestinationID(result.getString("DestinationID"));
                 des.setDevice(result.getString("device"));
@@ -150,8 +153,7 @@ public class DataAccess implements DataAccessInterface{
             stat.close();
             connessione.close();
         } catch ( Exception e ) {
-          System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-          System.exit(0);
+          e.printStackTrace();
         }
         try{
             Class.forName("org.sqlite.JDBC"); 
@@ -241,4 +243,5 @@ public class DataAccess implements DataAccessInterface{
         }
         return response;
     }
+    
 }
