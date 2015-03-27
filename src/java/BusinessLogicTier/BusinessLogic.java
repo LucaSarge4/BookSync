@@ -16,14 +16,32 @@ import java.util.LinkedList;
 public class BusinessLogic implements BusinessLogicInterface{
     
     DataAccessInterface dt;
+    private LinkedList <Bookmark> bookmarks;
     
     public BusinessLogic(){
         this.dt = new DataAccess();
+        this.bookmarks = new LinkedList();
     }
     
-    public LinkedList getBookmarks(String username){
-        return this.dt.getBookmarks(this.dt.getID(username));
+    public void getBookmarks(String username){
+        this.bookmarks = this.dt.getBookmarks(this.dt.getID(username));
     }
+    
+    public String getBookElement(String username,int row,int cell){
+        this.bookmarks = this.dt.getBookmarks(this.dt.getID(username));
+        switch(cell){
+            case(1):
+                return this.bookmarks.get(row).getTitle();
+            case(2):
+                return this.bookmarks.get(row).getUrl();
+            case(3):
+                return this.bookmarks.get(row).getLastEditDate();
+            case(4):
+                return this.bookmarks.get(row).getFatherFolder();
+        }
+        return "null";
+    }
+    
     public LinkedList getDestinations(String username){
         return this.dt.getDestinations(this.dt.getID(username));
     }

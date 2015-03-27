@@ -5,7 +5,8 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="BusinessLogicTier.BusinessLogicInterface.*" %>
+<%@page import="BusinessLogicTier.BusinessLogicInterface" %>
+<%@page import="BusinessLogicTier.BusinessLogic" %>
 <!DOCTYPE html>
 <html>
     
@@ -37,37 +38,6 @@
                 var name = getCookie('username');
                 console.log(name);
                 return name; 
-            }
-        </script>
-        <script>
-            function createBookmarksTable(username,length){
-                for(i=0; i<length; i++)
-                    //addBookmarksTableRow(title,url,ldate,folder);
-                    addBookmarksTableRow("1","2","3","4");
-            }
-        </script>
-        <script>
-            function addBookmarksTableRow(title,url,ldate,folder){
-                var table = document.getElementById("bookmarksTable");
-                var row = table.insertRow(-1);
-                var cell1 = row.insertCell(0);
-                var cell2 = row.insertCell(1);
-                var cell3 = row.insertCell(2);
-                var cell4 = row.insertCell(3);
-                cell1.innerHTML = title;
-                cell2.innerHTML = url;
-                cell3.innerHTML = ldate;
-                cell4.innerHTML = folder;
-                addSelection ();
-            }
-        </script>
-        <script>
-                function addSelection (){
-                $(document).ready(function(){
-                    $("tr").click(function(){
-                        $(this).css("background-color", "#02A5C1");
-                    });
-                });
             }
         </script>
         
@@ -149,7 +119,17 @@
               </tr>
             </thead>
             <tbody>
-             
+                <%  BusinessLogic bl = new BusinessLogic();
+                    String text="";
+                    for(int i=0;i<3;i++){
+                        out.write("<tr>");
+                        for(int j=1;j<5;j++){
+                            text = bl.getBookElement("LucaSarge4", i, j);
+                            out.write("<th>"+text+"</th>");
+                        }
+                        out.write("</tr>");
+                    }  
+                %>
             </tbody>
             
           </table>       
