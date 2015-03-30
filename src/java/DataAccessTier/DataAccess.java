@@ -13,8 +13,7 @@ public class DataAccess implements DataAccessInterface{
     private LinkedList <Destination> destinations;
     
     public DataAccess(){
-        this.bookmarks = new LinkedList<Bookmark>();
-        this.destinations = new LinkedList<Destination>();
+        this.bookmarks = new LinkedList();
     }
     
     public String getID(String username){
@@ -41,22 +40,21 @@ public class DataAccess implements DataAccessInterface{
             Statement stat = connessione.createStatement(); 
             Statement stat1 = connessione.createStatement(); 
             String bookid="";
-            ResultSet result = stat.executeQuery("SELECT * FROM preferred WHERE UserID = "+id);
+            ResultSet result = stat.executeQuery("SELECT * FROM preferred WHERE UserID =\""+id+"\"");
             ResultSet result1;
             while (result.next()) { 
                 bookid=result.getString("BookID");
-                result1=stat1.executeQuery("SELECT * FROM bookmarks WHERE BookID = "+bookid);
+                result1=stat1.executeQuery("SELECT * FROM bookmarks WHERE BookID = \""+bookid+"\"");
                 Bookmark bm = new Bookmark();
                 bm.setBookID(result1.getString("BookID"));
                 bm.setTitle(result1.getString("title"));
                 bm.setUrl(result1.getString("url"));
                 bm.setLastEditDate(result1.getString("lasteditdate"));
-                bm.setFatherFolder(result1.getString("fatherfolder"));
+                bm.setFatherFolder(result1.getString("fatherpath"));
                 bm.setTag(result1.getString("tag"));
                 bm.setType(result1.getString("type"));
                 bm.setIcon(result1.getString("icon"));
-                
-              this.bookmarks.add(bm); 
+                this.bookmarks.add(bm);
             } 
             result.close();
             connessione.close(); 

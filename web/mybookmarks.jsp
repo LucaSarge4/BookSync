@@ -4,9 +4,11 @@
     Author     : Luca
 --%>
 
+<%@page import="DataAccessTier.Bookmark"%>
+<%@page import="java.util.LinkedList"%>
+<%@page import="BusinessLogicTier.BusinessLogic"%>
+<%@page import="BusinessLogicTier.BusinessLogicInterface"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="BusinessLogicTier.BusinessLogicInterface" %>
-<%@page import="BusinessLogicTier.BusinessLogic" %>
 <!DOCTYPE html>
 <html>
     
@@ -104,7 +106,7 @@
               </tr>
             </thead>
             <tbody>
-                <%  BusinessLogic bl = new BusinessLogic();
+                <%  BusinessLogicInterface bl = new BusinessLogic();
                     String username="";
                     Cookie cookie = null;
                     Cookie[] cookies = null;
@@ -115,14 +117,16 @@
                         if(cookie.getName().equals("username"))
                             username=cookie.getValue();
                     }
+                    LinkedList <Bookmark> bms = new LinkedList();
+                    bms = bl.getBookmarks(username);
+                    System.out.println(bms.size());
                     
-                    String text=username;
-                    for(int i=1;i<4;i++){
+                    for(int i=0;i<bms.size();i++){
                         out.write("<tr>");
-                        for(int j=1;j<5;j++){
-                            //text = bl.getBookElement(username, i, j);
-                            out.write("<td id=bookText>"+text+"</td>");
-                        }
+                        out.write("<td>"+bms.get(i).getTitle()+"</td>");
+                        out.write("<td>"+bms.get(i).getUrl()+"</td>");
+                        out.write("<td>"+bms.get(i).getLastEditDate()+"</td>");
+                        out.write("<td>"+bms.get(i).getFatherFolder()+"</td>");
                         out.write("</tr>");
                     }
                 %>

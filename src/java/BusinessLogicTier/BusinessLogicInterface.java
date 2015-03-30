@@ -8,8 +8,7 @@ package BusinessLogicTier;
 import java.util.LinkedList;
 
 public interface BusinessLogicInterface {
-    public void getBookmarks(String username);
-    public String getBookElement(String username,int row,int cell);
+    public LinkedList getBookmarks(String username);
     public LinkedList getDestinations(String username);
     public boolean login(String username,String password);
     public void addUser(String username,String firstname,String lastname,String password,String email,String country,String regdate);
