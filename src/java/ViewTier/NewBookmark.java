@@ -30,6 +30,7 @@ public class NewBookmark extends HttpServlet {
         PrintWriter out = response.getWriter();
         bl.addBookmark(request.getParameter("userid"), request.getParameter("title"),request.getParameter("url"),
                 request.getParameter("lasteditdate"), request.getParameter("fatherpath"), request.getParameter("type"));
+        
     }
     // Method to handle POST method request.
     public void doPost(HttpServletRequest request,

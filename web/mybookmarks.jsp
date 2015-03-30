@@ -57,13 +57,8 @@
                             aria-expanded="false">New <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
                                 <li>
-                                    <a onclick="newBookmark()" >Bookmark</a>
+                                    <a <a href="newBookmark.html" onclick="javascript:void window.open('newBookmark.html','Bookmark','width=700,height=500,toolbar=0,menubar=0,location=0,status=1,scrollbars=0,resizable=1,left=0,top=0');return false;" >Bookmark</a>
                                 </li>
-                                <script>
-                                    function newBookmark(){
-                                        
-                                    }
-                                </script>
                                 <li class="divider"></li>
                                 <li>
                                     <a onclick="" >Folder</a>

@@ -9,7 +9,7 @@
         <servlet-class>ViewTier.Registration</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>newBookmark</servlet-name>
+        <servlet-name>NewBookmark</servlet-name>
         <servlet-class>ViewTier.NewBookmark</servlet-class>
     </servlet>
     <servlet-mapping>
@@ -21,8 +21,8 @@
         <url-pattern>/Registration</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>newBookmark</servlet-name>
-        <url-pattern>/newBookmark</url-pattern>
+        <servlet-name>NewBookmark</servlet-name>
+        <url-pattern>/NewBookmark</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
