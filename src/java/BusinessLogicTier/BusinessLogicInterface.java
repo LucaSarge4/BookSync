@@ -12,4 +12,5 @@ public interface BusinessLogicInterface {
     public LinkedList getDestinations(String username);
     public boolean login(String username,String password);
     public void addUser(String username,String firstname,String lastname,String password,String email,String country,String regdate);
+    public void addBookmark(String userid,String title,String url,String lasteditdate,String fatherpath,String type);
 }

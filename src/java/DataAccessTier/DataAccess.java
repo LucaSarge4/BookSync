@@ -119,7 +119,7 @@ public class DataAccess implements DataAccessInterface{
         }
     }
     
-    public void addBookmark(String id,String title,String url,String lasteditdate,
+    public void addBookmark(String userid,String title,String url,String lasteditdate,
                                 String fatherpath,String type){
         try{
             Class.forName("org.sqlite.JDBC"); 
@@ -127,10 +127,10 @@ public class DataAccess implements DataAccessInterface{
             Connection connessione = DriverManager.getConnection("jdbc:sqlite:booksync.db"); 
             Statement stato = connessione.createStatement(); 
  
-            stato.executeUpdate("INSERT INTO bookmarks (ID,title,url,lasteditdate,fatherpath,type) VALUES "
+            stato.executeUpdate("INSERT INTO bookmarks (title,url,lasteditdate,fatherpath,type) VALUES "
                     + "('"+title+"', '"+url+"', '"+lasteditdate+"', '"+fatherpath+"', '"+type+"')"); 
             connessione.close();
-            preferred(id);
+            preferred(userid);
         } catch ( Exception e ) {
           e.printStackTrace();
         } 

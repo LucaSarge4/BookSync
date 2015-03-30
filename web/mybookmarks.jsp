@@ -57,8 +57,13 @@
                             aria-expanded="false">New <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
                                 <li>
-                                    <a onclick="" >Bookmark</a>
+                                    <a onclick="newBookmark()" >Bookmark</a>
                                 </li>
+                                <script>
+                                    function newBookmark(){
+                                        
+                                    }
+                                </script>
                                 <li class="divider"></li>
                                 <li>
                                     <a onclick="" >Folder</a>
@@ -119,7 +124,6 @@
                     }
                     LinkedList <Bookmark> bms = new LinkedList();
                     bms = bl.getBookmarks(username);
-                    System.out.println(bms.size());
                     
                     for(int i=0;i<bms.size();i++){
                         out.write("<tr>");

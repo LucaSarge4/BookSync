@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package ViewTier;
 
 import BusinessLogicTier.BusinessLogic;
@@ -9,8 +14,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
-public class Registration extends HttpServlet {
+/**
+ *
+ * @author Luca
+ */
+public class NewBookmark extends HttpServlet {
 
     BusinessLogicInterface bl;
     
@@ -20,10 +28,8 @@ public class Registration extends HttpServlet {
         bl = new BusinessLogic();
         
         PrintWriter out = response.getWriter();
-        bl.addUser(request.getParameter("user"),request.getParameter("firstName"),
-                request.getParameter("lastName"),request.getParameter("psw"),
-                    request.getParameter("email"),request.getParameter("country"),
-                    request.getParameter("regdate"));
+        bl.addBookmark(request.getParameter("userid"), request.getParameter("title"),request.getParameter("url"),
+                request.getParameter("lasteditdate"), request.getParameter("fatherpath"), request.getParameter("type"));
     }
     // Method to handle POST method request.
     public void doPost(HttpServletRequest request,
