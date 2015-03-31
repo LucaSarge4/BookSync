@@ -9,6 +9,7 @@
 <%@page import="BusinessLogicTier.BusinessLogic"%>
 <%@page import="BusinessLogicTier.BusinessLogicInterface"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%! String selection = ""; %>
 <!DOCTYPE html>
 <html>
     
@@ -19,6 +20,7 @@
         <title>My Bookmarks</title>
         <!-- Bootstrap -->
         <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/bootstrap-table.min.css" rel="stylesheet">
         <link href="css/booksync.css" rel="stylesheet">
         <link rel="icon" href="images\logo.png" type="image/png" />
         <style>
@@ -34,6 +36,7 @@
         <!-- Include all compiled plugins (below), or include individual
         files as needed -->
         <script src="js/bootstrap.min.js"></script>
+        <script src="js/bootstrap-table.min.js"></script>
         <div class="navbar navbar-default">
             <div class="container">
                 <div class="navbar-header">
@@ -96,14 +99,15 @@
             </div>
         </div>
         
-        <table class="table table-hover" id="bookmarksTable">
+        <table class="table table-hover" data-toggle="table" data-click-to-select="true" data-single-select="true">
             <thead>
-              <tr>
-                <th>Title</th>
-                <th>Url</th>
-                <th>Last Edit Date</th>
-                <th>Folder</th>
-              </tr>
+                <tr>
+                    <th data-field="state" data-checkbox="true"></th>
+                    <th>Title</th>
+                    <th>Url</th>
+                    <th>Last Edit Date</th>
+                    <th>Folder</th>
+                </tr>
             </thead>
             <tbody>
                 <%  BusinessLogicInterface bl = new BusinessLogic();
@@ -129,10 +133,8 @@
                         out.write("</tr>");
                     }
                 %>
-                
             </tbody>
-            
-          </table>       
+        </table>       
     </body>
 
 </html>
