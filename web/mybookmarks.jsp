@@ -9,7 +9,6 @@
 <%@page import="BusinessLogicTier.BusinessLogic"%>
 <%@page import="BusinessLogicTier.BusinessLogicInterface"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%! String selection = ""; %>
 <!DOCTYPE html>
 <html>
     
@@ -20,7 +19,7 @@
         <title>My Bookmarks</title>
         <!-- Bootstrap -->
         <link href="css/bootstrap.min.css" rel="stylesheet">
-        <link href="css/bootstrap-table.min.css" rel="stylesheet">
+        <link href="css/jquery.dataTables.css" rel="stylesheet">
         <link href="css/booksync.css" rel="stylesheet">
         <link rel="icon" href="images\logo.png" type="image/png" />
         <style>
@@ -28,15 +27,33 @@
                 background-color: #EDEEF0;
                 }
         </style>
+        <script src="//code.jquery.com/jquery.js"></script>
+        <script src="js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" class="init">
+        $(document).ready(function() {
+            var table = $('#bookmarksTable').DataTable();
+
+            $('#bookmarksTable tbody').on( 'click', 'tr', function () {
+                if ( $(this).hasClass('selected') ) {
+                    $(this).removeClass('selected');
+                }
+                else {
+                    table.$('tr.selected').removeClass('selected');
+                    $(this).addClass('selected');
+                }
+            } );
+
+            $('#open').click( function () {
+                window.open('http://'+table.row('.selected').data()[1]);
+            } );
+        } );
+        </script>
     </head>
     
     <body>      
-        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        <script src="//code.jquery.com/jquery.js"></script>
         <!-- Include all compiled plugins (below), or include individual
         files as needed -->
         <script src="js/bootstrap.min.js"></script>
-        <script src="js/bootstrap-table.min.js"></script>
         <div class="navbar navbar-default">
             <div class="container">
                 <div class="navbar-header">
@@ -53,14 +70,25 @@
                     <p class="navbar-text navbar-right"></p>
                     <ul class="nav navbar-nav navbar-right">
                         <li class="" >
-                            <a onclick="" >Open</a>
+                            <a id="open" >Open</a>
                         </li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                             aria-expanded="false">New <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
                                 <li>
-                                    <a <a href="newBookmark.html" onclick="javascript:void window.open('newBookmark.html','Bookmark','width=700,height=500,toolbar=0,menubar=0,location=0,status=1,scrollbars=0,resizable=1,left=0,top=0');return false;" >Bookmark</a>
+                                    <a onclick="openPopup()" target="_blank" >Bookmark</a>
+                                    <script>
+                                        function openPopup(){
+                                            var x = screen.width/2 - 700/2;
+                                            var y = screen.height/2 - 450/2;
+                                            window.open(
+                                                'newBookmark.html','Bookmark','width=600,height=400,toolbar=0,\n\
+                                                menubar=0,location=no,addressbar=no,status=1,scrollbars=0,\n\
+                                                resizable=1,left='+x+',top='+y);
+                                                return false;
+                                        }
+                                    </script>
                                 </li>
                                 <li class="divider"></li>
                                 <li>
@@ -73,9 +101,6 @@
                         </li>
                         <li>
                             <a onclick="" >Details</a>
-                        </li>
-                        <li>
-                            <a onclick="" >Search</a>
                         </li>
                         <li class="dropdown">
                             <ul class="dropdown-menu" role="menu">
@@ -99,10 +124,9 @@
             </div>
         </div>
         
-        <table class="table table-hover" data-toggle="table" data-click-to-select="true" data-single-select="true">
+        <table class="table table-hover display" id="bookmarksTable">
             <thead>
                 <tr>
-                    <th data-field="state" data-checkbox="true"></th>
                     <th>Title</th>
                     <th>Url</th>
                     <th>Last Edit Date</th>
