@@ -29,6 +29,7 @@
         </style>
         <script src="js/jquery-2.1.3.js"></script>
         <script src="js/jquery.dataTables.min.js"></script>
+        <script src="js/getCookie.js"></script>
         <script type="text/javascript" class="init">
         $(document).ready(function() {
             var table = $('#bookmarksTable').DataTable();
@@ -43,6 +44,21 @@
                 }
             } );
 
+            $('#open').click( function () {
+                window.open('http://'+table.row('.selected').data()[1]);
+            } );
+            
+            $('#delete').click( function () {
+                console.log(getCookie("username"));
+                console.log(table.row('.selected').data()[1]);
+               $.post( "DeleteBookmark", 
+                    {username: getCookie("username"),url:table.row('.selected').data()[1]},
+                    function() {
+                                window.location.reload();
+                                }
+                );
+            } );
+            
             $('#open').click( function () {
                 window.open('http://'+table.row('.selected').data()[1]);
             } );
@@ -95,7 +111,7 @@
                             </ul>
                         </li>
                         <li>
-                            <a onclick="" >Delete</a>
+                            <a id="delete" >Delete</a>
                         </li>
                         <li>
                             <a onclick="" >Details</a>

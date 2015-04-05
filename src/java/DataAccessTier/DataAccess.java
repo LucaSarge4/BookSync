@@ -17,7 +17,7 @@ public class DataAccess implements DataAccessInterface{
     }
     
     public String getID(String username){
-        String id="This user is not valid";
+        String id="";
         try{
             Class.forName("org.sqlite.JDBC");
             Connection connessione = DriverManager.getConnection("jdbc:sqlite:booksync.db"); 
@@ -222,6 +222,50 @@ public class DataAccess implements DataAccessInterface{
         } catch ( Exception e ) {
           e.printStackTrace();
         } 
+    }
+    
+    public void deleteBookmark(String bookID){
+        try{
+            Class.forName("org.sqlite.JDBC"); 
+             
+            Connection connessione = DriverManager.getConnection("jdbc:sqlite:booksync.db");
+            Statement stat = connessione.createStatement(); 
+            stat.executeUpdate("DELETE FROM bookmarks WHERE BookID =\""+bookID+"\"");
+            stat.close();
+            connessione.close();
+            deletePreferred(bookID);
+            deleteLocalized(bookID);
+        } catch ( Exception e ) {
+          e.printStackTrace();
+        }
+    }
+    
+    private void deletePreferred(String bookID){
+        try{
+            Class.forName("org.sqlite.JDBC"); 
+             
+            Connection connessione = DriverManager.getConnection("jdbc:sqlite:booksync.db");
+            Statement stat = connessione.createStatement(); 
+            stat.executeUpdate("DELETE FROM preferred WHERE BookID =\""+bookID+"\"");
+            stat.close();
+            connessione.close();
+        } catch ( Exception e ) {
+          e.printStackTrace();
+        }
+    }
+    
+    private void deleteLocalized(String bookID){
+        try{
+            Class.forName("org.sqlite.JDBC"); 
+             
+            Connection connessione = DriverManager.getConnection("jdbc:sqlite:booksync.db");
+            Statement stat = connessione.createStatement(); 
+            stat.executeUpdate("DELETE FROM localized WHERE BookID =\""+bookID+"\"");
+            stat.close();
+            connessione.close();
+        } catch ( Exception e ) {
+          e.printStackTrace();
+        }
     }
     
     public boolean login(String id,String password){

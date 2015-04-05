@@ -39,4 +39,15 @@ public class BusinessLogic implements BusinessLogicInterface{
     public void addBookmark(String username,String title,String url,String lasteditdate,String fatherpath,String type){
         this.dt.addBookmark(this.dt.getID(username),title,url,lasteditdate,fatherpath,type);
     }
+    
+    public void deleteBookmark(String username,String url){
+        int index=-1;
+        LinkedList<Bookmark> list = this.dt.getBookmarks(this.dt.getID(username));
+        for(int i=0;i<list.size();i++){
+            if(list.get(i).getUrl().equals(url))
+                index=i;
+        }
+        String bookID= list.get(index).getBookID();
+        this.dt.deleteBookmark(bookID);
+    }
 }
