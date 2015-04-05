@@ -27,7 +27,7 @@
                 background-color: #EDEEF0;
                 }
         </style>
-        <script src="//code.jquery.com/jquery.js"></script>
+        <script src="js/jquery-2.1.3.js"></script>
         <script src="js/jquery.dataTables.min.js"></script>
         <script type="text/javascript" class="init">
         $(document).ready(function() {
@@ -50,9 +50,7 @@
         </script>
     </head>
     
-    <body>      
-        <!-- Include all compiled plugins (below), or include individual
-        files as needed -->
+    <body>
         <script src="js/bootstrap.min.js"></script>
         <div class="navbar navbar-default">
             <div class="container">
