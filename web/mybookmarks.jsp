@@ -1,9 +1,3 @@
-<%-- 
-    Document   : mybookmarks
-    Created on : 20-mar-2015, 18.14.32
-    Author     : Luca
---%>
-
 <%@page import="DataAccessTier.Bookmark"%>
 <%@page import="java.util.LinkedList"%>
 <%@page import="BusinessLogicTier.BusinessLogic"%>
