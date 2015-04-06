@@ -59,8 +59,12 @@
                 );
             } );
             
-            $('#open').click( function () {
-                window.open('http://'+table.row('.selected').data()[1]);
+            $('#details').click( function () {
+                window.alert("show bookmark detail");
+            } );
+            
+            $('#logout').click( function () {
+                window.open('http://localhost:8080/BookSync/','_self');
             } );
         } );
         </script>
@@ -114,7 +118,7 @@
                             <a id="delete" >Delete</a>
                         </li>
                         <li>
-                            <a onclick="" >Details</a>
+                            <a id="details" >Details</a>
                         </li>
                         <li class="dropdown">
                             <ul class="dropdown-menu" role="menu">
@@ -132,6 +136,9 @@
                             </ul>
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                             aria-expanded="false">Account <span class="caret"></span></a>
+                        </li>
+                        <li>
+                            <a id="logout" >Logout</a>
                         </li>
                     </ul>
                 </div>
