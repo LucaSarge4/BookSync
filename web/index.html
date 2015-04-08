@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-    
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -19,10 +18,23 @@
                 background-color: #04718E;
                 }
         </style>
+        <!-- Include md5-->
+        <script src="js/md5.js"></script>
+        <script src="js/getCookie.js"></script>
+        <script src="js/login.js"></script>
         <script src="js/jquery-2.1.3.js"></script>
+        <script>
+            function checkCookie(){
+                console.log("entro in check")
+                if(getCookie("username")!=="" && getCookie("password")!==""){
+                    console.log("entro in if ")
+                    login(getCookie("username"),getCookie("password"));
+                }
+            }
+        </script>
     </head>
     
-    <body>
+    <body onload="checkCookie()">
         <script src="js/bootstrap.min.js"></script>
         
         <div class="cover">
@@ -78,9 +90,7 @@
                             </div>
                         <input type="button" value="Login" class="active btn btn-success" onclick="loginFunction()">
                         
-                        <!-- Include md5-->
-                        <script src="js/md5.js"></script>
-                        <script src="js/login.js"></script>
+                        
                         <script> 
                         function loginFunction(){
                             var user = document.getElementById("inputUsername").value.toString();
