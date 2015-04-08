@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-public class Login extends HttpServlet {
+public class CheckDestination extends HttpServlet {
 
     BusinessLogicInterface bl;
     
@@ -19,19 +19,11 @@ public class Login extends HttpServlet {
                   HttpServletResponse response)
           throws ServletException, IOException{
         bl = new BusinessLogic();
-        
         PrintWriter out = response.getWriter();
-        if(bl.login(request.getParameter("user"), request.getParameter("psw"))){
-            Cookie username=new Cookie("username",request.getParameter("user")); 
-            username.setMaxAge(60*30);
-            response.addCookie(username); 
-            Cookie psw = new Cookie("password",request.getParameter("psw")); 
-            psw.setMaxAge(60*30);
-            response.addCookie(psw); 
-            out.print(true);
-        }
-        else 
-            out.print(false);
+        //if(bl.checkDestination(request.getParameter("user"),request.getParameter("os"),request.getParameter("browser")))
+            out.write("true");
+        //else 
+           // out.write("false");
     }
     // Method to handle POST method request.
     public void doPost(HttpServletRequest request,

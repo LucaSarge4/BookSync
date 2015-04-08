@@ -71,19 +71,18 @@ public class DataAccess implements DataAccessInterface{
             Statement stat = connessione.createStatement();
             Statement stat1 = connessione.createStatement(); 
             String destid="";
-            ResultSet result = stat.executeQuery("SELECT * FROM ownership WHERE ID = "+id);
+            ResultSet result = stat.executeQuery("SELECT * FROM ownership WHERE UserID =\""+id+"\"");
             ResultSet result1;
             while (result.next()) { 
                 destid=result.getString("DestinationID");
-                result1=stat1.executeQuery("SELECT * FROM destination WHERE ID = "+destid);
+                result1=stat1.executeQuery("SELECT * FROM destination WHERE DestinationID = \""+destid+"\"");
                 Destination des = new Destination();
-                des.setDestinationID(result.getString("DestinationID"));
-                des.setDevice(result.getString("device"));
-                des.setOS(result.getString("os"));
-                des.setBrowser(result.getString("browser"));
-                des.setDropPath(result.getString("dropboxpath"));
-
-              this.destinations.add(des); 
+                des.setDestinationID(result1.getString("DestinationID"));
+                des.setDevice(result1.getString("device"));
+                des.setOS(result1.getString("os"));
+                des.setBrowser(result1.getString("browser"));
+                des.setDropPath(result1.getString("dropboxpath"));
+                this.destinations.add(des); 
             } 
             result.close(); 
             connessione.close(); 

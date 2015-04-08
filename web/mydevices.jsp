@@ -42,7 +42,11 @@
                 window.open ('mybookmarks.jsp','_self',false);
             } );
             
-            
+            $('#logout').click( function () {
+                document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+                document.cookie = "password=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+                window.open('http://localhost:8080/BookSync/','_self');
+            } );
         } );
         </script>
     </head>
@@ -68,9 +72,6 @@
                             <a id="dropbox" >Add DropBox Path</a>
                         </li>
                         <li>
-                            <a id="drive" >Add Drive Path</a>
-                        </li>
-                        <li>
                             <a id="edit" >Edit</a>
                         </li>
                         <li>
@@ -91,7 +92,6 @@
                     <th>Os</th>
                     <th>Broswer</th>
                     <th>Dropbox</th>
-                    <th>Drive</th>
                 </tr>
             </thead>
             <tbody>
@@ -106,15 +106,15 @@
                         if(cookie.getName().equals("username"))
                             username=cookie.getValue();
                     }
-                    LinkedList <Destination> bms = new LinkedList();
-                    //bms = bl.getDestinations(username);
+                    LinkedList <Destination> ds = new LinkedList();
+                    //ds = bl.getDestinations(username);
                     
-                    for(int i=0;i<bms.size();i++){
+                    for(int i=0;i<ds.size();i++){
                         out.write("<tr>");
-                        out.write("<td>"+bms.get(i).getDevice()+"</td>");
-                        out.write("<td>"+bms.get(i).getOS()+"</td>");
-                        out.write("<td>"+bms.get(i).getBrowser()+"</td>");
-                        out.write("<td>"+bms.get(i).getDropPath()+"</td>");
+                        out.write("<td>"+ds.get(i).getDevice()+"</td>");
+                        out.write("<td>"+ds.get(i).getOS()+"</td>");
+                        out.write("<td>"+ds.get(i).getBrowser()+"</td>");
+                        out.write("<td>"+ds.get(i).getDropPath()+"</td>");
                         out.write("</tr>");
                     }
                 %>
