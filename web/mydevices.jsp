@@ -1,4 +1,4 @@
-<%@page import="DataAccessTier.Bookmark"%>
+<%@page import="DataAccessTier.Destination"%>
 <%@page import="java.util.LinkedList"%>
 <%@page import="BusinessLogicTier.BusinessLogic"%>
 <%@page import="BusinessLogicTier.BusinessLogicInterface"%>
@@ -10,7 +10,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>My Bookmarks</title>
+        <title>My Devices</title>
         <!-- Bootstrap -->
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/jquery.dataTables.css" rel="stylesheet">
@@ -28,7 +28,7 @@
         $(document).ready(function() {
             var table = $('#bookmarksTable').DataTable();
 
-            $('#bookmarksTable tbody').on( 'click', 'tr', function () {
+            $('#destinationTable tbody').on( 'click', 'tr', function () {
                 if ( $(this).hasClass('selected') ) {
                     $(this).removeClass('selected');
                 }
@@ -38,34 +38,11 @@
                 }
             } );
 
-            $('#open').click( function () {
-                window.open('http://'+table.row('.selected').data()[1]);
+            $('#mybookmarks').click( function () {
+                window.open ('mybookmarks.jsp','_self',false);
             } );
             
-            $('#delete').click( function () {
-                console.log(getCookie("username"));
-                console.log(table.row('.selected').data()[1]);
-               $.post( "DeleteBookmark", 
-                    {username: getCookie("username"),url:table.row('.selected').data()[1]},
-                    function() {
-                                window.location.reload();
-                                }
-                );
-            } );
             
-            $('#details').click( function () {
-                window.alert("show bookmark detail");
-            } );
-            
-            $('#device').click( function () {
-                 window.open ('mydevices.jsp','_self',false);
-            } );
-            
-            $('#logout').click( function () {
-                document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
-                document.cookie = "password=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
-                window.open('http://localhost:8080/BookSync/','_self');
-            } );
         } );
         </script>
     </head>
@@ -88,40 +65,16 @@
                     <p class="navbar-text navbar-right"></p>
                     <ul class="nav navbar-nav navbar-right">
                         <li class="" >
-                            <a id="open" >Open</a>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                            aria-expanded="false">New <span class="caret"></span></a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li>
-                                    <a onclick="openPopup()" target="_blank" >Bookmark</a>
-                                    <script>
-                                        function openPopup(){
-                                            var x = screen.width/2 - 700/2;
-                                            var y = screen.height/2 - 450/2;
-                                            window.open(
-                                                'newBookmark.html','Bookmark','width=600,height=400,toolbar=0,\n\
-                                                menubar=0,location=no,addressbar=no,status=1,scrollbars=0,\n\
-                                                resizable=1,left='+x+',top='+y);
-                                                return false;
-                                        }
-                                    </script>
-                                </li>
-                                <li class="divider"></li>
-                                <li>
-                                    <a onclick="" >Folder</a>
-                                </li>
-                            </ul>
+                            <a id="dropbox" >Add DropBox Path</a>
                         </li>
                         <li>
-                            <a id="delete" >Delete</a>
+                            <a id="drive" >Add Drive Path</a>
                         </li>
                         <li>
-                            <a id="details" >Details</a>
+                            <a id="edit" >Edit</a>
                         </li>
                         <li>
-                            <a id="device" >Device</a>
+                            <a id="mybookmarks" >My Bookmarks</a>
                         </li>
                         <li>
                             <a id="logout" >Logout</a>
@@ -131,13 +84,14 @@
             </div>
         </div>
         
-        <table class="table table-hover display" id="bookmarksTable">
+        <table class="table table-hover display" id="destinationTable">
             <thead>
                 <tr>
-                    <th>Title</th>
-                    <th>Url</th>
-                    <th>Last Edit Date</th>
-                    <th>Folder</th>
+                    <th>Name</th>
+                    <th>Os</th>
+                    <th>Broswer</th>
+                    <th>Dropbox</th>
+                    <th>Drive</th>
                 </tr>
             </thead>
             <tbody>
@@ -152,15 +106,15 @@
                         if(cookie.getName().equals("username"))
                             username=cookie.getValue();
                     }
-                    LinkedList <Bookmark> bms = new LinkedList();
-                    bms = bl.getBookmarks(username);
+                    LinkedList <Destination> bms = new LinkedList();
+                    //bms = bl.getDestinations(username);
                     
                     for(int i=0;i<bms.size();i++){
                         out.write("<tr>");
-                        out.write("<td>"+bms.get(i).getTitle()+"</td>");
-                        out.write("<td>"+bms.get(i).getUrl()+"</td>");
-                        out.write("<td>"+bms.get(i).getLastEditDate()+"</td>");
-                        out.write("<td>"+bms.get(i).getFatherFolder()+"</td>");
+                        out.write("<td>"+bms.get(i).getDevice()+"</td>");
+                        out.write("<td>"+bms.get(i).getOS()+"</td>");
+                        out.write("<td>"+bms.get(i).getBrowser()+"</td>");
+                        out.write("<td>"+bms.get(i).getDropPath()+"</td>");
                         out.write("</tr>");
                     }
                 %>
@@ -169,3 +123,4 @@
     </body>
 
 </html>
+
