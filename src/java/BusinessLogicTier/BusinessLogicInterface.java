@@ -14,6 +14,5 @@ public interface BusinessLogicInterface {
     public void addUser(String username,String firstname,String lastname,String password,String email,String country,String regdate);
     public void addBookmark(String userid,String title,String url,String lasteditdate,String fatherpath,String type);
     public void deleteBookmark(String username,String url);
-    public boolean checkDestination(String username,String os,String browser);
     public void addDestination(String username,String device,String os,String browser);
 }

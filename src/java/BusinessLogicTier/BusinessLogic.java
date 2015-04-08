@@ -51,16 +51,6 @@ public class BusinessLogic implements BusinessLogicInterface{
         this.dt.deleteBookmark(bookID);
     }
     
-    public boolean checkDestination(String username,String os,String browser){
-        LinkedList<Destination> dest = this.getDestinations(this.dt.getID(username));
-        for(int i=0;i<dest.size();i++){
-            if(dest.get(i).getBrowser().equals(browser))
-                if(dest.get(i).getOS().equals(os))
-                    return false;
-        }
-        return true;
-    }
-    
     public void addDestination(String username,String device,String os,String browser){
         this.dt.addDestination(this.dt.getID(username),device,os,browser);
     }

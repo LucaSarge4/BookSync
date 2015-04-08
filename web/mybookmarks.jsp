@@ -70,24 +70,7 @@
         </script>
     </head>
     
-    <body onload="checkDest()">
-        <script>
-            function checkDest(){
-                var username = getCookie("username");
-                var os = "<%=System.getProperty("os.name")%>";
-                var browser="nuovo";
-                $.post( "CheckDestination", 
-                    {user: username,os:os,browser:browser},
-                    function(responseText) {
-                               if(responseText=="true"){
-                                   window.alert("device da aggiungere");
-                                }
-                                else 
-                                   window.alert("device già presente");
-                            }
-                );
-            }
-        </script>
+    <body>
         <script src="js/bootstrap.min.js"></script>
         <div class="navbar navbar-default">
             <div class="container">

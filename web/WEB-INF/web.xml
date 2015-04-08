@@ -16,10 +16,6 @@
         <servlet-name>DeleteBookmark</servlet-name>
         <servlet-class>ViewTier.DeleteBookmark</servlet-class>
     </servlet>
-    <servlet>
-        <servlet-name>CheckDestination</servlet-name>
-        <servlet-class>ViewTier.CheckDestination</servlet-class>
-    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -35,10 +31,6 @@
     <servlet-mapping>
         <servlet-name>DeleteBookmark</servlet-name>
         <url-pattern>/DeleteBookmark</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>CheckDestination</servlet-name>
-        <url-pattern>/CheckDestination</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
