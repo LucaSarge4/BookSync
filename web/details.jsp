@@ -56,51 +56,43 @@
                         </div>
                         <div class="form-group has-error">
                             <label class="control-label" >Url</label>
-                            <input class="form-control" id="inputUrl"
-                                   placeholder="Enter Url" type="text" name="url">
+                            <%  
+                                out.write("<input class=\"form-control\" id=\"inputUrl\"");
+                                out.write("placeholder=\" "+bl.getBookmark(username, bookID).getUrl()+"\" type=\"text\" name=\"url\" disabled=\"true\">");
+                            %>
                         </div>
                         <div class="form-group has-error">
                             <label class="control-label" >Description</label>
-                            <input class="form-control" id="inputDescription"
-                                   placeholder="Description" type="text" name="description">
+                            <%  
+                                out.write("<input class=\"form-control\" id=\"inputDescription\"");
+                                out.write("placeholder=\" "+bl.getBookmark(username, bookID).getDescription()+"\" type=\"text\" name=\"description\" disabled=\"true\">");
+                            %>
                         </div>
                         <div class="form-group has-error">
                             <label class="control-label" >Tag</label>
-                            <select  class="form-control" id="inputBookTag">
-                                <option></option>
-                                <option>Sport</option>
-                                <option>News</option>
-                                <option>Life</option>
-                            </select>
+                            <%  
+                                out.write("<input class=\"form-control\" id=\"inputTag\"");
+                                out.write("placeholder=\" "+bl.getBookmark(username, bookID).getTag()+"\" type=\"text\" name=\"tag\" disabled=\"true\">");
+                            %>
                        </div>
                         <div class="form-group has-error">
                             <label class="control-label" >FatherPath</label>
-                            <input class="form-control" id="inputFatherPath"
-                                   placeholder="FatherPath" type="text" name="fatherPath">
+                            <%  
+                                out.write("<input class=\"form-control\" id=\"inputFatherPath\"");
+                                out.write("placeholder=\" "+bl.getBookmark(username, bookID).getFatherFolder()+"\" type=\"text\" name=\"fatherPath\" disabled=\"true\">");
+                            %>
                         </div>
 
-                        <input type="button" value="Confirm" class="active btn btn-success" onclick="addFunction()">
+                        <input type="button" value="Edit" class="active btn btn-success" onclick="editFunction()">
                         
                         <script src="js/getCookie.js"></script>
                         <script> 
-                        function addFunction(){
-                            var title = document.getElementById("inputTitle").value.toString();
-                            var url = document.getElementById("inputUrl").value.toString();
-                            var desc = document.getElementById("inputDescription").value.toString();
-                            var tag = document.getElementById("inputBookTag").value.toString();
-                            var fatherpath = document.getElementById("inputFatherPath").value.toString();
-                            var d = new Date();
-                            var dataString = d.toLocaleDateString()+ " "+d.toLocaleTimeString();
-                            var username = getCookie("username");
-                            $.post( "NewBookmark", 
-                                    {userid: username,title: title,url: url,lasteditdate:dataString,
-                                        fatherpath: fatherpath,type: "web", description: desc, tag: tag},
-                                    function(responseText) {
-                                            console.log(responseText);
-                                            window.close();
-                                            window.opener.location.reload();
-                                            }
-                                ); 
+                        function editFunction(){
+                            document.getElementById('inputTitle').disabled = false;
+                            document.getElementById('inputUrl').disabled = false;
+                            document.getElementById('inputDescription').disabled = false;
+                            document.getElementById('inputTag').disabled = false;
+                            document.getElementById('inputFatherPath').disabled = false;
                         }
                         </script>
                     </div>
