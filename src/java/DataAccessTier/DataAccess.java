@@ -14,6 +14,7 @@ public class DataAccess implements DataAccessInterface{
     
     public DataAccess(){
         this.bookmarks = new LinkedList();
+        this.destinations = new LinkedList();
     }
     
     public String getID(String username){
@@ -119,15 +120,16 @@ public class DataAccess implements DataAccessInterface{
     }
     
     public void addBookmark(String userid,String title,String url,String lasteditdate,
-                                String fatherpath,String type){
+                                String fatherpath,String type,String description,String tag){
         try{
             Class.forName("org.sqlite.JDBC"); 
              
             Connection connessione = DriverManager.getConnection("jdbc:sqlite:booksync.db"); 
             Statement stato = connessione.createStatement(); 
  
-            stato.executeUpdate("INSERT INTO bookmarks (title,url,lasteditdate,fatherpath,type) VALUES "
-                    + "('"+title+"', '"+url+"', '"+lasteditdate+"', '"+fatherpath+"', '"+type+"')"); 
+            stato.executeUpdate("INSERT INTO bookmarks (title,url,lasteditdate,fatherpath,type,description,tag) VALUES "
+                    + "('"+title+"', '"+url+"', '"+lasteditdate+"', '"+fatherpath+"', '"+type+"','"+description+"','"+tag+"')"); 
+            
             connessione.close();
             preferred(userid);
         } catch ( Exception e ) {
@@ -158,6 +160,90 @@ public class DataAccess implements DataAccessInterface{
             Connection connessione = DriverManager.getConnection("jdbc:sqlite:booksync.db"); 
             Statement stat = connessione.createStatement(); 
             stat.executeUpdate("INSERT INTO preferred VALUES "+ "('"+id+"', '"+bookid+"')");
+            connessione.close();
+        } catch ( Exception e ) {
+          e.printStackTrace();
+        } 
+    }
+    
+    public void editBookmarkTitle(String bookid,String title){
+        try{
+            Class.forName("org.sqlite.JDBC"); 
+             
+            Connection connessione = DriverManager.getConnection("jdbc:sqlite:booksync.db"); 
+            Statement stato = connessione.createStatement(); 
+ 
+            stato.executeUpdate("UPDATE bookmarks set title ="+title+" WHERE BookID = \""+bookid+"\""); 
+            connessione.close();
+        } catch ( Exception e ) {
+          e.printStackTrace();
+        } 
+    }
+    
+    public void editBookmarkUrl(String bookid,String url){
+        try{
+            Class.forName("org.sqlite.JDBC"); 
+             
+            Connection connessione = DriverManager.getConnection("jdbc:sqlite:booksync.db"); 
+            Statement stato = connessione.createStatement(); 
+ 
+            stato.executeUpdate("UPDATE bookmarks set url ="+url+" WHERE BookID = \""+bookid+"\""); 
+            connessione.close();
+        } catch ( Exception e ) {
+          e.printStackTrace();
+        } 
+    }
+    
+    public void editBookmarkFatherPath(String bookid,String fatherPath){
+        try{
+            Class.forName("org.sqlite.JDBC"); 
+             
+            Connection connessione = DriverManager.getConnection("jdbc:sqlite:booksync.db"); 
+            Statement stato = connessione.createStatement(); 
+ 
+            stato.executeUpdate("UPDATE bookmarks set fatherpath ="+fatherPath+" WHERE BookID = \""+bookid+"\""); 
+            connessione.close();
+        } catch ( Exception e ) {
+          e.printStackTrace();
+        } 
+    }
+    
+    public void editBookmarkTag(String bookid,String tag){
+        try{
+            Class.forName("org.sqlite.JDBC"); 
+             
+            Connection connessione = DriverManager.getConnection("jdbc:sqlite:booksync.db"); 
+            Statement stato = connessione.createStatement(); 
+ 
+            stato.executeUpdate("UPDATE bookmarks set tag ="+tag+" WHERE BookID = \""+bookid+"\""); 
+            connessione.close();
+        } catch ( Exception e ) {
+          e.printStackTrace();
+        } 
+    }
+    
+    public void editBookmarkDescription(String bookid,String desc){
+        try{
+            Class.forName("org.sqlite.JDBC"); 
+             
+            Connection connessione = DriverManager.getConnection("jdbc:sqlite:booksync.db"); 
+            Statement stato = connessione.createStatement(); 
+ 
+            stato.executeUpdate("UPDATE bookmarks set description ="+desc+" WHERE BookID = \""+bookid+"\""); 
+            connessione.close();
+        } catch ( Exception e ) {
+          e.printStackTrace();
+        } 
+    }
+    
+    public void editBookmarkIcon(String bookid,String icon){
+        try{
+            Class.forName("org.sqlite.JDBC"); 
+             
+            Connection connessione = DriverManager.getConnection("jdbc:sqlite:booksync.db"); 
+            Statement stato = connessione.createStatement(); 
+ 
+            stato.executeUpdate("UPDATE bookmarks set icon ="+icon+" WHERE BookID = \""+bookid+"\""); 
             connessione.close();
         } catch ( Exception e ) {
           e.printStackTrace();

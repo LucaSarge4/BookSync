@@ -26,7 +26,7 @@
         <script src="js/getCookie.js"></script>
         <script type="text/javascript" class="init">
         $(document).ready(function() {
-            var table = $('#bookmarksTable').DataTable();
+            var table = $('#destinationTable').DataTable();
 
             $('#destinationTable tbody').on( 'click', 'tr', function () {
                 if ( $(this).hasClass('selected') ) {
@@ -68,7 +68,10 @@
                     <ul class="nav navbar-left navbar-nav"></ul>
                     <p class="navbar-text navbar-right"></p>
                     <ul class="nav navbar-nav navbar-right">
-                        <li class="" >
+                        <li>
+                            <a id="newDevice" >Add Device</a>
+                        </li>
+                        <li>
                             <a id="dropbox" >Add DropBox Path</a>
                         </li>
                         <li>
@@ -107,7 +110,7 @@
                             username=cookie.getValue();
                     }
                     LinkedList <Destination> ds = new LinkedList();
-                    //ds = bl.getDestinations(username);
+                    ds = bl.getDestinations(username);
                     
                     for(int i=0;i<ds.size();i++){
                         out.write("<tr>");

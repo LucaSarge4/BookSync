@@ -43,8 +43,6 @@
             } );
             
             $('#delete').click( function () {
-                console.log(getCookie("username"));
-                console.log(table.row('.selected').data()[1]);
                $.post( "DeleteBookmark", 
                     {username: getCookie("username"),url:table.row('.selected').data()[1]},
                     function() {
@@ -54,7 +52,13 @@
             } );
             
             $('#details').click( function () {
-                window.alert("show bookmark detail");
+                var x = screen.width/2 - 700/2;
+                var y = screen.height/2 - 450/2;
+                window.open(
+                    'details.html','Bookmark','width=600,height=400,toolbar=0,\n\
+                    menubar=0,location=no,addressbar=no,status=1,scrollbars=0,\n\
+                    resizable=1,left='+x+',top='+y);
+                    return false;
             } );
             
             $('#device').click( function () {
@@ -95,9 +99,9 @@
                             aria-expanded="false">New <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
                                 <li>
-                                    <a onclick="openPopup()" target="_blank" >Bookmark</a>
+                                    <a onclick="openPopupNewB()" target="_blank" >Bookmark</a>
                                     <script>
-                                        function openPopup(){
+                                        function openPopupNewB(){
                                             var x = screen.width/2 - 700/2;
                                             var y = screen.height/2 - 450/2;
                                             window.open(

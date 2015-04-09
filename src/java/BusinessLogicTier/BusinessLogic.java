@@ -36,8 +36,8 @@ public class BusinessLogic implements BusinessLogicInterface{
         this.dt.addUser(username,firstname,lastname,password,email,country,regdate);
     }
     
-    public void addBookmark(String username,String title,String url,String lasteditdate,String fatherpath,String type){
-        this.dt.addBookmark(this.dt.getID(username),title,url,lasteditdate,fatherpath,type);
+    public void addBookmark(String username,String title,String url,String lasteditdate,String fatherpath,String type,String description,String tag){
+        this.dt.addBookmark(this.dt.getID(username),title,url,lasteditdate,fatherpath,type,description,tag);
     }
     
     public void deleteBookmark(String username,String url){
