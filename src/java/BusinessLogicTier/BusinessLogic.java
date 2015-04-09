@@ -40,6 +40,30 @@ public class BusinessLogic implements BusinessLogicInterface{
         this.dt.addBookmark(this.dt.getID(username),title,url,lasteditdate,fatherpath,type,description,tag);
     }
     
+    public void editBookmarkTitle(String bookid,String title){
+        this.dt.editBookmarkTitle(bookid, title);
+    }
+    
+    public void editBookmarkUrl(String bookid,String url){
+        this.dt.editBookmarkUrl(bookid, url);
+    }
+    
+    public void editBookmarkFatherPath(String bookid,String fatherPath){
+        this.dt.editBookmarkFatherPath(bookid, fatherPath);
+    }
+    
+    public void editBookmarkTag(String bookid,String tag){
+        this.dt.editBookmarkTag(bookid, tag);
+    }
+    
+    public void editBookmarkDescription(String bookid,String desc){
+        this.dt.editBookmarkDescription(bookid, desc);
+    }
+    
+    public void editBookmarkIcon(String bookid,String icon){
+        this.dt.editBookmarkIcon(bookid, icon);
+    }
+    
     public String getBookID(String username,String url){
         int index=-1;
         LinkedList<Bookmark> list = this.dt.getBookmarks(this.dt.getID(username));

@@ -83,7 +83,7 @@
                             %>
                         </div>
 
-                        <input type="button" value="Edit" class="active btn btn-success" onclick="editFunction()">
+                        <input type="button" id="edit" value="Edit" class="active btn btn-success" onclick="editFunction()">
                         
                         <script src="js/getCookie.js"></script>
                         <script> 
@@ -93,6 +93,8 @@
                             document.getElementById('inputDescription').disabled = false;
                             document.getElementById('inputTag').disabled = false;
                             document.getElementById('inputFatherPath').disabled = false;
+                            document.getElementById('edit').value="Confirm";
+                            
                         }
                         </script>
                     </div>

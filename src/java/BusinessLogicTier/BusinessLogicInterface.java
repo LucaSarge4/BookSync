@@ -14,6 +14,12 @@ public interface BusinessLogicInterface {
     public boolean login(String username,String password);
     public void addUser(String username,String firstname,String lastname,String password,String email,String country,String regdate);
     public void addBookmark(String userid,String title,String url,String lasteditdate,String fatherpath,String type,String description,String tag);
+    public void editBookmarkTitle(String bookid,String title);
+    public void editBookmarkUrl(String bookid,String url);
+    public void editBookmarkFatherPath(String bookid,String fatherPath);
+    public void editBookmarkTag(String bookid,String tag);
+    public void editBookmarkDescription(String bookid,String desc);
+    public void editBookmarkIcon(String bookid,String icon);
     public String getBookID(String username,String url);
     public Bookmark getBookmark(String username,String bookID);
     public void deleteBookmark(String username,String url);
