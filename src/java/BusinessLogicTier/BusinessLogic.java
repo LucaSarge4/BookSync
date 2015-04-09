@@ -40,7 +40,7 @@ public class BusinessLogic implements BusinessLogicInterface{
         this.dt.addBookmark(this.dt.getID(username),title,url,lasteditdate,fatherpath,type,description,tag);
     }
     
-    public void deleteBookmark(String username,String url){
+    public String getBookID(String username,String url){
         int index=-1;
         LinkedList<Bookmark> list = this.dt.getBookmarks(this.dt.getID(username));
         for(int i=0;i<list.size();i++){
@@ -48,7 +48,21 @@ public class BusinessLogic implements BusinessLogicInterface{
                 index=i;
         }
         String bookID= list.get(index).getBookID();
-        this.dt.deleteBookmark(bookID);
+        return bookID;
+    }
+    
+    public Bookmark getBookmark(String username,String bookID){
+        int index=-1;
+        LinkedList<Bookmark> list = this.dt.getBookmarks(this.dt.getID(username));
+        for(int i=0;i<list.size();i++){
+            if(list.get(i).getBookID().equals(bookID))
+                index=i;
+        }
+        return list.get(index);
+    }
+    
+    public void deleteBookmark(String username,String url){
+        this.dt.deleteBookmark(getBookID(username,url));
     }
     
     public void addDestination(String username,String device,String os,String browser){

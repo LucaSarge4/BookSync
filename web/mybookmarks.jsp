@@ -52,10 +52,11 @@
             } );
             
             $('#details').click( function () {
+                document.cookie="url="+table.row('.selected').data()[1];
                 var x = screen.width/2 - 700/2;
                 var y = screen.height/2 - 450/2;
                 window.open(
-                    'details.html','Bookmark','width=600,height=400,toolbar=0,\n\
+                    'details.jsp','Bookmark','width=600,height=400,toolbar=0,\n\
                     menubar=0,location=no,addressbar=no,status=1,scrollbars=0,\n\
                     resizable=1,left='+x+',top='+y);
                     return false;
@@ -140,6 +141,7 @@
                 <tr>
                     <th>Title</th>
                     <th>Url</th>
+                    <th>Tag</th>
                     <th>Last Edit Date</th>
                     <th>Folder</th>
                 </tr>
@@ -163,6 +165,7 @@
                         out.write("<tr>");
                         out.write("<td>"+bms.get(i).getTitle()+"</td>");
                         out.write("<td>"+bms.get(i).getUrl()+"</td>");
+                        out.write("<td>"+bms.get(i).getTag()+"</td>");
                         out.write("<td>"+bms.get(i).getLastEditDate()+"</td>");
                         out.write("<td>"+bms.get(i).getFatherFolder()+"</td>");
                         out.write("</tr>");
