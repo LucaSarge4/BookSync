@@ -108,8 +108,8 @@
                                             fatherpath: fatherpath, description: desc, tag: tag},
                                         function(responseText) {
                                             console.log(responseText);
-                                                    //window.close();
-                                                    //window.opener.location.reload();
+                                                    window.close();
+                                                    window.opener.location.reload();
                                                 }
                                     );
                                 }

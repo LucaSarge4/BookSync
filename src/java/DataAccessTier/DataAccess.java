@@ -173,7 +173,7 @@ public class DataAccess implements DataAccessInterface{
             Connection connessione = DriverManager.getConnection("jdbc:sqlite:booksync.db"); 
             Statement stato = connessione.createStatement(); 
  
-            stato.executeUpdate("UPDATE bookmarks set title ="+title+" WHERE BookID = \""+bookid+"\""); 
+            stato.executeUpdate("UPDATE bookmarks set title =\""+title+"\" WHERE BookID = \""+bookid+"\""); 
             connessione.close();
         } catch ( Exception e ) {
           e.printStackTrace();
@@ -187,7 +187,7 @@ public class DataAccess implements DataAccessInterface{
             Connection connessione = DriverManager.getConnection("jdbc:sqlite:booksync.db"); 
             Statement stato = connessione.createStatement(); 
  
-            stato.executeUpdate("UPDATE bookmarks set url ="+url+" WHERE BookID = \""+bookid+"\""); 
+            stato.executeUpdate("UPDATE bookmarks set url =\""+url+"\" WHERE BookID = \""+bookid+"\""); 
             connessione.close();
         } catch ( Exception e ) {
           e.printStackTrace();
@@ -201,7 +201,7 @@ public class DataAccess implements DataAccessInterface{
             Connection connessione = DriverManager.getConnection("jdbc:sqlite:booksync.db"); 
             Statement stato = connessione.createStatement(); 
  
-            stato.executeUpdate("UPDATE bookmarks set lasteditdate ="+date+" WHERE BookID = \""+bookid+"\""); 
+            stato.executeUpdate("UPDATE bookmarks set lasteditdate =\""+date+"\" WHERE BookID = \""+bookid+"\""); 
             connessione.close();
         } catch ( Exception e ) {
           e.printStackTrace();
@@ -215,7 +215,7 @@ public class DataAccess implements DataAccessInterface{
             Connection connessione = DriverManager.getConnection("jdbc:sqlite:booksync.db"); 
             Statement stato = connessione.createStatement(); 
  
-            stato.executeUpdate("UPDATE bookmarks set fatherpath ="+fatherPath+" WHERE BookID = \""+bookid+"\""); 
+            stato.executeUpdate("UPDATE bookmarks set fatherpath =\""+fatherPath+"\" WHERE BookID = \""+bookid+"\""); 
             connessione.close();
         } catch ( Exception e ) {
           e.printStackTrace();
@@ -229,7 +229,7 @@ public class DataAccess implements DataAccessInterface{
             Connection connessione = DriverManager.getConnection("jdbc:sqlite:booksync.db"); 
             Statement stato = connessione.createStatement(); 
  
-            stato.executeUpdate("UPDATE bookmarks set tag ="+tag+" WHERE BookID = \""+bookid+"\""); 
+            stato.executeUpdate("UPDATE bookmarks set tag =\""+tag+"\" WHERE BookID = \""+bookid+"\""); 
             connessione.close();
         } catch ( Exception e ) {
           e.printStackTrace();
@@ -243,7 +243,7 @@ public class DataAccess implements DataAccessInterface{
             Connection connessione = DriverManager.getConnection("jdbc:sqlite:booksync.db"); 
             Statement stato = connessione.createStatement(); 
  
-            stato.executeUpdate("UPDATE bookmarks set description ="+desc+" WHERE BookID = \""+bookid+"\""); 
+            stato.executeUpdate("UPDATE bookmarks set description =\""+desc+"\" WHERE BookID = \""+bookid+"\""); 
             connessione.close();
         } catch ( Exception e ) {
           e.printStackTrace();
@@ -257,7 +257,7 @@ public class DataAccess implements DataAccessInterface{
             Connection connessione = DriverManager.getConnection("jdbc:sqlite:booksync.db"); 
             Statement stato = connessione.createStatement(); 
  
-            stato.executeUpdate("UPDATE bookmarks set icon ="+icon+" WHERE BookID = \""+bookid+"\""); 
+            stato.executeUpdate("UPDATE bookmarks set icon =\""+icon+"\" WHERE BookID = \""+bookid+"\""); 
             connessione.close();
         } catch ( Exception e ) {
           e.printStackTrace();
