@@ -48,6 +48,10 @@ public class BusinessLogic implements BusinessLogicInterface{
         this.dt.editBookmarkUrl(bookid, url);
     }
     
+    public void editBookmarkLastEditDate(String bookid,String date){
+        this.dt.editBookmarkLastEditDate(bookid, date);
+    }
+    
     public void editBookmarkFatherPath(String bookid,String fatherPath){
         this.dt.editBookmarkFatherPath(bookid, fatherPath);
     }

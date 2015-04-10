@@ -88,14 +88,32 @@
                         <script src="js/getCookie.js"></script>
                         <script> 
                         function editFunction(){
-                            document.getElementById('inputTitle').disabled = false;
-                            document.getElementById('inputUrl').disabled = false;
-                            document.getElementById('inputDescription').disabled = false;
-                            document.getElementById('inputTag').disabled = false;
-                            document.getElementById('inputFatherPath').disabled = false;
-                            document.getElementById('edit').value="Confirm";
-                            
-                        }
+                            if(document.getElementById('edit').value.toString()==="Edit"){
+                                document.getElementById('inputTitle').disabled = false;
+                                document.getElementById('inputUrl').disabled = false;
+                                document.getElementById('inputDescription').disabled = false;
+                                document.getElementById('inputTag').disabled = false;
+                                document.getElementById('inputFatherPath').disabled = false;
+                                document.getElementById('edit').value="Confirm";
+                            }else{
+                                var title = document.getElementById("inputTitle").value.toString();
+                                var url = document.getElementById("inputUrl").value.toString();
+                                var desc = document.getElementById("inputDescription").value.toString();
+                                var tag = document.getElementById("inputTag").value.toString();
+                                var fatherpath = document.getElementById("inputFatherPath").value.toString();
+                                var d = new Date();
+                                var dataString = d.toLocaleDateString()+ " "+d.toLocaleTimeString();
+                                $.post( "EditBookmark", 
+                                        {user: getCookie("username"),ckUrl:getCookie("url"),title: title,url: url,lasteditdate:dataString,
+                                            fatherpath: fatherpath, description: desc, tag: tag},
+                                        function(responseText) {
+                                            console.log(responseText);
+                                                    //window.close();
+                                                    //window.opener.location.reload();
+                                                }
+                                    );
+                                }
+                            }
                         </script>
                     </div>
                 </div>

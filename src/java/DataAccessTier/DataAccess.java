@@ -194,6 +194,20 @@ public class DataAccess implements DataAccessInterface{
         } 
     }
     
+    public void editBookmarkLastEditDate(String bookid,String date){
+        try{
+            Class.forName("org.sqlite.JDBC"); 
+             
+            Connection connessione = DriverManager.getConnection("jdbc:sqlite:booksync.db"); 
+            Statement stato = connessione.createStatement(); 
+ 
+            stato.executeUpdate("UPDATE bookmarks set lasteditdate ="+date+" WHERE BookID = \""+bookid+"\""); 
+            connessione.close();
+        } catch ( Exception e ) {
+          e.printStackTrace();
+        } 
+    }
+    
     public void editBookmarkFatherPath(String bookid,String fatherPath){
         try{
             Class.forName("org.sqlite.JDBC"); 
