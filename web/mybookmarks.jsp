@@ -69,7 +69,7 @@
             $('#logout').click( function () {
                 document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
                 document.cookie = "password=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
-                window.open('http://localhost:8080/BookSync/','_self');
+                window.open('/BookSync/','_self');
             } );
         } );
         </script>
