@@ -24,5 +24,5 @@ public interface BusinessLogicInterface {
     public String getBookID(String username,String url);
     public Bookmark getBookmark(String username,String bookID);
     public void deleteBookmark(String username,String url);
-    public void addDestination(String username,String device,String os,String browser);
+    public void addDestination(String username,String device,String os,String browser,String dropboxPath);
 }

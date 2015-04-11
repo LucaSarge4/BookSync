@@ -38,6 +38,16 @@
                 }
             } );
             
+            $('#newDevice').click( function () {
+                var x = screen.width/2 - 700/2;
+                var y = screen.height/2 - 450/2;
+                window.open(
+                    'newDevice.html','Device','width=600,height=370,toolbar=0,\n\
+                    menubar=0,location=no,addressbar=no,status=1,scrollbars=0,\n\
+                    resizable=1,left='+x+',top='+y);
+                    return false;
+            } );
+            
             $('#bookmarksSelection').click( function () {
                 window.open ('bookmarksSelection.jsp','_self',false);
             } );

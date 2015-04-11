@@ -93,7 +93,7 @@ public class BusinessLogic implements BusinessLogicInterface{
         this.dt.deleteBookmark(getBookID(username,url));
     }
     
-    public void addDestination(String username,String device,String os,String browser){
+    public void addDestination(String username,String device,String os,String browser,String dropboxPath){
         this.dt.addDestination(this.dt.getID(username),device,os,browser);
     }
 }

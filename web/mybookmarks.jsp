@@ -103,7 +103,7 @@
                                     var x = screen.width/2 - 700/2;
                                     var y = screen.height/2 - 450/2;
                                     window.open(
-                                        'newBookmark.html','Bookmark','width=600,height=400,toolbar=0,\n\
+                                        'newBookmark.html','Bookmark','width=600,height=450,toolbar=0,\n\
                                         menubar=0,location=no,addressbar=no,status=1,scrollbars=0,\n\
                                         resizable=1,left='+x+',top='+y);
                                         return false;

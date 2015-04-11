@@ -264,7 +264,7 @@ public class DataAccess implements DataAccessInterface{
         } 
     }
     
-    public void addDestination(String id,String device,String os,String browser){
+    public void addDestination(String userid,String device,String os,String browser){
         try{
             Class.forName("org.sqlite.JDBC"); 
              
@@ -275,7 +275,7 @@ public class DataAccess implements DataAccessInterface{
                     + "('"+device+"', '"+os+"', '"+browser+"')"); 
              
             connessione.close();
-            ownership(id);
+            ownership(userid);
         } catch ( Exception e ) {
           e.printStackTrace();
         } 
