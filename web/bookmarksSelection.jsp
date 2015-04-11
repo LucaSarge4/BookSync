@@ -1,4 +1,4 @@
-<%@page import="DataAccessTier.Destination"%>
+<%@page import="DataAccessTier.Bookmark"%>
 <%@page import="java.util.LinkedList"%>
 <%@page import="BusinessLogicTier.BusinessLogic"%>
 <%@page import="BusinessLogicTier.BusinessLogicInterface"%>
@@ -10,7 +10,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>My Devices</title>
+        <title>My Bookmarks</title>
         <!-- Bootstrap -->
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/jquery.dataTables.css" rel="stylesheet">
@@ -25,33 +25,17 @@
         <script src="js/jquery.dataTables.min.js"></script>
         <script src="js/getCookie.js"></script>
         <script type="text/javascript" class="init">
-        $(document).ready(function() {
-            var table = $('#destinationTable').DataTable();
+            $(document).ready(function() {
+                var table = $('#bookmarksTable').DataTable();
 
-            $('#destinationTable tbody').on( 'click', 'tr', function () {
-                if ( $(this).hasClass('selected') ) {
-                    $(this).removeClass('selected');
-                }
-                else {
-                    table.$('tr.selected').removeClass('selected');
-                    $(this).addClass('selected');
-                }
-            } );
-            
-            $('#bookmarksSelection').click( function () {
-                window.open ('bookmarksSelection.jsp','_self',false);
-            } );
+                $('#bookmarksTable tbody').on( 'click', 'tr', function () {
+                    $(this).toggleClass('selected');
+                } );
 
-            $('#mybookmarks').click( function () {
-                window.open ('mybookmarks.jsp','_self',false);
+                $('#confirm').click( function () {
+                    alert( table.rows('.selected').data().length +' row(s) selected' );
+                } );
             } );
-            
-            $('#logout').click( function () {
-                document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
-                document.cookie = "password=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
-                window.open('/BookSync/','_self');
-            } );
-        } );
         </script>
     </head>
     
@@ -72,36 +56,24 @@
                     <ul class="nav navbar-left navbar-nav"></ul>
                     <p class="navbar-text navbar-right"></p>
                     <ul class="nav navbar-nav navbar-right">
-                        <li>
-                            <a id="newDevice" >Add Device</a>
-                        </li>
-                        <li>
-                            <a id="dropbox" >Add DropBox Path</a>
-                        </li>
-                        <li>
-                            <a id="edit" >Edit</a>
-                        </li>
-                        <li>
-                            <a id="bookmarksSelection" >Bookmarks Selection</a>
-                        </li>
-                        <li>
-                            <a id="mybookmarks" >My Bookmarks</a>
-                        </li>
-                        <li>
-                            <a id="logout" >Logout</a>
+                        <li class="" >
+                            <a id="confirm" >Confirm</a>
                         </li>
                     </ul>
                 </div>
             </div>
         </div>
+                        
+                        
         
-        <table class="table table-hover display" id="destinationTable">
+        <table class="table table-hover display" id="bookmarksTable">
             <thead>
                 <tr>
-                    <th>Name</th>
-                    <th>Os</th>
-                    <th>Broswer</th>
-                    <th>Dropbox</th>
+                    <th>Title</th>
+                    <th>Url</th>
+                    <th>Tag</th>
+                    <th>Last Edit Date</th>
+                    <th>Folder</th>
                 </tr>
             </thead>
             <tbody>
@@ -116,15 +88,16 @@
                         if(cookie.getName().equals("username"))
                             username=cookie.getValue();
                     }
-                    LinkedList <Destination> ds = new LinkedList();
-                    ds = bl.getDestinations(username);
+                    LinkedList <Bookmark> bms = new LinkedList();
+                    bms = bl.getBookmarks(username);
                     
-                    for(int i=0;i<ds.size();i++){
+                    for(int i=0;i<bms.size();i++){
                         out.write("<tr>");
-                        out.write("<td>"+ds.get(i).getDevice()+"</td>");
-                        out.write("<td>"+ds.get(i).getOS()+"</td>");
-                        out.write("<td>"+ds.get(i).getBrowser()+"</td>");
-                        out.write("<td>"+ds.get(i).getDropPath()+"</td>");
+                        out.write("<td>"+bms.get(i).getTitle()+"</td>");
+                        out.write("<td>"+bms.get(i).getUrl()+"</td>");
+                        out.write("<td>"+bms.get(i).getTag()+"</td>");
+                        out.write("<td>"+bms.get(i).getLastEditDate()+"</td>");
+                        out.write("<td>"+bms.get(i).getFatherFolder()+"</td>");
                         out.write("</tr>");
                     }
                 %>
@@ -133,4 +106,3 @@
     </body>
 
 </html>
-

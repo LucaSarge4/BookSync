@@ -95,29 +95,20 @@
                         <li class="" >
                             <a id="open" >Open</a>
                         </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                            aria-expanded="false">New <span class="caret"></span></a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li>
-                                    <a onclick="openPopupNewB()" target="_blank" >Bookmark</a>
-                                    <script>
-                                        function openPopupNewB(){
-                                            var x = screen.width/2 - 700/2;
-                                            var y = screen.height/2 - 450/2;
-                                            window.open(
-                                                'newBookmark.html','Bookmark','width=600,height=400,toolbar=0,\n\
-                                                menubar=0,location=no,addressbar=no,status=1,scrollbars=0,\n\
-                                                resizable=1,left='+x+',top='+y);
-                                                return false;
-                                        }
-                                    </script>
-                                </li>
-                                <li class="divider"></li>
-                                <li>
-                                    <a onclick="" >Folder</a>
-                                </li>
-                            </ul>
+                        
+                        <li>
+                            <a onclick="openPopupNewB()" target="_blank" > New Bookmark</a>
+                            <script>
+                                function openPopupNewB(){
+                                    var x = screen.width/2 - 700/2;
+                                    var y = screen.height/2 - 450/2;
+                                    window.open(
+                                        'newBookmark.html','Bookmark','width=600,height=400,toolbar=0,\n\
+                                        menubar=0,location=no,addressbar=no,status=1,scrollbars=0,\n\
+                                        resizable=1,left='+x+',top='+y);
+                                        return false;
+                                }
+                            </script>
                         </li>
                         <li>
                             <a id="delete" >Delete</a>
