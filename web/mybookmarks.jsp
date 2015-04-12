@@ -56,7 +56,7 @@
                 var x = screen.width/2 - 700/2;
                 var y = screen.height/2 - 450/2;
                 window.open(
-                    'details.jsp','Bookmark','width=800,height=500,toolbar=0,\n\
+                    'details.jsp','Bookmark','width=600,height=500,toolbar=0,\n\
                     menubar=0,location=no,addressbar=no,status=1,scrollbars=0,\n\
                     resizable=0,left='+x+',top='+y);
                     return false;

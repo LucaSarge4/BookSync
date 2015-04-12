@@ -79,6 +79,17 @@ public class BusinessLogic implements BusinessLogicInterface{
         return bookID;
     }
     
+    public String getDestinationID(String username,String deviceName){
+        int index=-1;
+        LinkedList<Destination> list = this.dt.getDestinations(this.dt.getID(username));
+        for(int i=0;i<list.size();i++){
+            if(list.get(i).getDevice().equals(deviceName))
+                index=i;
+        }
+        String destID= list.get(index).getDestinationID();
+        return destID;
+    }
+    
     public Bookmark getBookmark(String username,String bookID){
         int index=-1;
         LinkedList<Bookmark> list = this.dt.getBookmarks(this.dt.getID(username));
@@ -95,5 +106,9 @@ public class BusinessLogic implements BusinessLogicInterface{
     
     public void addDestination(String username,String device,String os,String browser,String dropboxPath){
         this.dt.addDestination(this.dt.getID(username),device,os,browser);
+    }
+    
+    public void addLocalized(String username,String url,String deviceName){
+        this.dt.localized(getBookID(username,url),getDestinationID(username,deviceName));
     }
 }

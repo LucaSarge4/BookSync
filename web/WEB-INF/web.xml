@@ -24,6 +24,10 @@
         <servlet-name>NewDestination</servlet-name>
         <servlet-class>ViewTier.NewDestination</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddLocalized</servlet-name>
+        <servlet-class>ViewTier.AddLocalized</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -47,6 +51,10 @@
     <servlet-mapping>
         <servlet-name>NewDestination</servlet-name>
         <url-pattern>/NewDestination</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddLocalized</servlet-name>
+        <url-pattern>/AddLocalized</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

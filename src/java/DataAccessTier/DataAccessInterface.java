@@ -18,4 +18,5 @@ public interface DataAccessInterface {
     public void editBookmarkIcon(String bookid,String icon);
     public void deleteBookmark(String bookID);
     public void addDestination(String userid,String device,String os,String browser);
+    public void localized(String bookid,String destid);
 }
