@@ -49,7 +49,14 @@
             } );
             
             $('#bookmarksSelection').click( function () {
-                window.open ('bookmarksSelection.jsp','_self',false);
+                document.cookie="destination="+table.row('.selected').data()[0];
+                var x = screen.width/2 - 850/2;
+                var y = screen.height/2 - 600/2;
+                window.open(
+                    'bookmarksSelection.jsp','Bookmarks Selection','width=800,height=500,toolbar=0,\n\
+                    menubar=0,location=no,addressbar=no,status=1,scrollbars=0,\n\
+                    resizable=0,left='+x+',top='+y);
+                    return false;
             } );
 
             $('#mybookmarks').click( function () {

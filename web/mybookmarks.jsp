@@ -56,9 +56,9 @@
                 var x = screen.width/2 - 700/2;
                 var y = screen.height/2 - 450/2;
                 window.open(
-                    'details.jsp','Bookmark','width=600,height=400,toolbar=0,\n\
+                    'details.jsp','Bookmark','width=800,height=500,toolbar=0,\n\
                     menubar=0,location=no,addressbar=no,status=1,scrollbars=0,\n\
-                    resizable=1,left='+x+',top='+y);
+                    resizable=0,left='+x+',top='+y);
                     return false;
             } );
             
@@ -80,12 +80,6 @@
         <div class="navbar navbar-default">
             <div class="container">
                 <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-ex-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
                     <a class="navbar-brand" ><span>BookSync</span></a>
                 </div>
                 <div class="collapse navbar-collapse" id="#navbar-ex-collapse">
