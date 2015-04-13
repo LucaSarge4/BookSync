@@ -10,11 +10,15 @@ public class DataAccess implements DataAccessInterface{
     
     private LinkedList <User> users;
     private LinkedList <Bookmark> bookmarks;
+    private LinkedList<Bookmark> destBookmarks;
+    private LinkedList<Bookmark> unDestBookmarks;
     private LinkedList <Destination> destinations;
     
     public DataAccess(){
         this.bookmarks = new LinkedList();
         this.destinations = new LinkedList();
+        this.destBookmarks = new LinkedList();
+        this.unDestBookmarks = new LinkedList();
     }
     
     public String getID(String username){
@@ -92,6 +96,37 @@ public class DataAccess implements DataAccessInterface{
         }
     }
     
+    private void loadDestinationBookmarks(String destinationID){
+        try{
+            Class.forName("org.sqlite.JDBC"); 
+
+            Connection connessione = DriverManager.getConnection("jdbc:sqlite:booksync.db"); 
+            Statement stat = connessione.createStatement();
+            Statement stat1 = connessione.createStatement(); 
+            String bookid="";
+            ResultSet result = stat.executeQuery("SELECT * FROM localized WHERE DestinationID =\""+destinationID+"\"");
+            ResultSet result1;
+            while (result.next()) { 
+                bookid=result.getString("BookID");
+                result1=stat1.executeQuery("SELECT * FROM bookmarks WHERE BookID = \""+bookid+"\"");
+                Bookmark bm = new Bookmark();
+                bm.setBookID(result1.getString("BookID"));
+                bm.setTitle(result1.getString("title"));
+                bm.setUrl(result1.getString("url"));
+                bm.setLastEditDate(result1.getString("lasteditdate"));
+                bm.setFatherFolder(result1.getString("fatherpath"));
+                bm.setTag(result1.getString("tag"));
+                bm.setType(result1.getString("type"));
+                bm.setIcon(result1.getString("icon"));
+                this.destBookmarks.add(bm);
+            } 
+            result.close(); 
+            connessione.close(); 
+        } catch ( Exception e ) {
+          e.printStackTrace();
+        }
+    }
+    
     public LinkedList getBookmarks(String id){
         loadUserBookmarks(id);
         return this.bookmarks;
@@ -100,6 +135,21 @@ public class DataAccess implements DataAccessInterface{
     public LinkedList getDestinations(String id){
         loadUserDestinations(id);
         return this.destinations;
+    }
+    
+    public LinkedList getDestinationBookmarks(String destID){
+        loadDestinationBookmarks(destID);
+        return this.destBookmarks;
+    }
+    
+    public LinkedList getUnselectedDestinationBookmarks(String userID,String destID){
+        loadUserBookmarks(userID);
+        loadDestinationBookmarks(destID);
+        for(int i=0;i<this.bookmarks.size();i++){
+            if(!this.destBookmarks.contains(this.bookmarks.get(i)))
+                this.unDestBookmarks.add(this.bookmarks.get(i));
+        }
+        return this.unDestBookmarks;
     }
     
     public void addUser(String username,String firstname,String lastname,

@@ -6,6 +6,8 @@ public interface DataAccessInterface {
     public String getID(String username);
     public LinkedList getBookmarks(String id);
     public LinkedList getDestinations(String id);
+    public LinkedList getDestinationBookmarks(String destID);
+    public LinkedList getUnselectedDestinationBookmarks(String userID,String destID);
     public boolean login(String id,String password);
     public void addUser(String username,String firstname,String lastname,String password,String email,String country,String regdate);
     public void addBookmark(String userid,String title,String url,String lasteditdate,String fatherpath,String type,String description,String tag);

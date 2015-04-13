@@ -3,6 +3,7 @@
 <%@page import="BusinessLogicTier.BusinessLogic"%>
 <%@page import="BusinessLogicTier.BusinessLogicInterface"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
     
@@ -34,15 +35,16 @@
                 
                 $('#pageInfo').click( function () {
                     if(document.getElementById("pageInfo").innerHTML==="Unselected Bookmarks"){
-                        console.log("entro if");
                         document.getElementById("pageInfo").innerHTML="Selected Bookmarks";
                         document.getElementById("delete").innerHTML="Select";
                         document.getElementById("delete").id="select";
+                        window.location.reload("bookmarksSelection.jsp?mess=unselected"); 
+
                     }else{
-                        console.log("entro else");
                         document.getElementById("pageInfo").innerHTML="Unselected Bookmarks";
                         document.getElementById("select").innerHTML="Delete";
                         document.getElementById("select").id="delete";
+                        window.location.reload("bookmarksSelection.jsp?mess=selected");
                     }
                 } );
                 
@@ -110,6 +112,7 @@
             <tbody>
                 <%  BusinessLogicInterface bl = new BusinessLogic();
                     String username="";
+                    String deviceName="";
                     Cookie cookie = null;
                     Cookie[] cookies = null;
                     // Get an array of Cookies associated with this domain
@@ -119,8 +122,16 @@
                         if(cookie.getName().equals("username"))
                             username=cookie.getValue();
                     }
+                    for (int i = 0; i < cookies.length; i++){
+                        cookie = cookies[i];
+                        if(cookie.getName().equals("destination"))
+                            deviceName=cookie.getValue();
+                    }
                     LinkedList <Bookmark> bms = new LinkedList();
-                    bms = bl.getBookmarks(username);
+                    if(request.getParameter("mess").equals("unselected"))
+                        bms = bl.getUnselectedDestinationBookmarks(username, deviceName);
+                    else
+                        bms = bl.getDestinationBookmarks(username, deviceName);
                     
                     for(int i=0;i<bms.size();i++){
                         out.write("<tr>");

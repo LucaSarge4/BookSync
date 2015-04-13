@@ -7,7 +7,6 @@ package BusinessLogicTier;
 
 import DataAccessTier.DataAccessInterface;
 import DataAccessTier.DataAccess;
-import DataAccessTier.User;
 import DataAccessTier.Bookmark;
 import DataAccessTier.Destination;
 import java.util.LinkedList;
@@ -28,6 +27,15 @@ public class BusinessLogic implements BusinessLogicInterface{
     public LinkedList getDestinations(String username){
         return this.dt.getDestinations(this.dt.getID(username));
     }
+    
+    public LinkedList getDestinationBookmarks(String username,String deviceName){
+        return this.dt.getDestinationBookmarks(getDestinationID(username,deviceName));
+    }
+    
+    public LinkedList getUnselectedDestinationBookmarks(String username,String deviceName){
+        return this.dt.getUnselectedDestinationBookmarks(this.dt.getID(username),getDestinationID(username,deviceName));
+    }
+    
     public boolean login(String username,String password){
         return this.dt.login(this.dt.getID(username),password);
     }
@@ -111,4 +119,6 @@ public class BusinessLogic implements BusinessLogicInterface{
     public void addLocalized(String username,String url,String deviceName){
         this.dt.localized(getBookID(username,url),getDestinationID(username,deviceName));
     }
+    
+    
 }
