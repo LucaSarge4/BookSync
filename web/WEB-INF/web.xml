@@ -32,6 +32,10 @@
         <servlet-name>GetDestinations</servlet-name>
         <servlet-class>ViewTier.GetDestinations</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>BookmarkList</servlet-name>
+        <servlet-class>ViewTier.BookmarkList</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -62,7 +66,11 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>GetDestinations</servlet-name>
-        <url-pattern>/GetDestinations</url-pattern>
+        <url-pattern>/plugin/GetDestinations</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BookmarkList</servlet-name>
+        <url-pattern>/plugin/BookmarkList</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
