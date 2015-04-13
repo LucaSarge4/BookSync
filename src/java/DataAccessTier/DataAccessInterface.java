@@ -21,4 +21,9 @@ public interface DataAccessInterface {
     public void deleteBookmark(String bookID);
     public void addDestination(String userid,String device,String os,String browser);
     public void localized(String bookid,String destid);
+    public void deleteLocalized(String bookID,String destID);
+    public void editDestinationName(String destID,String name);
+    public void editDestinationOS(String destID,String os);
+    public void editDestinationBrowser(String destID,String browser);
+    public void editDestinationDropbox(String destID,String drop);
 }

@@ -142,11 +142,19 @@ public class DataAccess implements DataAccessInterface{
         return this.destBookmarks;
     }
     
+    private boolean checkBookmarks(Bookmark bm){
+        for(int i=0;i<this.destBookmarks.size();i++){
+            if(this.destBookmarks.get(i).getBookID().equals(bm.getBookID()))
+                return false;
+        }
+        return true;
+    }
+    
     public LinkedList getUnselectedDestinationBookmarks(String userID,String destID){
         loadUserBookmarks(userID);
         loadDestinationBookmarks(destID);
         for(int i=0;i<this.bookmarks.size();i++){
-            if(!this.destBookmarks.contains(this.bookmarks.get(i)))
+            if(checkBookmarks(this.bookmarks.get(i)))
                 this.unDestBookmarks.add(this.bookmarks.get(i));
         }
         return this.unDestBookmarks;
@@ -417,6 +425,20 @@ public class DataAccess implements DataAccessInterface{
         }
     }
     
+    public void deleteLocalized(String bookID,String destID){
+        try{
+            Class.forName("org.sqlite.JDBC"); 
+             
+            Connection connessione = DriverManager.getConnection("jdbc:sqlite:booksync.db");
+            Statement stat = connessione.createStatement(); 
+            stat.executeUpdate("DELETE FROM localized WHERE BookID =\""+bookID+"\" AND DestinationID=\""+destID+"\"");
+            stat.close();
+            connessione.close();
+        } catch ( Exception e ) {
+          e.printStackTrace();
+        }
+    }
+    
     public boolean login(String id,String password){
         boolean response = false;
         try{
@@ -433,6 +455,59 @@ public class DataAccess implements DataAccessInterface{
           e.printStackTrace();
         }
         return response;
+    }
+    
+    public void editDestinationName(String destID,String name){
+        try{
+            Class.forName("org.sqlite.JDBC"); 
+             
+            Connection connessione = DriverManager.getConnection("jdbc:sqlite:booksync.db"); 
+            Statement stato = connessione.createStatement(); 
+ 
+            stato.executeUpdate("UPDATE destination set device =\""+name+"\" WHERE DestinationID = \""+destID+"\""); 
+            connessione.close();
+        } catch ( Exception e ) {
+          e.printStackTrace();
+        } 
+    }
+    public void editDestinationOS(String destID,String os){
+        try{
+            Class.forName("org.sqlite.JDBC"); 
+             
+            Connection connessione = DriverManager.getConnection("jdbc:sqlite:booksync.db"); 
+            Statement stato = connessione.createStatement(); 
+ 
+            stato.executeUpdate("UPDATE destination set os =\""+os+"\" WHERE DestinationID = \""+destID+"\""); 
+            connessione.close();
+        } catch ( Exception e ) {
+          e.printStackTrace();
+        } 
+    }
+    public void editDestinationBrowser(String destID,String browser){
+        try{
+            Class.forName("org.sqlite.JDBC"); 
+             
+            Connection connessione = DriverManager.getConnection("jdbc:sqlite:booksync.db"); 
+            Statement stato = connessione.createStatement(); 
+ 
+            stato.executeUpdate("UPDATE destination set browser =\""+browser+"\" WHERE DestinationID = \""+destID+"\""); 
+            connessione.close();
+        } catch ( Exception e ) {
+          e.printStackTrace();
+        } 
+    }
+    public void editDestinationDropbox(String destID,String drop){
+        try{
+            Class.forName("org.sqlite.JDBC"); 
+             
+            Connection connessione = DriverManager.getConnection("jdbc:sqlite:booksync.db"); 
+            Statement stato = connessione.createStatement(); 
+ 
+            stato.executeUpdate("UPDATE destination set dropboxpath =\""+drop+"\" WHERE DestinationID = \""+destID+"\""); 
+            connessione.close();
+        } catch ( Exception e ) {
+          e.printStackTrace();
+        } 
     }
     
 }

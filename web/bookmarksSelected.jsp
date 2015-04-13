@@ -33,15 +33,15 @@
                     $(this).toggleClass('selected');
                 } );
                 
-                $('#selectedBookmarks').click( function () {
-                        window.location.replace("bookmarksSelected.jsp");
+                $('#unselectedBookmarks').click( function () {
+                        window.location.replace("bookmarksSelection.jsp");
                 } );
 
-                $('#select').click( function () {
+                $('#delete').click( function () {
                     var size = table.rows('.selected').data().length;
                     //alert( table.rows('.selected').data().length +' row(s) selected' );
                     for(var i=0;i<size;i++){
-                        $.post( "AddLocalized", 
+                        $.post( "DeleteLocalized", 
                             {user: getCookie("username"),url: table.rows('.selected').data()[i][1],deviceName: getCookie("destination")},
                             function() {
                                     window.close();
@@ -66,11 +66,11 @@
                     <p class="navbar-text navbar-right"></p>
                     <ul class="nav navbar-nav navbar-right">
                         <li class="" >
-                            <a id="select" >Select</a>
+                            <a id="delete" >Delete from destination</a>
                         </li>
                         
                         <li class="" >
-                            <a id="selectedBookmarks">Selected Bookmarks</a>
+                            <a id="unselectedBookmarks">Unselected Bookmarks</a>
                         </li>
                         
                     </ul>
@@ -109,7 +109,7 @@
                             deviceName=cookie.getValue();
                     }
                     LinkedList <Bookmark> bms = new LinkedList();
-                    bms = bl.getUnselectedDestinationBookmarks(username, deviceName);
+                    bms = bl.getDestinationBookmarks(username, deviceName);
                     
                     for(int i=0;i<bms.size();i++){
                         out.write("<tr>");

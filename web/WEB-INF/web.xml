@@ -36,6 +36,14 @@
         <servlet-name>BookmarkList</servlet-name>
         <servlet-class>ViewTier.BookmarkList</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DeleteLocalized</servlet-name>
+        <servlet-class>ViewTier.DeleteLocalized</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditDestination</servlet-name>
+        <servlet-class>ViewTier.EditDestination</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -71,6 +79,14 @@
     <servlet-mapping>
         <servlet-name>BookmarkList</servlet-name>
         <url-pattern>/plugin/BookmarkList</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteLocalized</servlet-name>
+        <url-pattern>/DeleteLocalized</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditDestination</servlet-name>
+        <url-pattern>/EditDestination</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

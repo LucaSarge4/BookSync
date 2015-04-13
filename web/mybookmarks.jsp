@@ -111,7 +111,7 @@
                             <a id="details" >Details</a>
                         </li>
                         <li>
-                            <a id="device" >Device</a>
+                            <a id="device" >My Devices</a>
                         </li>
                         <li>
                             <a id="logout" >Logout</a>

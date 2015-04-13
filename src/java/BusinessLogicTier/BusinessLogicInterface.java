@@ -6,6 +6,7 @@
 package BusinessLogicTier;
 
 import DataAccessTier.Bookmark;
+import DataAccessTier.Destination;
 import java.util.LinkedList;
 
 public interface BusinessLogicInterface {
@@ -25,7 +26,14 @@ public interface BusinessLogicInterface {
     public void editBookmarkIcon(String bookid,String icon);
     public String getBookID(String username,String url);
     public Bookmark getBookmark(String username,String bookID);
+    public Destination getDestination(String username,String destID);
     public void deleteBookmark(String username,String url);
     public void addDestination(String username,String device,String os,String browser,String dropboxPath);
+    public String getDestinationID(String username,String deviceName);
     public void addLocalized(String username,String url,String deviceName);
+    public void deleteLocalized(String username,String url,String deviceName);
+    public void editDestinationName(String destID,String name);
+    public void editDestinationOS(String destID,String os);
+    public void editDestinationBrowser(String destID,String browser);
+    public void editDestinationDropbox(String destID,String drop);
 }

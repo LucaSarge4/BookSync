@@ -48,14 +48,25 @@
                     return false;
             } );
             
+            $('#edit').click( function () {
+                document.cookie="destination="+table.row('.selected').data()[0];
+                var x = screen.width/2 - 700/2;
+                var y = screen.height/2 - 450/2;
+                window.open(
+                    'destinationEdit.jsp','Destination','width=600,height=500,toolbar=0,\n\
+                    menubar=0,location=no,addressbar=no,status=1,scrollbars=0,\n\
+                    resizable=0,left='+x+',top='+y);
+                    return false;
+            } );
+            
             $('#bookmarksSelection').click( function () {
                 document.cookie="destination="+table.row('.selected').data()[0];
                 var x = screen.width/2 - 850/2;
                 var y = screen.height/2 - 600/2;
                 window.open(
-                    'bookmarksSelection.jsp?mess=selected','Bookmarks Selection','width=800,height=500,toolbar=0,\n\
-                    menubar=0,location=no,addressbar=no,status=1,scrollbars=0,\n\
-                    resizable=0,left='+x+',top='+y);
+                    'bookmarksSelected.jsp','Bookmarks Selected','width=800,height=500,toolbar=0,\n\
+                    menubar=0,location=0,addressbar=no,status=1,scrollbars=0,\n\
+                    resizable=1,left='+x+',top='+y);
                     return false;
             } );
 
@@ -91,9 +102,6 @@
                     <ul class="nav navbar-nav navbar-right">
                         <li>
                             <a id="newDevice" >Add Device</a>
-                        </li>
-                        <li>
-                            <a id="dropbox" >Add DropBox Path</a>
                         </li>
                         <li>
                             <a id="edit" >Edit</a>
