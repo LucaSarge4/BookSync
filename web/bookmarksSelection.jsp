@@ -31,8 +31,30 @@
                 $('#bookmarksTable tbody').on( 'click', 'tr', function () {
                     $(this).toggleClass('selected');
                 } );
+                
+                $('#pageInfo').click( function () {
+                    if(document.getElementById("pageInfo").innerHTML==="Unselected Bookmarks"){
+                        console.log("entro if");
+                        document.getElementById("pageInfo").innerHTML="Selected Bookmarks";
+                        document.getElementById("delete").innerHTML="Select";
+                        document.getElementById("delete").id="select";
+                    }else{
+                        console.log("entro else");
+                        document.getElementById("pageInfo").innerHTML="Unselected Bookmarks";
+                        document.getElementById("select").innerHTML="Delete";
+                        document.getElementById("select").id="delete";
+                    }
+                } );
+                
+                $('#delete').click( function () {
+                    var size = table.rows('.selected').data().length;
+                    //alert( table.rows('.selected').data().length +' row(s) selected' );
+                    for(var i=0;i<size;i++){
+                       
+                    }
+                } );
 
-                $('#confirm').click( function () {
+                $('#select').click( function () {
                     var size = table.rows('.selected').data().length;
                     //alert( table.rows('.selected').data().length +' row(s) selected' );
                     for(var i=0;i<size;i++){
@@ -61,8 +83,13 @@
                     <p class="navbar-text navbar-right"></p>
                     <ul class="nav navbar-nav navbar-right">
                         <li class="" >
-                            <a id="confirm" >Confirm</a>
+                            <a id="delete" >Delete From This Destination</a>
                         </li>
+                        
+                        <li class="" >
+                            <a id="pageInfo">Unselected Bookmarks</a>
+                        </li>
+                        
                     </ul>
                 </div>
             </div>

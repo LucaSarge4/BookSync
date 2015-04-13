@@ -56,7 +56,8 @@
                             var destName = document.getElementById("inputName").value.toString();
                             var os = document.getElementById("inputOS").value.toString();
                             var browser = document.getElementById("inputBrowser").value.toString();
-                            var dropbox = document.getElementById("inputDropboxPath").value.toString();
+                            //var dropbox = document.getElementById("inputDropboxPath").value.toString();
+                            var dropbox = "null";
                             var username = getCookie("username");
                             $.post( "NewDestination", 
                                     {user: username,destName: destName,os:os,browser:browser,
