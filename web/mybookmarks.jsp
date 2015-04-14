@@ -35,6 +35,8 @@
                 else {
                     table.$('tr.selected').removeClass('selected');
                     $(this).addClass('selected');
+                    var urlText = table.row('.selected').data()[1].split("//")[1];
+                    document.cookie="url="+urlText;
                 }
             } );
 
@@ -52,7 +54,7 @@
             } );
             
             $('#details').click( function () {
-                document.cookie="url="+table.row('.selected').data()[1];
+                
                 var x = screen.width/2 - 700/2;
                 var y = screen.height/2 - 450/2;
                 window.open(

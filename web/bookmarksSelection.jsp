@@ -108,6 +108,7 @@
                         if(cookie.getName().equals("destination"))
                             deviceName=cookie.getValue();
                     }
+                    out.write(deviceName);
                     LinkedList <Bookmark> bms = new LinkedList();
                     bms = bl.getUnselectedDestinationBookmarks(username, deviceName);
                     

@@ -81,7 +81,7 @@ public class BusinessLogic implements BusinessLogicInterface{
         String [] url1 = url.split(":");
         LinkedList<Bookmark> list = getBookmarks(username);
         for(int i=0;i<list.size();i++){
-            if(list.get(i).getUrl().contains(url))
+            if(list.get(i).getUrl().trim().contains(url.trim()))
                 index=i;
         }
         String bookID= list.get(index).getBookID();
@@ -92,7 +92,7 @@ public class BusinessLogic implements BusinessLogicInterface{
         int index=-1;
         LinkedList<Destination> list = getDestinations(username);
         for(int i=0;i<list.size();i++){
-            if(list.get(i).getDevice().equals(deviceName))
+            if(list.get(i).getDevice().trim().equals(deviceName.trim()))
                 index=i;
         }
         String destID= list.get(index).getDestinationID();

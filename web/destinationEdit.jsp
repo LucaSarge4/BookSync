@@ -24,8 +24,14 @@
         <script src="js/getCookie.js"></script>
     </head>
     
-    <body>
+    <body onunload="resetCookie()">
         <script src="js/bootstrap.min.js"></script>
+        <script>
+            function resetCookie(){
+                document.cookie = "destination=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+                window.opener.location.reload();
+            }
+        </script>
         <div class="section">
             <div class="container">
                 <div class="row">
@@ -34,6 +40,7 @@
                             <label class="control-label" >Device Name</label>
                             <%  BusinessLogicInterface bl = new BusinessLogic();
                                 String username="";
+                                String deviceName="";
                                 String destID="";
                                 Cookie cookie = null;
                                 Cookie[] cookies = null;
@@ -47,8 +54,10 @@
                                 for (int i = 0; i < cookies.length; i++){
                                     cookie = cookies[i];
                                     if(cookie.getName().equals("destination"))
-                                        destID=bl.getDestinationID(username,cookie.getValue());
+                                        deviceName=cookie.getValue();
                                 }
+                                destID=bl.getDestinationID(username,deviceName);
+                                
                                 out.write("<input class=\"form-control\" id=\"inputDevice\"");
                                 out.write("placeholder=\" "+bl.getDestination(username, destID).getDevice()+"\" type=\"text\" name=\"device\" disabled=\"true\">");
                                 

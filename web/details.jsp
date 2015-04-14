@@ -24,8 +24,14 @@
         <script src="js/getCookie.js"></script>
     </head>
     
-    <body>
+    <body onunload="resetCookie()">
         <script src="js/bootstrap.min.js"></script>
+        <script>
+            function resetCookie(){
+                document.cookie = "url=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+                window.opener.location.reload();
+            }
+        </script>
         <div class="section">
             <div class="container">
                 <div class="row">
@@ -34,6 +40,7 @@
                             <label class="control-label" >Title</label>
                             <%  BusinessLogicInterface bl = new BusinessLogic();
                                 String username="";
+                                String url="";
                                 String bookID="";
                                 Cookie cookie = null;
                                 Cookie[] cookies = null;
@@ -46,10 +53,10 @@
                                 }
                                 for (int i = 0; i < cookies.length; i++){
                                     cookie = cookies[i];
-                                    if(cookie.getName().equals("url")){
-                                        bookID=bl.getBookID(username,cookie.getValue());
-                                    }
+                                    if(cookie.getName().equals("url"))
+                                        url=cookie.getValue();
                                 }
+                                bookID=bl.getBookID(username,url);
                                 out.write("<input class=\"form-control\" id=\"inputTitle\"");
                                 out.write("placeholder=\" "+bl.getBookmark(username, bookID).getTitle()+"\" type=\"text\" name=\"title\" disabled=\"true\">");
                                 

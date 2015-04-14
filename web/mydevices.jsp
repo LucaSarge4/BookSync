@@ -35,6 +35,7 @@
                 else {
                     table.$('tr.selected').removeClass('selected');
                     $(this).addClass('selected');
+                    document.cookie="destination="+table.row('.selected').data()[0];
                 }
             } );
             
@@ -49,7 +50,6 @@
             } );
             
             $('#edit').click( function () {
-                document.cookie="destination="+table.row('.selected').data()[0];
                 var x = screen.width/2 - 700/2;
                 var y = screen.height/2 - 450/2;
                 window.open(
@@ -60,7 +60,6 @@
             } );
             
             $('#bookmarksSelection').click( function () {
-                document.cookie="destination="+table.row('.selected').data()[0];
                 var x = screen.width/2 - 850/2;
                 var y = screen.height/2 - 600/2;
                 window.open(
