@@ -69,7 +69,7 @@
                             %>
                         </div>
                         <div class="form-group has-error">
-                            <label class="control-label" >Tag</label>
+                            <label class="control-label" >Dropbox Path</label>
                             <%  
                                 out.write("<input class=\"form-control\" id=\"inputDropbox\"");
                                 out.write("placeholder=\" "+bl.getDestination(username, destID).getDropPath()+"\" type=\"text\" name=\"dropbox\" disabled=\"true\">");

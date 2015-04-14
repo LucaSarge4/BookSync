@@ -77,7 +77,7 @@
                             %>
                        </div>
                         <div class="form-group has-error">
-                            <label class="control-label" >FatherPath</label>
+                            <label class="control-label" >Father Folder</label>
                             <%  
                                 out.write("<input class=\"form-control\" id=\"inputFatherFolder\"");
                                 out.write("placeholder=\" "+bl.getBookmark(username, bookID).getFatherFolder()+"\" type=\"text\" name=\"fatherFolder\" disabled=\"true\">");
