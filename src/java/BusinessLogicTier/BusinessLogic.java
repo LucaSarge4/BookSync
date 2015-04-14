@@ -98,6 +98,11 @@ public class BusinessLogic implements BusinessLogicInterface{
     
     public String getDestinationID(String username,String deviceName){
         int index=-1;
+        try {
+            deviceName = decode(deviceName, "UTF-8");
+        } catch (UnsupportedEncodingException ex) {
+            Logger.getLogger(BusinessLogic.class.getName()).log(Level.SEVERE, null, ex);
+        }
         LinkedList<Destination> list = getDestinations(username);
         for(int i=0;i<list.size();i++){
             if(list.get(i).getDevice().trim().equals(deviceName.trim()))

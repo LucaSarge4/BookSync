@@ -35,10 +35,8 @@
                 else {
                     table.$('tr.selected').removeClass('selected');
                     $(this).addClass('selected');
-                    //var urlText = table.row('.selected').data()[1].hashCode().split("//")[1];
                     var urlText =  escape(table.row('.selected').data()[1]) + ";";
                     document.cookie="url="+urlText;
-                    console.log(getCookie("url"));
                 }
             } );
 

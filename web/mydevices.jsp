@@ -35,7 +35,8 @@
                 else {
                     table.$('tr.selected').removeClass('selected');
                     $(this).addClass('selected');
-                    document.cookie="destination="+table.row('.selected').data()[0];
+                    var destName =  escape(table.row('.selected').data()[0]) + ";";
+                    document.cookie="destination="+destName;
                 }
             } );
             
@@ -53,7 +54,7 @@
                 var x = screen.width/2 - 700/2;
                 var y = screen.height/2 - 450/2;
                 window.open(
-                    'destinationEdit.jsp','Destination','width=600,height=500,toolbar=0,\n\
+                    'destinationEdit.jsp','Destination','width=600,height=370,toolbar=0,\n\
                     menubar=0,location=no,addressbar=no,status=1,scrollbars=0,\n\
                     resizable=0,left='+x+',top='+y);
                     return false;
