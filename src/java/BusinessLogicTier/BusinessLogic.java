@@ -9,7 +9,11 @@ import DataAccessTier.DataAccessInterface;
 import DataAccessTier.DataAccess;
 import DataAccessTier.Bookmark;
 import DataAccessTier.Destination;
+import java.io.UnsupportedEncodingException;
 import java.util.LinkedList;
+import static java.net.URLDecoder.decode;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 public class BusinessLogic implements BusinessLogicInterface{
@@ -78,10 +82,14 @@ public class BusinessLogic implements BusinessLogicInterface{
     
     public String getBookID(String username,String url){
         int index=-1;
-        String [] url1 = url.split(":");
+        try {
+            url = decode(url, "UTF-8");
+        } catch (UnsupportedEncodingException ex) {
+            Logger.getLogger(BusinessLogic.class.getName()).log(Level.SEVERE, null, ex);
+        }
         LinkedList<Bookmark> list = getBookmarks(username);
         for(int i=0;i<list.size();i++){
-            if(list.get(i).getUrl().trim().contains(url.trim()))
+            if(list.get(i).getUrl().equals(url))
                 index=i;
         }
         String bookID= list.get(index).getBookID();

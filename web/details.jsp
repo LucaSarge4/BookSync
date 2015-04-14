@@ -54,7 +54,7 @@
                                 for (int i = 0; i < cookies.length; i++){
                                     cookie = cookies[i];
                                     if(cookie.getName().equals("url"))
-                                        url=cookie.getValue();
+                                        url = cookie.getValue();
                                 }
                                 bookID=bl.getBookID(username,url);
                                 out.write("<input class=\"form-control\" id=\"inputTitle\"");
