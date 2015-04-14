@@ -44,8 +44,8 @@ public class BusinessLogic implements BusinessLogicInterface{
         this.dt.addUser(username,firstname,lastname,password,email,country,regdate);
     }
     
-    public void addBookmark(String username,String title,String url,String lasteditdate,String fatherpath,String type,String description,String tag){
-        this.dt.addBookmark(this.dt.getID(username),title,url,lasteditdate,fatherpath,type,description,tag);
+    public void addBookmark(String username,String title,String url,String lasteditdate,String fatherfolder,String type,String description,String tag){
+        this.dt.addBookmark(this.dt.getID(username),title,url,lasteditdate,fatherfolder,type,description,tag);
     }
     
     public void editBookmarkTitle(String bookid,String title){
@@ -60,8 +60,8 @@ public class BusinessLogic implements BusinessLogicInterface{
         this.dt.editBookmarkLastEditDate(bookid, date);
     }
     
-    public void editBookmarkFatherPath(String bookid,String fatherPath){
-        this.dt.editBookmarkFatherPath(bookid, fatherPath);
+    public void editBookmarkFatherFolder(String bookid,String fatherFolder){
+        this.dt.editBookmarkFatherFolder(bookid, fatherFolder);
     }
     
     public void editBookmarkTag(String bookid,String tag){

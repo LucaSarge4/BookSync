@@ -55,7 +55,7 @@ public class DataAccess implements DataAccessInterface{
                 bm.setTitle(result1.getString("title"));
                 bm.setUrl(result1.getString("url"));
                 bm.setLastEditDate(result1.getString("lasteditdate"));
-                bm.setFatherFolder(result1.getString("fatherpath"));
+                bm.setFatherFolder(result1.getString("fatherfolder"));
                 bm.setTag(result1.getString("tag"));
                 bm.setType(result1.getString("type"));
                 bm.setIcon(result1.getString("icon"));
@@ -114,7 +114,7 @@ public class DataAccess implements DataAccessInterface{
                 bm.setTitle(result1.getString("title"));
                 bm.setUrl(result1.getString("url"));
                 bm.setLastEditDate(result1.getString("lasteditdate"));
-                bm.setFatherFolder(result1.getString("fatherpath"));
+                bm.setFatherFolder(result1.getString("fatherfolder"));
                 bm.setTag(result1.getString("tag"));
                 bm.setType(result1.getString("type"));
                 bm.setIcon(result1.getString("icon"));
@@ -178,15 +178,15 @@ public class DataAccess implements DataAccessInterface{
     }
     
     public void addBookmark(String userid,String title,String url,String lasteditdate,
-                                String fatherpath,String type,String description,String tag){
+                                String fatherfolder,String type,String description,String tag){
         try{
             Class.forName("org.sqlite.JDBC"); 
              
             Connection connessione = DriverManager.getConnection("jdbc:sqlite:booksync.db"); 
             Statement stato = connessione.createStatement(); 
  
-            stato.executeUpdate("INSERT INTO bookmarks (title,url,lasteditdate,fatherpath,type,description,tag) VALUES "
-                    + "('"+title+"', '"+url+"', '"+lasteditdate+"', '"+fatherpath+"', '"+type+"','"+description+"','"+tag+"')"); 
+            stato.executeUpdate("INSERT INTO bookmarks (title,url,lasteditdate,fatherfolder,type,description,tag) VALUES "
+                    + "('"+title+"', '"+url+"', '"+lasteditdate+"', '"+fatherfolder+"', '"+type+"','"+description+"','"+tag+"')"); 
             
             connessione.close();
             preferred(userid);
@@ -266,14 +266,14 @@ public class DataAccess implements DataAccessInterface{
         } 
     }
     
-    public void editBookmarkFatherPath(String bookid,String fatherPath){
+    public void editBookmarkFatherFolder(String bookid,String fatherFolder){
         try{
             Class.forName("org.sqlite.JDBC"); 
              
             Connection connessione = DriverManager.getConnection("jdbc:sqlite:booksync.db"); 
             Statement stato = connessione.createStatement(); 
  
-            stato.executeUpdate("UPDATE bookmarks set fatherpath =\""+fatherPath+"\" WHERE BookID = \""+bookid+"\""); 
+            stato.executeUpdate("UPDATE bookmarks set fatherfolder =\""+fatherFolder+"\" WHERE BookID = \""+bookid+"\""); 
             connessione.close();
         } catch ( Exception e ) {
           e.printStackTrace();

@@ -78,8 +78,8 @@
                         <div class="form-group has-error">
                             <label class="control-label" >FatherPath</label>
                             <%  
-                                out.write("<input class=\"form-control\" id=\"inputFatherPath\"");
-                                out.write("placeholder=\" "+bl.getBookmark(username, bookID).getFatherFolder()+"\" type=\"text\" name=\"fatherPath\" disabled=\"true\">");
+                                out.write("<input class=\"form-control\" id=\"inputFatherFolder\"");
+                                out.write("placeholder=\" "+bl.getBookmark(username, bookID).getFatherFolder()+"\" type=\"text\" name=\"fatherFolder\" disabled=\"true\">");
                             %>
                         </div>
 
@@ -93,19 +93,19 @@
                                 document.getElementById('inputUrl').disabled = false;
                                 document.getElementById('inputDescription').disabled = false;
                                 document.getElementById('inputTag').disabled = false;
-                                document.getElementById('inputFatherPath').disabled = false;
+                                document.getElementById('inputFatherFolder').disabled = false;
                                 document.getElementById('edit').value="Confirm";
                             }else{
                                 var title = document.getElementById("inputTitle").value.toString();
                                 var url = document.getElementById("inputUrl").value.toString();
                                 var desc = document.getElementById("inputDescription").value.toString();
                                 var tag = document.getElementById("inputTag").value.toString();
-                                var fatherpath = document.getElementById("inputFatherPath").value.toString();
+                                var fatherfolder = document.getElementById("inputFatherFolder").value.toString();
                                 var d = new Date();
                                 var dataString = d.toLocaleDateString()+ " "+d.toLocaleTimeString();
                                 $.post( "EditBookmark", 
                                         {user: getCookie("username"),ckUrl:getCookie("url"),title: title,url: url,lasteditdate:dataString,
-                                            fatherpath: fatherpath, description: desc, tag: tag},
+                                            fatherfolder: fatherfolder, description: desc, tag: tag},
                                         function(responseText) {
                                             console.log(responseText);
                                                     window.close();

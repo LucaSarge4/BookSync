@@ -53,9 +53,18 @@
                             </select>
                        </div>
                         <div class="form-group has-error">
-                            <label class="control-label" >FatherPath</label>
-                            <input class="form-control" id="inputFatherPath"
-                                   placeholder="FatherPath" type="text" name="fatherPath">
+                            <label class="control-label" >Type</label>
+                            <select  class="form-control" id="inputBookType">
+                                <option></option>
+                                <option>Web</option>
+                                <option>Cloud</option>
+                                <option>Local</option>
+                            </select>
+                       </div>
+                        <div class="form-group has-error">
+                            <label class="control-label" >Father Folder</label>
+                            <input class="form-control" id="inputFatherFolder"
+                                   placeholder="FatherPath" type="text" name="fatherFolder">
                         </div>
 
                         <input type="button" value="Confirm" class="active btn btn-success" onclick="addFunction()">
@@ -67,13 +76,14 @@
                             var url = document.getElementById("inputUrl").value.toString();
                             var desc = document.getElementById("inputDescription").value.toString();
                             var tag = document.getElementById("inputBookTag").value.toString();
-                            var fatherpath = document.getElementById("inputFatherPath").value.toString();
+                            var type = document.getElementById("inputBookType").value.toString();
+                            var fatherfolder = document.getElementById("inputFatherFolder").value.toString();
                             var d = new Date();
                             var dataString = d.toLocaleDateString()+ " "+d.toLocaleTimeString();
                             var username = getCookie("username");
                             $.post( "NewBookmark", 
                                     {userid: username,title: title,url: url,lasteditdate:dataString,
-                                        fatherpath: fatherpath,type: "web", description: desc, tag: tag},
+                                        fatherfolder: fatherfolder,type: type, description: desc, tag: tag},
                                     function(responseText) {
                                             console.log(responseText);
                                             window.close();

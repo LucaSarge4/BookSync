@@ -29,8 +29,8 @@ public class EditBookmark extends HttpServlet {
             bl.editBookmarkUrl(bookID, request.getParameter("url"));
             bl.editBookmarkLastEditDate(bookID, request.getParameter("lasteditdate"));
         }
-        if(request.getParameter("fatherpath")!=""){
-            bl.editBookmarkFatherPath(bookID, request.getParameter("fatherpath"));
+        if(request.getParameter("fatherfolder")!=""){
+            bl.editBookmarkFatherFolder(bookID, request.getParameter("fatherfolder"));
             bl.editBookmarkLastEditDate(bookID, request.getParameter("lasteditdate"));
         }
         if(request.getParameter("description")!=""){
