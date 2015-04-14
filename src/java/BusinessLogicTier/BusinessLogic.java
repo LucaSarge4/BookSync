@@ -149,4 +149,46 @@ public class BusinessLogic implements BusinessLogicInterface{
     public void editDestinationDropbox(String destID,String drop){
         this.dt.editDestinationDropbox(destID, drop);
     }
+    
+    public String getBookmarksDescriptionList(String username, String device){
+        LinkedList<Bookmark> allBm = this.getDestinationBookmarks(username, device);
+        return this.parseBookmarkByFatherFolder(allBm, "Booksync");
+    }
+
+    private String parseBookmarkByFatherFolder(LinkedList<Bookmark> allBm, String folder) {
+        // default case
+        if(allBm.isEmpty()){
+            return "";
+        }
+        // recorsive case
+        // get first item with fatherFolder equal to "folder"
+        int i = 0;
+        while(allBm.get(i).getFatherFolder()!=folder){
+            i++;
+            if(i==allBm.size()){
+                // doesn't exist anyone bookmark with this folder
+                return "";
+            }
+        }
+        // check if current item is a true bookmark or a folder
+        if(allBm.get(i).getUrl()!=""){
+            // bookmark
+            // delete item from list and update String to return
+            Bookmark bm = allBm.get(i);
+            allBm.remove(i);
+            return "<DT><A HREF=\""+bm.getUrl()+"\">"+bm.getTitle()+"</A>\n"+this.parseBookmarkByFatherFolder(allBm, folder);
+        }else{
+            // folder
+            // get folder item
+            Bookmark dir = allBm.get(i);
+            // delete from list
+            allBm.remove(i);
+            // return folder skeleton with dynamic content
+            return "<DT><H3>"+dir.getTitle()+"</H3>\n"+
+                    "<DL><p>\n"+
+                    this.parseBookmarkByFatherFolder(allBm, dir.getTitle())+
+                    "</DL>\n"+
+                    "</DT>\n";
+        }
+    }
 }

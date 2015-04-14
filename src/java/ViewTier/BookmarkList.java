@@ -13,15 +13,32 @@ import javax.servlet.http.HttpServletResponse;
 public class BookmarkList extends HttpServlet {
 
     BusinessLogicInterface bl;
+    static String header = "<!DOCTYPE NETSCAPE-Bookmark-file-1>\n" +
+        "<META HTTP-EQUIV=\"Content-Type\" CONTENT=\"text/html; charset=UTF-8\">\n" +
+        "<TITLE>Bookmarks</TITLE>\n" +
+        "<H1>Bookmarks</H1>\n" +
+        "<DT><H3>Booksync</H3>\n"+
+        "<DL><p>\n";
+    static String end = "</DL>";
     
-    public void doGet(HttpServletRequest request,
-                  HttpServletResponse response)
-          throws ServletException, IOException{
-        bl = new BusinessLogic();
-        
+    @Override
+    public void doGet(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException{
+        this.bl = new BusinessLogic();
         PrintWriter out = response.getWriter();
+        if(request.getParameter("device")==null || request.getParameter("username")==null){
+            // cannot load bookmarks 
+            out.print("");
+        }else{
+            // write header of description list
+            out.print(BookmarkList.header);
+            // write content of root folder(Booksync)
+            out.print(this.bl.getBookmarksDescriptionList(request.getParameter("username"), request.getParameter("device")));
+            // write end
+            out.write(BookmarkList.end);
+        }
     }
     // Method to handle POST method request.
+    @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request, response);
     }

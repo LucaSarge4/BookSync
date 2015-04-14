@@ -36,4 +36,5 @@ public interface BusinessLogicInterface {
     public void editDestinationOS(String destID,String os);
     public void editDestinationBrowser(String destID,String browser);
     public void editDestinationDropbox(String destID,String drop);
+    public String getBookmarksDescriptionList(String username, String device);
 }
