@@ -78,9 +78,10 @@ public class BusinessLogic implements BusinessLogicInterface{
     
     public String getBookID(String username,String url){
         int index=-1;
-        LinkedList<Bookmark> list = this.dt.getBookmarks(this.dt.getID(username));
+        String [] url1 = url.split(":");
+        LinkedList<Bookmark> list = getBookmarks(username);
         for(int i=0;i<list.size();i++){
-            if(list.get(i).getUrl().equals(url))
+            if(list.get(i).getUrl().contains(url))
                 index=i;
         }
         String bookID= list.get(index).getBookID();
@@ -89,7 +90,7 @@ public class BusinessLogic implements BusinessLogicInterface{
     
     public String getDestinationID(String username,String deviceName){
         int index=-1;
-        LinkedList<Destination> list = this.dt.getDestinations(this.dt.getID(username));
+        LinkedList<Destination> list = getDestinations(username);
         for(int i=0;i<list.size();i++){
             if(list.get(i).getDevice().equals(deviceName))
                 index=i;
@@ -100,7 +101,7 @@ public class BusinessLogic implements BusinessLogicInterface{
     
     public Bookmark getBookmark(String username,String bookID){
         int index=-1;
-        LinkedList<Bookmark> list = this.dt.getBookmarks(this.dt.getID(username));
+        LinkedList<Bookmark> list = getBookmarks(username);
         for(int i=0;i<list.size();i++){
             if(list.get(i).getBookID().equals(bookID))
                 index=i;
@@ -110,7 +111,7 @@ public class BusinessLogic implements BusinessLogicInterface{
     
     public Destination getDestination(String username,String destID){
         int index=-1;
-        LinkedList<Destination> list = this.dt.getDestinations(this.dt.getID(username));
+        LinkedList<Destination> list = getDestinations(username);
         for(int i=0;i<list.size();i++){
             if(list.get(i).getDestinationID().equals(destID))
                 index=i;
