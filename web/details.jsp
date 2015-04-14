@@ -46,8 +46,9 @@
                                 }
                                 for (int i = 0; i < cookies.length; i++){
                                     cookie = cookies[i];
-                                    if(cookie.getName().equals("url"))
+                                    if(cookie.getName().equals("url")){
                                         bookID=bl.getBookID(username,cookie.getValue());
+                                    }
                                 }
                                 out.write("<input class=\"form-control\" id=\"inputTitle\"");
                                 out.write("placeholder=\" "+bl.getBookmark(username, bookID).getTitle()+"\" type=\"text\" name=\"title\" disabled=\"true\">");

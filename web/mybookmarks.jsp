@@ -39,7 +39,7 @@
             } );
 
             $('#open').click( function () {
-                window.open('http://'+table.row('.selected').data()[1]);
+                window.open(table.row('.selected').data()[1]);
             } );
             
             $('#delete').click( function () {
