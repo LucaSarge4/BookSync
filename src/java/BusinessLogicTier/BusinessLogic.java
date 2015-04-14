@@ -170,35 +170,52 @@ public class BusinessLogic implements BusinessLogicInterface{
     }
 
     private String parseBookmarkByFatherFolder(LinkedList<Bookmark> allBm, String folder) {
+        System.out.println("All bm: "+allBm.toString());
         // default case
         if(allBm.isEmpty()){
             return "";
         }
         // recorsive case
-        // get first item with fatherFolder equal to "folder"
-        int i = 0;
-        while(allBm.get(i).getFatherFolder()!=folder){
-            i++;
-            if(i==allBm.size()){
-                // doesn't exist anyone bookmark with this folder
-                return "";
+        // get first item with fatherFolder equal to "folder" with url not null
+        boolean itemIsBm = false;
+        int j=-1;
+        for(int i=0; i<allBm.size();i++){
+            if(allBm.get(i).getFatherFolder().equals(folder)){
+                // is a bookmark or a folder in this folder
+                if("".equals(allBm.get(i).getUrl()) && !itemIsBm){
+                    // is a folder
+                    j=i;
+                }else{
+                    itemIsBm = true;
+                    j=i;
+                    // exit, found bookmark
+                    i=allBm.size();
+                }
             }
         }
+        if(j==-1){
+            // nothing to add in this folder
+            return "";
+        }
+        System.out.println("Checked list, selected: "+allBm.get(j).getTitle()+" on folder: "+allBm.get(j).getFatherFolder()+", and j: "+j);
         // check if current item is a true bookmark or a folder
-        if(allBm.get(i).getUrl()!=""){
+        if(!"".equals(allBm.get(j).getUrl())){
             // bookmark
+            System.out.println("Bookmark case");
             // delete item from list and update String to return
-            Bookmark bm = allBm.get(i);
-            allBm.remove(i);
+            Bookmark bm = allBm.get(j);
+            allBm.remove(j);
             return "<DT><A HREF=\""+bm.getUrl()+"\">"+bm.getTitle()+"</A>\n"+this.parseBookmarkByFatherFolder(allBm, folder);
         }else{
             // folder
+            System.out.println("Folder case");
             // get folder item
-            Bookmark dir = allBm.get(i);
+            Bookmark dir = allBm.get(j);
             // delete from list
-            allBm.remove(i);
+            allBm.remove(j);
             // return folder skeleton with dynamic content
-            return "<DT><H3>"+dir.getTitle()+"</H3>\n"+
+            return this.parseBookmarkByFatherFolder(allBm, folder)+
+                    "<DT><H3>"+dir.getTitle()+"</H3>\n"+
                     "<DL><p>\n"+
                     this.parseBookmarkByFatherFolder(allBm, dir.getTitle())+
                     "</DL>\n"+
