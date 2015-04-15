@@ -27,8 +27,7 @@ public class AddLocalized extends HttpServlet {
           throws ServletException, IOException{
         bl = new BusinessLogic();
         
-        PrintWriter out = response.getWriter();
-        bl.addLocalized(request.getParameter("user"),request.getParameter("url"), request.getParameter("deviceName"));
+        bl.addLocalized(request.getParameter("user"),request.getParameter("title"), request.getParameter("deviceName"));
         
     }
     // Method to handle POST method request.

@@ -42,7 +42,7 @@
                     //alert( table.rows('.selected').data().length +' row(s) selected' );
                     for(var i=0;i<size;i++){
                         $.post( "AddLocalized", 
-                            {user: getCookie("username"),url: table.rows('.selected').data()[i][1],deviceName: getCookie("destination")},
+                            {user: getCookie("username"),title: table.rows('.selected').data()[i][0],deviceName: getCookie("destination")},
                             function() {
                                     window.close();
                                     window.opener.location.reload();

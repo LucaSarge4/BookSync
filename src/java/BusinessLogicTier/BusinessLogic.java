@@ -140,8 +140,38 @@ public class BusinessLogic implements BusinessLogicInterface{
         this.dt.addDestination(this.dt.getID(username),device,os,browser);
     }
     
-    public void addLocalized(String username,String url,String deviceName){
-        this.dt.localized(getBookID(username,url),getDestinationID(username,deviceName));
+    public void addLocalized(String username,String bookTitle,String deviceName){
+        Bookmark bm = getBookmark(username,getBookIDByName(username,bookTitle));
+        String folder = bm.getFatherFolder();
+        String folderID="";
+        if(!folder.equals("Booksync"))
+           folderID =getBookIDByName(username,folder);
+        this.dt.localized(getBookIDByName(username,bookTitle),getDestinationID(username,deviceName));
+        if(folder.equals("Booksync") || checkDestFolder(username,deviceName,folderID)){
+            //do nothing
+        }else{
+            addLocalized(username,folder,deviceName);   
+        }
+    }
+    
+    private String getBookIDByName(String username,String bookTitle){
+        int index=-1;
+        LinkedList<Bookmark> list = getBookmarks(username);
+        for(int i=0;i<list.size();i++){
+            if(list.get(i).getTitle().equals(bookTitle))
+                index=i;
+        }
+        String bookID= list.get(index).getBookID();
+        return bookID;
+    }
+    
+    private boolean checkDestFolder(String username,String deviceName,String folderID){
+        LinkedList<Bookmark> list = getDestinationBookmarks(username,deviceName);
+        for(int i=0;i<list.size();i++){
+            if(list.get(i).getBookID().equals(folderID))
+                return true;//significa che la cartella è già presente nel dispositivo
+        }
+        return false;//devo aggiungere la cartella
     }
     
     public void deleteLocalized(String username,String url,String deviceName){
