@@ -113,13 +113,15 @@
                     bms = bl.getUnselectedDestinationBookmarks(username, deviceName);
                     
                     for(int i=0;i<bms.size();i++){
-                        out.write("<tr>");
-                        out.write("<td>"+bms.get(i).getTitle()+"</td>");
-                        out.write("<td>"+bms.get(i).getUrl()+"</td>");
-                        out.write("<td>"+bms.get(i).getTag()+"</td>");
-                        out.write("<td>"+bms.get(i).getLastEditDate()+"</td>");
-                        out.write("<td>"+bms.get(i).getFatherFolder()+"</td>");
-                        out.write("</tr>");
+                        if(!bms.get(i).getUrl().equals("")){
+                            out.write("<tr>");
+                            out.write("<td>"+bms.get(i).getTitle()+"</td>");
+                            out.write("<td>"+bms.get(i).getUrl()+"</td>");
+                            out.write("<td>"+bms.get(i).getTag()+"</td>");
+                            out.write("<td>"+bms.get(i).getLastEditDate()+"</td>");
+                            out.write("<td>"+bms.get(i).getFatherFolder()+"</td>");
+                            out.write("</tr>");
+                        }
                     }
                 %>
             </tbody>

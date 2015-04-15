@@ -91,20 +91,40 @@
                         <li class="" >
                             <a id="open" >Open</a>
                         </li>
-                        
-                        <li>
-                            <a onclick="openPopupNewB()" target="_blank" > New Bookmark</a>
-                            <script>
-                                function openPopupNewB(){
-                                    var x = screen.width/2 - 700/2;
-                                    var y = screen.height/2 - 450/2;
-                                    window.open(
-                                        'newBookmark.html','Bookmark','width=600,height=450,toolbar=0,\n\
-                                        menubar=0,location=no,addressbar=no,status=1,scrollbars=0,\n\
-                                        resizable=1,left='+x+',top='+y);
-                                        return false;
-                                }
-                            </script>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                            aria-expanded="false">New <span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li>
+                                    <a onclick="openPopupNewB()" target="_blank" > New Bookmark</a>
+                                    <script>
+                                        function openPopupNewB(){
+                                            var x = screen.width/2 - 700/2;
+                                            var y = screen.height/2 - 450/2;
+                                            window.open(
+                                                'newBookmark.jsp','Bookmark','width=600,height=450,toolbar=0,\n\
+                                                menubar=0,location=no,addressbar=no,status=1,scrollbars=0,\n\
+                                                resizable=1,left='+x+',top='+y);
+                                                return false;
+                                        }
+                                    </script>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <a onclick="openPopupNewF()" target="_blank" > New Folder</a>
+                                    <script>
+                                        function openPopupNewF(){
+                                            var x = screen.width/2 - 700/2;
+                                            var y = screen.height/2 - 450/2;
+                                            window.open(
+                                                'newFolder.jsp','Bookmark','width=600,height=450,toolbar=0,\n\
+                                                menubar=0,location=no,addressbar=no,status=1,scrollbars=0,\n\
+                                                resizable=1,left='+x+',top='+y);
+                                                return false;
+                                        }
+                                    </script>
+                                </li>
+                            </ul>
                         </li>
                         <li>
                             <a id="delete" >Delete</a>
@@ -149,13 +169,16 @@
                     bms = bl.getBookmarks(username);
                     
                     for(int i=0;i<bms.size();i++){
-                        out.write("<tr>");
-                        out.write("<td>"+bms.get(i).getTitle()+"</td>");
-                        out.write("<td>"+bms.get(i).getUrl()+"</td>");
-                        out.write("<td>"+bms.get(i).getTag()+"</td>");
-                        out.write("<td>"+bms.get(i).getLastEditDate()+"</td>");
-                        out.write("<td>"+bms.get(i).getFatherFolder()+"</td>");
-                        out.write("</tr>");
+                        if(!bms.get(i).getUrl().equals("")){
+                            out.write("<tr>");
+                            out.write("<td>"+bms.get(i).getTitle()+"</td>");
+                            out.write("<td>"+bms.get(i).getUrl()+"</td>");
+                            out.write("<td>"+bms.get(i).getTag()+"</td>");
+                            out.write("<td>"+bms.get(i).getLastEditDate()+"</td>");
+                            out.write("<td>"+bms.get(i).getFatherFolder()+"</td>");
+                            out.write("</tr>");
+                        }
+                        
                     }
                 %>
             </tbody>
