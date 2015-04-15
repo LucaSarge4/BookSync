@@ -33,21 +33,34 @@
                 <div class="row">
                     <div class="col-md-4 col-md-offset-4">
                         <div class="form-group has-error">
+                            <label class="control-label" >Type</label>
+                            <select  class="form-control" id="inputBookType" onclick="getType()">
+                                <option></option>
+                                <option>Web</option>
+                                <option>Cloud</option>
+                            </select>
+                       </div>
+                        
+                        <div class="form-group has-error" id="title" hidden="true">
                             <label class="control-label" >Title</label>
                             <input class="form-control" id="inputTitle"
                                    placeholder="Enter Title" type="text" name="title">
                         </div>
-                        <div class="form-group has-error">
+                        <div class="form-group has-error" id="webUrl" hidden="true">
                             <label class="control-label" >Url</label>
                             <input class="form-control" id="inputUrl"
                                    placeholder="Enter Url" type="text" name="url">
                         </div>
-                        <div class="form-group has-error">
+                        <div class="form-group has-error" id="cloudUrl" hidden="true">
+                            <label class="control-label" >Url</label>
+                            <input type="file" id="fileURL"/>
+                        </div>
+                        <div class="form-group has-error" id="desc" hidden="true">
                             <label class="control-label" >Description</label>
                             <input class="form-control" id="inputDescription"
                                    placeholder="Enter Description" type="text" name="description">
                         </div>
-                        <div class="form-group has-error">
+                        <div class="form-group has-error" id="tag" hidden="true">
                             <label class="control-label" >Tag</label>
                             <select  class="form-control" id="inputBookTag">
                                 <option></option>
@@ -56,16 +69,7 @@
                                 <option>Life</option>
                             </select>
                        </div>
-                        <div class="form-group has-error">
-                            <label class="control-label" >Type</label>
-                            <select  class="form-control" id="inputBookType">
-                                <option></option>
-                                <option>Web</option>
-                                <option>Cloud</option>
-                                <option>Local</option>
-                            </select>
-                       </div>
-                        <div class="form-group has-error">
+                        <div class="form-group has-error" id="folder" hidden="true">
                             <label class="control-label" >Father Folder</label>
                             <select  class="form-control" id="inputFatherFolder">
                                 <option>Booksync</option>
@@ -92,7 +96,40 @@
                             </select>
                        </div>
 
-                        <input type="button" value="Confirm" class="active btn btn-success" onclick="addFunction()">
+                            <input type="button" value="Confirm" id="conf" class="active btn btn-success" disabled="true" onclick="addFunction()">
+                        
+                        <script>
+                            function getType(){
+                                if(document.getElementById("inputBookType").value==="Web"){
+                                    document.getElementById("title").hidden = false;
+                                    document.getElementById("webUrl").hidden = false;
+                                    document.getElementById("cloudUrl").hidden = true;
+                                    document.getElementById("desc").hidden = false;
+                                    document.getElementById("tag").hidden = false;
+                                    document.getElementById("folder").hidden = false;
+                                    document.getElementById("conf").disabled = false;
+                                }
+                                if(document.getElementById("inputBookType").value==="Cloud"){
+                                    document.getElementById("title").hidden = false;
+                                    document.getElementById("cloudUrl").hidden = false;
+                                    document.getElementById("webUrl").hidden = true;
+                                    document.getElementById("desc").hidden = false;
+                                    document.getElementById("tag").hidden = false;
+                                    document.getElementById("folder").hidden = false;
+                                    document.getElementById("conf").disabled = false;
+                                }   
+                                if(document.getElementById("inputBookType").value===""){
+                                    document.getElementById("title").hidden = true;
+                                    document.getElementById("cloudUrl").hidden = true;
+                                    document.getElementById("webUrl").hidden = true;
+                                    document.getElementById("desc").hidden = true;
+                                    document.getElementById("tag").hidden = true;
+                                    document.getElementById("folder").hidden = true;
+                                    document.getElementById("conf").disabled = true;
+                                }  
+                            }
+                        </script>
+                        
                         
                         <script src="js/getCookie.js"></script>
                         <script> 
