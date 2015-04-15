@@ -1,3 +1,7 @@
+<%@page import="DataAccessTier.Bookmark"%>
+<%@page import="java.util.LinkedList"%>
+<%@page import="BusinessLogicTier.BusinessLogic"%>
+<%@page import="BusinessLogicTier.BusinessLogicInterface"%>
 <!DOCTYPE html>
 <html>
     
@@ -35,9 +39,30 @@
                         </div>
                         <div class="form-group has-error">
                             <label class="control-label" >Father Folder</label>
-                            <input class="form-control" id="inputFatherFolder"
-                                   placeholder="FatherFolder" type="text" name="fatherFolder">
-                        </div>
+                            <select  class="form-control" id="inputFatherFolder">
+                                <option>Booksync</option>
+                                <%  BusinessLogicInterface bl = new BusinessLogic();
+                                    String username="";
+                                    Cookie cookie = null;
+                                    Cookie[] cookies = null;
+                                    // Get an array of Cookies associated with this domain
+                                    cookies = request.getCookies();
+                                    for (int i = 0; i < cookies.length; i++){
+                                        cookie = cookies[i];
+                                        if(cookie.getName().equals("username"))
+                                            username=cookie.getValue();
+                                    }
+                                    LinkedList <Bookmark> bms = new LinkedList();
+                                    bms = bl.getBookmarks(username);
+
+                                    for(int i=0;i<bms.size();i++){
+                                        if(bms.get(i).getUrl().equals("")){
+                                            out.write("<option>"+bms.get(i).getTitle()+"</option>");
+                                        }
+                                    }
+                                %>
+                            </select>
+                       </div>
 
                         <input type="button" value="Confirm" class="active btn btn-success" onclick="addFunction()">
                         

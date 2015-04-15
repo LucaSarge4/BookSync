@@ -68,6 +68,7 @@
                         <div class="form-group has-error">
                             <label class="control-label" >Father Folder</label>
                             <select  class="form-control" id="inputFatherFolder">
+                                <option>Booksync</option>
                                 <%  BusinessLogicInterface bl = new BusinessLogic();
                                     String username="";
                                     Cookie cookie = null;

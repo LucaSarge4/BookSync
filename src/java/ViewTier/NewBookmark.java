@@ -31,6 +31,9 @@ public class NewBookmark extends HttpServlet {
         bl.addBookmark(request.getParameter("userid"), request.getParameter("title"),request.getParameter("url"),
                 request.getParameter("lasteditdate"), request.getParameter("fatherfolder"), request.getParameter("type"),
                 request.getParameter("description"),request.getParameter("tag"));
+        out.write(request.getParameter("userid")+" "+request.getParameter("title")+" "+request.getParameter("url")+" "+
+                request.getParameter("lasteditdate")+" "+request.getParameter("fatherfolder")+" "+ request.getParameter("type")+" "+
+                request.getParameter("description")+" "+request.getParameter("tag"));
         
     }
     // Method to handle POST method request.
