@@ -47,13 +47,14 @@
                                    placeholder="Enter Title" type="text" name="title">
                         </div>
                         <div class="form-group has-error" id="webUrl" hidden="true">
-                            <label class="control-label" >Url</label>
-                            <input class="form-control" id="inputUrl"
+                            <label class="control-label" >Web Url</label>
+                            <input class="form-control" id="inputWebUrl"
                                    placeholder="Enter Url" type="text" name="url">
                         </div>
                         <div class="form-group has-error" id="cloudUrl" hidden="true">
-                            <label class="control-label" >Url</label>
-                            <input type="file" id="fileURL"/>
+                            <label class="control-label" >Cloud Url</label>
+                            <input class="form-control" id="inputCloudUrl"
+                                   placeholder="Enter Url" type="text" name="url">
                         </div>
                         <div class="form-group has-error" id="desc" hidden="true">
                             <label class="control-label" >Description</label>
@@ -150,7 +151,10 @@
                         <script> 
                         function addFunction(){
                             var title = document.getElementById("inputTitle").value.toString();
-                            var url = document.getElementById("inputUrl").value.toString();
+                            if(document.getElementById("inputBookType").value==="Web")
+                                var url = document.getElementById("inputWebUrl").value.toString();
+                            if(document.getElementById("inputBookType").value==="Cloud")
+                                url = document.getElementById("inputCloudUrl").value.toString();
                             var desc = document.getElementById("inputDescription").value.toString();
                             if(document.getElementById("tag").hidden !== true)
                                 var tag = document.getElementById("inputBookTag").value.toString();
