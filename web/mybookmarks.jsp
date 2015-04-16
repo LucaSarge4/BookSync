@@ -150,7 +150,7 @@
                 </div>
             </div>
         </div>
-        <form method="post" action="provamybookmarks.jsp" name="folderForm"  >
+        <form method="post" action="mybookmarks.jsp" name="folderForm"  >
             <label for="folderForm">Select Bookmarks Folder</label>
             <select  name="folder" class="form-control" id="inputFatherFolder" >
                 <option value="prev" ></option>
