@@ -10,6 +10,9 @@ import DataAccessTier.Destination;
 import java.util.LinkedList;
 
 public interface BusinessLogicInterface {
+    public LinkedList getUsers();
+    public boolean checkUsername(String username);
+    public boolean checkEmail(String email);
     public LinkedList getBookmarks(String username);
     public LinkedList getDestinations(String username);
     public LinkedList getDestinationBookmarks(String username,String deviceName);

@@ -4,6 +4,7 @@ import java.util.LinkedList;
 
 public interface DataAccessInterface {
     public String getID(String username);
+    public LinkedList getUsers();
     public LinkedList getBookmarks(String id);
     public LinkedList getDestinations(String id);
     public LinkedList getDestinationBookmarks(String destID);

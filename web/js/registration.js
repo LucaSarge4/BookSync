@@ -5,13 +5,15 @@ function registration(username,firstName,lastName,password,email,country){
             {user: username,firstName: firstName,lastName: lastName,psw:password,
                 email: email,country: country,regdate:dataString},
             function(responseText) {
-                       //if(responseText=="true"){
-                            console.log(responseText);
+                console.log(responseText);
+                       if(responseText==="success"){
                             onReg();
                             setCookie("username",username,1);
-                        //}
-                        ///else 
-                          // window.alert("Invalid data");
+                        }
+                        else if(responseText==="username")
+                          window.alert("Username already in use");
+                          else if(responseText==="email")
+                          window.alert("Email already in use");
                     }
         ); 
 }

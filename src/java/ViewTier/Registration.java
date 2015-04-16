@@ -20,10 +20,18 @@ public class Registration extends HttpServlet {
         bl = new BusinessLogic();
         
         PrintWriter out = response.getWriter();
-        bl.addUser(request.getParameter("user"),request.getParameter("firstName"),
+        if(bl.checkUsername(request.getParameter("user")) && bl.checkEmail(request.getParameter("email"))){
+            bl.addUser(request.getParameter("user"),request.getParameter("firstName"),
                 request.getParameter("lastName"),request.getParameter("psw"),
                     request.getParameter("email"),request.getParameter("country"),
                     request.getParameter("regdate"));
+            out.write("success");
+        }
+        else if(!bl.checkUsername(request.getParameter("user")))
+            out.write("username");
+        else if(!bl.checkEmail(request.getParameter("email")))
+            out.write("email");
+        
     }
     // Method to handle POST method request.
     public void doPost(HttpServletRequest request,

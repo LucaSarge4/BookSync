@@ -15,6 +15,7 @@ public class DataAccess implements DataAccessInterface{
     private LinkedList <Destination> destinations;
     
     public DataAccess(){
+        this.users = new LinkedList();
         this.bookmarks = new LinkedList();
         this.destinations = new LinkedList();
         this.destBookmarks = new LinkedList();
@@ -35,6 +36,32 @@ public class DataAccess implements DataAccessInterface{
           e.printStackTrace();
         }
         return id;
+    }
+    
+    private void loadUsers(){
+        try{
+            Class.forName("org.sqlite.JDBC"); 
+             
+            Connection connessione = DriverManager.getConnection("jdbc:sqlite:booksync.db"); 
+            Statement stat = connessione.createStatement();
+            ResultSet result = stat.executeQuery("SELECT * FROM users");
+            while (result.next()) { 
+                User u = new User();
+                u.setID(result.getString("ID"));
+                u.setUserName(result.getString("username"));
+                u.setFirstName(result.getString("firstname"));
+                u.setLastName(result.getString("lastname"));
+                u.setPassword("noPsw");
+                u.setEmail(result.getString("email"));
+                u.setCountry(result.getString("country"));
+                u.setDate(result.getString("regdate"));
+                this.users.add(u);
+            } 
+            result.close();
+            connessione.close(); 
+        } catch ( Exception e ) {
+          e.printStackTrace();
+        }
     }
     
     private void loadUserBookmarks(String id){
@@ -125,6 +152,11 @@ public class DataAccess implements DataAccessInterface{
         } catch ( Exception e ) {
           e.printStackTrace();
         }
+    }
+    
+    public LinkedList getUsers(){
+        loadUsers();
+        return this.users;
     }
     
     public LinkedList getBookmarks(String id){

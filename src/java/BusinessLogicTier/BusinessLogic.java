@@ -4,6 +4,7 @@ import DataAccessTier.DataAccessInterface;
 import DataAccessTier.DataAccess;
 import DataAccessTier.Bookmark;
 import DataAccessTier.Destination;
+import DataAccessTier.User;
 import java.io.UnsupportedEncodingException;
 import java.util.LinkedList;
 import static java.net.URLDecoder.decode;
@@ -17,6 +18,28 @@ public class BusinessLogic implements BusinessLogicInterface{
     
     public BusinessLogic(){
         this.dt= new DataAccess();
+    }
+    
+    public LinkedList getUsers(){
+        return this.dt.getUsers();
+    }
+    
+    public boolean checkUsername(String username){
+        LinkedList<User> user = getUsers();
+        for(int i=0;i<user.size();i++){
+            if(user.get(i).getUserName().equals(username))
+                return false;//username  già in uso errore in registrazione 
+        }
+        return true;// username libero
+    }
+    
+    public boolean checkEmail(String email){
+        LinkedList<User> user = getUsers();
+        for(int i=0;i<user.size();i++){
+            if(user.get(i).getEmail().equals(email))
+                return false;//email  già in uso errore in registrazione 
+        }
+        return true;// email libero
     }
     
     public LinkedList getBookmarks(String username){
