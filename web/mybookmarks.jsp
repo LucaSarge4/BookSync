@@ -1,3 +1,5 @@
+<%@page import="java.net.URLDecoder"%>
+<%@page import="java.net.URLEncoder"%>
 <%@page import="DataAccessTier.Bookmark"%>
 <%@page import="java.util.LinkedList"%>
 <%@page import="BusinessLogicTier.BusinessLogic"%>
@@ -20,6 +22,12 @@
             body{
                 background-color: #EDEEF0;
                 }
+            #selectFolder{
+                float: left;
+                width: 110px;
+                height: 90px;
+                margin: 5px;
+            }
         </style>
         <script src="js/jquery-2.1.3.js"></script>
         <script src="js/jquery.dataTables.min.js"></script>
@@ -142,18 +150,12 @@
                 </div>
             </div>
         </div>
-        
-        <table class="table table-hover display" id="bookmarksTable">
-            <thead>
-                <tr>
-                    <th>Title</th>
-                    <th>Url</th>
-                    <th>Tag</th>
-                    <th>Last Edit Date</th>
-                    <th>Folder</th>
-                </tr>
-            </thead>
-            <tbody>
+        <form method="post" action="provamybookmarks.jsp" name="folderForm"  >
+            <label for="folderForm">Select Bookmarks Folder</label>
+            <select  name="folder" class="form-control" id="inputFatherFolder" >
+                <option value="prev" ></option>
+                <option value="All" >All Folder</option>
+                <option value="Booksync" >Booksync</option>
                 <%  BusinessLogicInterface bl = new BusinessLogic();
                     String username="";
                     Cookie cookie = null;
@@ -167,18 +169,66 @@
                     }
                     LinkedList <Bookmark> bms = new LinkedList();
                     bms = bl.getBookmarks(username);
+                    String selection ="";
+                    for(int i=0;i<bms.size();i++){
+                        if(bms.get(i).getUrl().equals("")){
+                            out.write("<option value=\""+URLEncoder.encode(bms.get(i).getTitle(),"UTF-8")+"\">"+bms.get(i).getTitle()+"</option>");
+                        }
+                    }
+                %>
+            </select> 
+            <input type="submit" value="Select">
+            <br></br> 
+        </form>
+
+        
+        <table class="table table-hover display" id="bookmarksTable">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Url</th>
+                    <th>Tag</th>
+                    <th>Last Edit Date</th>
+                    <th>Folder</th>
+                </tr>
+            </thead>
+            <tbody>
+                <%  bl = new BusinessLogic();
+                    username="";
+                    cookie = null;
+                    cookies = null;
+                    // Get an array of Cookies associated with this domain
+                    cookies = request.getCookies();
+                    for (int i = 0; i < cookies.length; i++){
+                        cookie = cookies[i];
+                        if(cookie.getName().equals("username"))
+                            username=cookie.getValue();
+                    }
+                    bms = new LinkedList();
+                    bms = bl.getBookmarks(username);
                     
                     for(int i=0;i<bms.size();i++){
-                        if(!bms.get(i).getUrl().equals("")){
-                            out.write("<tr>");
-                            out.write("<td>"+bms.get(i).getTitle()+"</td>");
-                            out.write("<td>"+bms.get(i).getUrl()+"</td>");
-                            out.write("<td>"+bms.get(i).getTag()+"</td>");
-                            out.write("<td>"+bms.get(i).getLastEditDate()+"</td>");
-                            out.write("<td>"+bms.get(i).getFatherFolder()+"</td>");
-                            out.write("</tr>");
+                        if(request.getParameter("folder")!=null && !URLDecoder.decode(request.getParameter("folder"), "UTF-8").equals("All")){
+                            if(!bms.get(i).getUrl().equals("") && URLDecoder.decode(request.getParameter("folder"), "UTF-8").equals(bms.get(i).getFatherFolder())){
+                                out.write("<tr>");
+                                out.write("<td>"+bms.get(i).getTitle()+"</td>");
+                                out.write("<td>"+bms.get(i).getUrl()+"</td>");
+                                out.write("<td>"+bms.get(i).getTag()+"</td>");
+                                out.write("<td>"+bms.get(i).getLastEditDate()+"</td>");
+                                out.write("<td>"+bms.get(i).getFatherFolder()+"</td>");
+                                out.write("</tr>");     
+                            }
+                            }else{
+                            if(!bms.get(i).getUrl().equals("")){
+                                out.write("<tr>");
+                                out.write("<td>"+bms.get(i).getTitle()+"</td>");
+                                out.write("<td>"+bms.get(i).getUrl()+"</td>");
+                                out.write("<td>"+bms.get(i).getTag()+"</td>");
+                                out.write("<td>"+bms.get(i).getLastEditDate()+"</td>");
+                                out.write("<td>"+bms.get(i).getFatherFolder()+"</td>");
+                                out.write("</tr>"); 
+                            }
                         }
-                        
                     }
                 %>
             </tbody>
