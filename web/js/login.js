@@ -12,6 +12,6 @@ function login(username,password){
 }
 
 function onLogin(){
-    window.open ('mybookmarks.jsp','_self',false);
+    window.open ('provamybookmarks.jsp','_self',false);
 }
 

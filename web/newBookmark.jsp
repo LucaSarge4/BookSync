@@ -62,13 +62,21 @@
                         </div>
                         <div class="form-group has-error" id="tag" hidden="true">
                             <label class="control-label" >Tag</label>
-                            <select  class="form-control" id="inputBookTag">
+                            <select  class="form-control" id="inputBookTag" onclick="newTag()">
                                 <option></option>
-                                <option>Sport</option>
-                                <option>News</option>
                                 <option>Life</option>
+                                <option>News</option>
+                                <option>Shopping</option>
+                                <option>Social</option>
+                                <option>Sport</option>
+                                <option>New</option>
                             </select>
                        </div>
+                        <div class="form-group has-error" id="newTag" hidden="true">
+                            <label class="control-label" >Add New Tag</label>
+                            <input class="form-control" id="inputBookNewTag"
+                                   placeholder="Enter New Tag" type="text" name="newTag">
+                        </div>
                         <div class="form-group has-error" id="folder" hidden="true">
                             <label class="control-label" >Father Folder</label>
                             <select  class="form-control" id="inputFatherFolder">
@@ -129,7 +137,14 @@
                                 }  
                             }
                         </script>
-                        
+                        <script>
+                            function newTag(){
+                                if(document.getElementById("inputBookTag").value==="New"){
+                                    document.getElementById("tag").hidden = true;
+                                    document.getElementById("newTag").hidden = false;
+                                }
+                            }
+                        </script>
                         
                         <script src="js/getCookie.js"></script>
                         <script> 
@@ -137,7 +152,10 @@
                             var title = document.getElementById("inputTitle").value.toString();
                             var url = document.getElementById("inputUrl").value.toString();
                             var desc = document.getElementById("inputDescription").value.toString();
-                            var tag = document.getElementById("inputBookTag").value.toString();
+                            if(document.getElementById("tag").hidden !== true)
+                                var tag = document.getElementById("inputBookTag").value.toString();
+                            else 
+                                tag = document.getElementById("inputBookNewTag").value.toString();
                             var type = document.getElementById("inputBookType").value.toString();
                             var fatherfolder = document.getElementById("inputFatherFolder").value.toString();
                             var d = new Date();
