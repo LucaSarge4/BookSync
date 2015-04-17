@@ -193,7 +193,7 @@ public class BusinessLogic implements BusinessLogicInterface{
     }
     
     public void deleteLocalized(String username,String url,String deviceName){
-        this.dt.deleteLocalized(getBookID(username,url),getDestinationID(username,deviceName));
+        this.dt.deleteLocalized(this.getBookID(username,url),this.getDestinationID(username,deviceName));
     }
     
     public void editDestinationName(String destID,String name){
@@ -269,5 +269,21 @@ public class BusinessLogic implements BusinessLogicInterface{
                     "</DL>\n"+
                     "</DT>\n";
         }
+    }
+    
+    public boolean isBookmarkToRemove(String user, String url){
+        LinkedList<Destination> dest;
+        LinkedList<Bookmark> bm;
+        //dest = this.dt.getDestinations(this.dt.getID(user));
+        dest = this.getDestinations(user);
+        for(int i=0;i<dest.size();i++){
+            bm = this.getDestinationBookmarks(user, dest.get(i).getDevice());
+            for(int j=0;j<bm.size();j++){
+                if(bm.get(j).getUrl()==url){
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 }
