@@ -56,6 +56,10 @@
         <servlet-name>EditBookmarkFromPlugin</servlet-name>
         <servlet-class>ViewTier.EditBookmarkFromPlugin</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CreateNewDestination</servlet-name>
+        <servlet-class>ViewTier.CreateNewDestination</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -111,6 +115,10 @@
     <servlet-mapping>
         <servlet-name>EditBookmarkFromPlugin</servlet-name>
         <url-pattern>/plugin/EditBookmark</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CreateNewDestination</servlet-name>
+        <url-pattern>/plugin/CreateNewDestination</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
