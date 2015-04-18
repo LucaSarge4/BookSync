@@ -39,7 +39,8 @@ public class DeleteBookmarkWithDevice extends HttpServlet {
         this.bl = new BusinessLogic();
         
         response.setContentType("text/plain;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
+        PrintWriter out = response.getWriter();
+        try{
             // delete bookmark from device localization
             this.bl.deleteLocalized(
                     request.getParameter("username"),
@@ -47,7 +48,7 @@ public class DeleteBookmarkWithDevice extends HttpServlet {
                     request.getParameter("device")
             );
             // check if bookmark is localizated in other devices
-            if(this.bl.isBookmarkToRemove(request.getParameter("username"),request.getParameter("url"))){
+            if(!this.bl.isBookmarkToRemove(request.getParameter("username"),request.getParameter("url"))){
                 // do-nothing
                 out.print("Removed only from device localization");
             }else{
@@ -57,6 +58,8 @@ public class DeleteBookmarkWithDevice extends HttpServlet {
                 );
                 out.print("Removed from device localization and from server");
             }
+        }finally{
+            out.print("Error on server");
         }
     }
 

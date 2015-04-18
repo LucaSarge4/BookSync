@@ -272,18 +272,27 @@ public class BusinessLogic implements BusinessLogicInterface{
     }
     
     public boolean isBookmarkToRemove(String user, String url){
+        //System.out.println("----------------------Check if bookmark is to remove----------------------");
         LinkedList<Destination> dest;
         LinkedList<Bookmark> bm;
         //dest = this.dt.getDestinations(this.dt.getID(user));
         dest = this.getDestinations(user);
-        for(int i=0;i<dest.size();i++){
+        int maxDest = dest.size();
+        //System.out.println("Length of destinations: "+dest.size());
+        for(int i=0;i<maxDest;i++){
+            //System.out.println("Checking destination: "+dest.get(i).getDevice());
             bm = this.getDestinationBookmarks(user, dest.get(i).getDevice());
+            //System.out.println("Length of bookmarks: "+bm.size());
             for(int j=0;j<bm.size();j++){
-                if(bm.get(j).getUrl()==url){
+                //System.out.println("Checking bookmark: "+bm.get(j).getTitle());
+                if(bm.get(j).getUrl().equals(url)){
                     return false;
                 }
             }
+            //System.out.println("Exit from inner FOR with i: "+i+" and destination length: "+dest.size());
+            bm.clear();
         }
+        //System.out.println("-------------------------------Exit from double for!-------------------------------");
         return true;
     }
 }
