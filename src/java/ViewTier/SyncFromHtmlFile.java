@@ -41,7 +41,7 @@ public class SyncFromHtmlFile extends HttpServlet {
         this.device = request.getParameter("device");
         this.bookmarks = request.getParameter("bookmarks");
         this.father = "";
-        System.out.println("Loaded file: "+this.bookmarks);
+        //System.out.println("Loaded file: "+this.bookmarks);
         this.removeHeading();
         this.evaluateAndProcessNext();
         out.print("Loaded");
@@ -90,7 +90,7 @@ public class SyncFromHtmlFile extends HttpServlet {
         if(this.bookmarks.trim().length()!=0){
             // parsing is not complete
             // get tag 
-            System.out.println("Remaining file to parse: "+this.bookmarks);
+            //System.out.println("Remaining file to parse: "+this.bookmarks);
             String s = this.bookmarks.trim().substring(0,4);
             switch(s){
                 case "<DT>":
@@ -133,7 +133,7 @@ public class SyncFromHtmlFile extends HttpServlet {
         )).trim();
         String lasteditdate = (new Date()).toString();
         // add bookmark
-        System.out.println("Adding folder: "+title+" with father: "+this.father);
+        //System.out.println("Adding folder: "+title+" with father: "+this.father);
         this.bl.addBookmark(this.username, title, "",lasteditdate , this.father, "web", "", "");
         // don't need to localize, addLocalized allow to add folder when add bookmarks
         // change father after adding
@@ -166,7 +166,7 @@ public class SyncFromHtmlFile extends HttpServlet {
         )).trim();
         String lasteditdate = (new Date()).toString();
         // adding bookmark
-        System.out.println("Adding bookmark "+title+" with father: "+this.father+" and url: "+url);
+        //System.out.println("Adding bookmark "+title+" with father: "+this.father+" and url: "+url);
         this.bl.addBookmark(this.username, title, url, lasteditdate, this.father, "web", "", "");
         // adding bookmark to device
         this.bl.addLocalized(this.username, title, this.device);
