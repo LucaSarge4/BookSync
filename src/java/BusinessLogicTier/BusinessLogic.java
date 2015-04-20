@@ -295,4 +295,19 @@ public class BusinessLogic implements BusinessLogicInterface{
         //System.out.println("-------------------------------Exit from double for!-------------------------------");
         return true;
     }
+    
+    public String getUpperFolder(String username, String folder){
+        if(folder.equals("Booksync")){
+            return "";
+        }
+        // get bookmark which title == folder
+        try{
+            return this.getBookmark(username, this.getBookIDByName(username, folder)).getFatherFolder();
+        }catch(Error e){
+            // error
+            System.out.println(e);
+            return "";
+        }
+        
+    }
 }

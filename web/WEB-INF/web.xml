@@ -60,6 +60,10 @@
         <servlet-name>CreateNewDestination</servlet-name>
         <servlet-class>ViewTier.CreateNewDestination</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SyncFromHtmlFile</servlet-name>
+        <servlet-class>ViewTier.SyncFromHtmlFile</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -119,6 +123,10 @@
     <servlet-mapping>
         <servlet-name>CreateNewDestination</servlet-name>
         <url-pattern>/plugin/CreateNewDestination</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SyncFromHtmlFile</servlet-name>
+        <url-pattern>/plugin/SyncFromHtmlFile</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

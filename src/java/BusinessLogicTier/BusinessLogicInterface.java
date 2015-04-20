@@ -41,4 +41,5 @@ public interface BusinessLogicInterface {
     public void editDestinationDropbox(String destID,String drop);
     public String getBookmarksDescriptionList(String username, String device);
     public boolean isBookmarkToRemove(String user, String url);
+    public String getUpperFolder(String username, String father);
 }
