@@ -143,6 +143,19 @@
                         <li>
                             <a id="device" >My Devices</a>
                         </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                            aria-expanded="false">Import/Export <span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li>
+                                    <a>Import from HTML</a>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <a> Export to HTML</a>
+                                </li>
+                            </ul>
+                        </li>
                         <li>
                             <a id="logout" >Logout</a>
                         </li>
