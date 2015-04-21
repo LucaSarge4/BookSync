@@ -24,23 +24,21 @@ public class GetDestinations extends HttpServlet {
 
     BusinessLogicInterface bl;
     
-    public void doGet(HttpServletRequest request,
-                  HttpServletResponse response)
-          throws ServletException, IOException{
-        bl = new BusinessLogic();
+    @Override
+    public void doGet(HttpServletRequest request,HttpServletResponse response)throws ServletException, IOException{
+        this.bl = new BusinessLogic();
         LinkedList<Destination> destinationList;
         String separator = ";";
         PrintWriter out = response.getWriter();
-        destinationList = bl.getDestinations(request.getParameter("user"));
+        destinationList = this.bl.getDestinations(request.getParameter("user"));
         for(int i=0;i<destinationList.size();i++){
             out.write(destinationList.get(i).getDevice()+separator);
         };
     }
     // Method to handle POST method request.
-    public void doPost(HttpServletRequest request,
-                   HttpServletResponse response)
-    throws ServletException, IOException {
-    doGet(request, response);
+    @Override
+    public void doPost(HttpServletRequest request,HttpServletResponse response)throws ServletException, IOException {
+        doGet(request, response);
     }
 
 
