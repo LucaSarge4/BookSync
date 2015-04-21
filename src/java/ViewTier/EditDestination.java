@@ -14,30 +14,28 @@ public class EditDestination extends HttpServlet {
 
     BusinessLogicInterface bl;
     
-    public void doGet(HttpServletRequest request,
-                  HttpServletResponse response)
-          throws ServletException, IOException{
-        bl = new BusinessLogic();
+    @Override
+    public void doGet(HttpServletRequest request,HttpServletResponse response)throws ServletException, IOException{
+        this.bl = new BusinessLogic();
         PrintWriter out = response.getWriter();
-        String destID = bl.getDestinationID(request.getParameter("user"), request.getParameter("ckDev"));
+        String destID = this.bl.getDestinationID(request.getParameter("user"), request.getParameter("ckDev"));
         if(request.getParameter("device")!=""){
-            bl.editDestinationName(destID, request.getParameter("device"));
+            this.bl.editDestinationName(destID, request.getParameter("device"));
         }
         if(request.getParameter("os")!=""){
-            bl.editDestinationOS(destID, request.getParameter("os"));
+            this.bl.editDestinationOS(destID, request.getParameter("os"));
         }
         if(request.getParameter("browser")!=""){
-            bl.editDestinationBrowser(destID, request.getParameter("browser"));
+            this.bl.editDestinationBrowser(destID, request.getParameter("browser"));
         }
         if(request.getParameter("dropbox")!=""){
-            bl.editDestinationDropbox(destID, request.getParameter("dropbox"));
+            this.bl.editDestinationDropbox(destID, request.getParameter("dropbox"));
         }
     }
     // Method to handle POST method request.
-    public void doPost(HttpServletRequest request,
-                   HttpServletResponse response)
-    throws ServletException, IOException {
-    doGet(request, response);
+    @Override
+    public void doPost(HttpServletRequest request,HttpServletResponse response)throws ServletException, IOException {
+        doGet(request, response);
     }
 
 
