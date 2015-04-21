@@ -53,9 +53,6 @@
                 
                 $('#export').click( function () {
                     var size = table.rows('.selected').data().length;
-                    //alert( table.rows('.selected').data().length +' row(s) selected' );
-                    
-                    
                 } );
             } );
         </script>
