@@ -198,10 +198,9 @@
                                                 }
                                             %>
                                         </select> 
+                                        <br>
+                                        <input type="submit" value="Select">
                                     </form>
-                                </div>
-                                <div class="col-sm-2">
-                                    <input type="submit" value="Select">
                                 </div>
                             </div>
                         </div>

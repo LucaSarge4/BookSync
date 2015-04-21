@@ -50,6 +50,13 @@
                         ); 
                     }
                 } );
+                
+                $('#export').click( function () {
+                    var size = table.rows('.selected').data().length;
+                    //alert( table.rows('.selected').data().length +' row(s) selected' );
+                    
+                    
+                } );
             } );
         </script>
     </head>
@@ -68,7 +75,9 @@
                         <li class="" >
                             <a id="delete" >Delete from destination</a>
                         </li>
-                        
+                        <li class="" >
+                            <a id="export" >Export to HTML</a>
+                        </li>
                         <li class="" >
                             <a id="unselectedBookmarks">Unselected Bookmarks</a>
                         </li>

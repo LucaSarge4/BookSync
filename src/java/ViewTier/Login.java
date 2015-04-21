@@ -23,10 +23,10 @@ public class Login extends HttpServlet {
         PrintWriter out = response.getWriter();
         if(bl.login(request.getParameter("user"), request.getParameter("psw"))){
             Cookie username=new Cookie("username",request.getParameter("user")); 
-            username.setMaxAge(60*30);
+            username.setMaxAge(60*60);
             response.addCookie(username); 
             Cookie psw = new Cookie("password",request.getParameter("psw")); 
-            psw.setMaxAge(60*30);
+            psw.setMaxAge(60*60);
             response.addCookie(psw); 
             out.print(true);
         }
