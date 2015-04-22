@@ -148,12 +148,28 @@
                             aria-expanded="false">Import/Export <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
                                 <li>
-                                    <a>Import from HTML</a>
+                                    <a onclick="import()">Import from HTML</a>
                                 </li>
+                                <script>
+                                    function import(){
+                                        var user = getCookie("username");
+                                        //utente seleziona file
+                                        $.post( "ImportFromHTML",
+                                            {username: user,bookmarks:book},
+                                            function(resposeText){
+                                                window.alert(resposeText);
+                                        });
+                                    }
+                                </script>
                                 <li class="divider"></li>
                                 <li>
-                                    <a> Export to HTML</a>
+                                    <a onclick="export()"> Export to HTML</a>
                                 </li>
+                                <script>
+                                    function export(){
+                                        
+                                    }
+                                </script>
                             </ul>
                         </li>
                         <li>
