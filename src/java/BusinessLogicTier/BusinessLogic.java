@@ -170,7 +170,7 @@ public class BusinessLogic implements BusinessLogicInterface{
     
     public void addDestination(String username,String device,String os,String browser,String dropboxPath,String sync){
         this.dt.addDestination(this.dt.getID(username),device,os,browser);
-        /*if(sync.equals("Automatic")){
+        if(sync.equals("Automatic")){
             LinkedList<Bookmark> list = getBookmarks(username);
             if(dropboxPath.equals(null)){
                 for(int i=0;i<list.size();i++)
@@ -180,7 +180,7 @@ public class BusinessLogic implements BusinessLogicInterface{
                 for(int i=0;i<list.size();i++)
                     addLocalized(username,list.get(i).getTitle(),device);
             }
-        }*/
+        }
     }
     
     public void addLocalized(String username,String bookTitle,String deviceName){
