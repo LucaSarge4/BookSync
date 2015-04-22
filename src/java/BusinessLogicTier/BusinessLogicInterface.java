@@ -43,4 +43,6 @@ public interface BusinessLogicInterface {
     public String getBookmarksDescriptionList(String username);
     public boolean isBookmarkToRemove(String user, String url);
     public String getUpperFolder(String username, String father);
+    public void cloneAllBookmarks(String username, String device);
+    public void cloneDeviceBookmarks(String username, String deviceToClone, String device);
 }

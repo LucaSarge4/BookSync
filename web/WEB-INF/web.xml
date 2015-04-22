@@ -72,6 +72,14 @@
         <servlet-name>ExportToHTML</servlet-name>
         <servlet-class>ServiceTier.ExportToHTML</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CloneAllBookmarks</servlet-name>
+        <servlet-class>ServiceTier.CloneAllBookmarks</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CloneDeviceBookmarks</servlet-name>
+        <servlet-class>ServiceTier.CloneDeviceBookmarks</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -143,6 +151,14 @@
     <servlet-mapping>
         <servlet-name>ExportToHTML</servlet-name>
         <url-pattern>/ExportToHTML</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CloneAllBookmarks</servlet-name>
+        <url-pattern>/plugin/CloneAllBookmarks</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CloneDeviceBookmarks</servlet-name>
+        <url-pattern>/plugin/CloneDeviceBookmarks</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

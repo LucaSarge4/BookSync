@@ -325,4 +325,23 @@ public class BusinessLogic implements BusinessLogicInterface{
         }
         
     }
+    
+    public void cloneAllBookmarks(String username, String device){
+        LinkedList<Bookmark> allBm = this.getBookmarks(username);
+        Bookmark current;
+        while(allBm.size()!=0){
+            current = allBm.pop();
+            this.addLocalized(username, current.getTitle(), device);
+        }
+        System.out.println("All bookmarks localizated to: "+device);
+    }
+    
+    public void cloneDeviceBookmarks(String username, String deviceToClone, String device){
+        LinkedList<Bookmark> destBm = this.getDestinationBookmarks(username, deviceToClone);
+        Bookmark current;
+        while(destBm.size()!=0){
+            current = destBm.pop();
+            this.addLocalized(username, current.getTitle(), device);
+        }
+    }
 }
