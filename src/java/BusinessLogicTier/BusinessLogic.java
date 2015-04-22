@@ -67,11 +67,16 @@ public class BusinessLogic implements BusinessLogicInterface{
     }
     
     public void addBookmark(String username,String title,String url,String lasteditdate,String fatherfolder,String type,String description,String tag){
-        if(checkBookmarks(title,url,fatherfolder))
+        if(checkBookmarks(username,title,url))
             this.dt.addBookmark(this.dt.getID(username),title,url,lasteditdate,fatherfolder,type,description,tag);
     }
     
-    private boolean checkBookmarks(String title,String url,String fatherfolder){
+    private boolean checkBookmarks(String username,String title,String url){
+        LinkedList<Bookmark> bm = getBookmarks(username);
+        for(int i=0;i<bm.size();i++){
+            if(bm.get(i).getTitle().equals(title) || bm.get(i).getUrl().equals(url))
+                return false;
+        }
         return true;
     }
     

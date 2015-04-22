@@ -1,4 +1,4 @@
-package ViewTier;
+package ServiceTier;
 
 import BusinessLogicTier.BusinessLogic;
 import BusinessLogicTier.BusinessLogicInterface;

@@ -3,13 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ViewTier;
+package ServiceTier;
 
 import BusinessLogicTier.BusinessLogic;
 import BusinessLogicTier.BusinessLogicInterface;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,8 +19,11 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Giacomo
  */
-public class CreateNewDestination extends HttpServlet {
-
+@WebServlet(name = "GetDropboxPath", urlPatterns = {"/plugin/GetDropboxPath"})
+public class GetDropboxPath extends HttpServlet {
+    
+    BusinessLogicInterface bl;
+    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -29,31 +33,19 @@ public class CreateNewDestination extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    
-    BusinessLogicInterface bl;
-    
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
-        
-        this.bl = new BusinessLogic();
-        
-        response.setContentType("text/plain;charset=UTF-8");
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         try (PrintWriter out = response.getWriter()) {
-            if(!request.getParameter("username").isEmpty()&&
-                !request.getParameter("deviceName").isEmpty()&&
-                !request.getParameter("deviceOs").isEmpty()&&
-                !request.getParameter("deviceBrowser").isEmpty()&&
-                !request.getParameter("deviceDropbox").isEmpty()
-            ){
-                this.bl.addDestination(request.getParameter("username"),
-                        request.getParameter("deviceName"),
-                        request.getParameter("deviceOs"),
-                        request.getParameter("deviceBrowser"),
-                        request.getParameter("deviceDropbox")
-                );
-                out.print("Added");
-            }else{
-                out.print("error");
-            }
+            this.bl = new BusinessLogic();
+            out.print(
+                this.bl.getDestination(
+                    request.getParameter("username"),
+                    this.bl.getDestinationID(
+                            request.getParameter("username"),
+                            request.getParameter("device")
+                    )
+                ).getDropPath()
+            );
         }
     }
 

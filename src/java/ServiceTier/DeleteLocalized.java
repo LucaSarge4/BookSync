@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ViewTier;
+package ServiceTier;
 
 import BusinessLogicTier.BusinessLogic;
 import BusinessLogicTier.BusinessLogicInterface;
@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Luca
  */
-public class AddLocalized extends HttpServlet {
+public class DeleteLocalized extends HttpServlet {
 
     BusinessLogicInterface bl;
     
@@ -27,7 +27,8 @@ public class AddLocalized extends HttpServlet {
           throws ServletException, IOException{
         bl = new BusinessLogic();
         
-        bl.addLocalized(request.getParameter("user"),request.getParameter("title"), request.getParameter("deviceName"));
+        PrintWriter out = response.getWriter();
+        bl.deleteLocalized(request.getParameter("user"),request.getParameter("url"), request.getParameter("deviceName"));
         
     }
     // Method to handle POST method request.

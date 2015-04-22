@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ViewTier;
+package ServiceTier;
 
 import BusinessLogicTier.BusinessLogic;
 import BusinessLogicTier.BusinessLogicInterface;
@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Giacomo
  */
-public class EditBookmarkFromPlugin extends HttpServlet {
+public class DeleteBookmarkWithDevice extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,18 +37,27 @@ public class EditBookmarkFromPlugin extends HttpServlet {
         this.bl = new BusinessLogic();
         
         response.setContentType("text/plain;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            if(!request.getParameter("username").isEmpty()&&!request.getParameter("title").isEmpty()&&!request.getParameter("url").isEmpty()&&!request.getParameter("fatherfolder").isEmpty()&&!request.getParameter("lasteditdate").isEmpty()){
-                String bookId = this.bl.getBookID(request.getParameter("username"), request.getParameter("url"));
-                this.bl.editBookmarkTitle(bookId, request.getParameter("title"));
-                this.bl.editBookmarkFatherFolder(bookId, request.getParameter("fatherfolder"));
-                this.bl.editBookmarkUrl(bookId, request.getParameter("url"));
-                this.bl.editBookmarkLastEditDate(bookId, request.getParameter("lasteditdate"));
-                out.print("Success!");
+        PrintWriter out = response.getWriter();
+        try{
+            // delete bookmark from device localization
+            this.bl.deleteLocalized(
+                    request.getParameter("username"),
+                    request.getParameter("url"),
+                    request.getParameter("device")
+            );
+            // check if bookmark is localizated in other devices
+            if(!this.bl.isBookmarkToRemove(request.getParameter("username"),request.getParameter("url"))){
+                // do-nothing
+                out.print("Removed only from device localization");
             }else{
-                // wrong parameters
-                out.print("Error, check parameters!");
+                this.bl.deleteBookmark(
+                    request.getParameter("username"),
+                    request.getParameter("url")
+                );
+                out.print("Removed from device localization and from server");
             }
+        }finally{
+            out.print("Error on server");
         }
     }
 

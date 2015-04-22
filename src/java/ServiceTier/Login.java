@@ -1,24 +1,17 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package ViewTier;
+package ServiceTier;
 
 import BusinessLogicTier.BusinessLogic;
 import BusinessLogicTier.BusinessLogicInterface;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author Luca
- */
-public class NewDestination extends HttpServlet {
+
+public class Login extends HttpServlet {
 
     BusinessLogicInterface bl;
     
@@ -28,9 +21,17 @@ public class NewDestination extends HttpServlet {
         bl = new BusinessLogic();
         
         PrintWriter out = response.getWriter();
-        bl.addDestination(request.getParameter("user"), request.getParameter("destName"), request.getParameter("os"),
-                            request.getParameter("browser"), request.getParameter("dropboxPath"));
-        
+        if(bl.login(request.getParameter("user"), request.getParameter("psw"))){
+            Cookie username=new Cookie("username",request.getParameter("user")); 
+            username.setMaxAge(60*60);
+            response.addCookie(username); 
+            Cookie psw = new Cookie("password",request.getParameter("psw")); 
+            psw.setMaxAge(60*60);
+            response.addCookie(psw); 
+            out.print(true);
+        }
+        else 
+            out.print(false);
     }
     // Method to handle POST method request.
     public void doPost(HttpServletRequest request,

@@ -2,75 +2,75 @@
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <servlet>
         <servlet-name>Login</servlet-name>
-        <servlet-class>ViewTier.Login</servlet-class>
+        <servlet-class>ServiceTier.Login</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>Registration</servlet-name>
-        <servlet-class>ViewTier.Registration</servlet-class>
+        <servlet-class>ServiceTier.Registration</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>NewBookmark</servlet-name>
-        <servlet-class>ViewTier.NewBookmark</servlet-class>
+        <servlet-class>ServiceTier.NewBookmark</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>DeleteBookmark</servlet-name>
-        <servlet-class>ViewTier.DeleteBookmark</servlet-class>
+        <servlet-class>ServiceTier.DeleteBookmark</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>EditBookmark</servlet-name>
-        <servlet-class>ViewTier.EditBookmark</servlet-class>
+        <servlet-class>ServiceTier.EditBookmark</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>NewDestination</servlet-name>
-        <servlet-class>ViewTier.NewDestination</servlet-class>
+        <servlet-class>ServiceTier.NewDestination</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>AddLocalized</servlet-name>
-        <servlet-class>ViewTier.AddLocalized</servlet-class>
+        <servlet-class>ServiceTier.AddLocalized</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>GetDestinations</servlet-name>
-        <servlet-class>ViewTier.GetDestinations</servlet-class>
+        <servlet-class>ServiceTier.GetDestinations</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>BookmarkList</servlet-name>
-        <servlet-class>ViewTier.BookmarkList</servlet-class>
+        <servlet-class>ServiceTier.BookmarkList</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>DeleteLocalized</servlet-name>
-        <servlet-class>ViewTier.DeleteLocalized</servlet-class>
+        <servlet-class>ServiceTier.DeleteLocalized</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>EditDestination</servlet-name>
-        <servlet-class>ViewTier.EditDestination</servlet-class>
+        <servlet-class>ServiceTier.EditDestination</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>NewBookmarkWithDevice</servlet-name>
-        <servlet-class>ViewTier.NewBookmarkWithDevice</servlet-class>
+        <servlet-class>ServiceTier.NewBookmarkWithDevice</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>DeleteBookmarkWithDevice</servlet-name>
-        <servlet-class>ViewTier.DeleteBookmarkWithDevice</servlet-class>
+        <servlet-class>ServiceTier.DeleteBookmarkWithDevice</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>EditBookmarkFromPlugin</servlet-name>
-        <servlet-class>ViewTier.EditBookmarkFromPlugin</servlet-class>
+        <servlet-class>ServiceTier.EditBookmarkFromPlugin</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>CreateNewDestination</servlet-name>
-        <servlet-class>ViewTier.CreateNewDestination</servlet-class>
+        <servlet-class>ServiceTier.CreateNewDestination</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>SyncFromHtmlFile</servlet-name>
-        <servlet-class>ViewTier.SyncFromHtmlFile</servlet-class>
+        <servlet-class>ServiceTier.SyncFromHtmlFile</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ImportFromHTML</servlet-name>
-        <servlet-class>ViewTier.ImportFromHTML</servlet-class>
+        <servlet-class>ServiceTier.ImportFromHTML</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ExportToHTML</servlet-name>
-        <servlet-class>ViewTier.ExportToHTML</servlet-class>
+        <servlet-class>ServiceTier.ExportToHTML</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
