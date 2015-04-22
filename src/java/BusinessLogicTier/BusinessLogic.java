@@ -67,7 +67,12 @@ public class BusinessLogic implements BusinessLogicInterface{
     }
     
     public void addBookmark(String username,String title,String url,String lasteditdate,String fatherfolder,String type,String description,String tag){
-        this.dt.addBookmark(this.dt.getID(username),title,url,lasteditdate,fatherfolder,type,description,tag);
+        if(checkBookmarks(title,url,fatherfolder))
+            this.dt.addBookmark(this.dt.getID(username),title,url,lasteditdate,fatherfolder,type,description,tag);
+    }
+    
+    private boolean checkBookmarks(String title,String url,String fatherfolder){
+        return true;
     }
     
     public void editBookmarkTitle(String bookid,String title){
@@ -214,6 +219,11 @@ public class BusinessLogic implements BusinessLogicInterface{
     
     public String getBookmarksDescriptionList(String username, String device){
         LinkedList<Bookmark> allBm = this.getDestinationBookmarks(username, device);
+        return this.parseBookmarkByFatherFolder(allBm, "Booksync");
+    }
+    
+    public String getBookmarksDescriptionList(String username){
+        LinkedList<Bookmark> allBm = this.getBookmarks(username);
         return this.parseBookmarkByFatherFolder(allBm, "Booksync");
     }
 

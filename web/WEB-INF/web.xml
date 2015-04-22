@@ -68,6 +68,10 @@
         <servlet-name>ImportFromHTML</servlet-name>
         <servlet-class>ViewTier.ImportFromHTML</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ExportToHTML</servlet-name>
+        <servlet-class>ViewTier.ExportToHTML</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -135,6 +139,10 @@
     <servlet-mapping>
         <servlet-name>ImportFromHTML</servlet-name>
         <url-pattern>/ImportFromHTML</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ExportToHTML</servlet-name>
+        <url-pattern>/ExportToHTML</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
