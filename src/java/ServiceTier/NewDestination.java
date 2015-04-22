@@ -27,9 +27,8 @@ public class NewDestination extends HttpServlet {
           throws ServletException, IOException{
         bl = new BusinessLogic();
         
-        PrintWriter out = response.getWriter();
         bl.addDestination(request.getParameter("user"), request.getParameter("destName"), request.getParameter("os"),
-                            request.getParameter("browser"), request.getParameter("dropboxPath"));
+                            request.getParameter("browser"), request.getParameter("dropboxPath"),request.getParameter("sync"));
         
     }
     // Method to handle POST method request.

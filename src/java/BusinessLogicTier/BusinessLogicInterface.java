@@ -32,6 +32,7 @@ public interface BusinessLogicInterface {
     public Destination getDestination(String username,String destID);
     public void deleteBookmark(String username,String url);
     public void addDestination(String username,String device,String os,String browser,String dropboxPath);
+    public void addDestination(String username,String device,String os,String browser,String dropboxPath,String sync);
     public String getDestinationID(String username,String deviceName);
     public void addLocalized(String username,String url,String deviceName);
     public void deleteLocalized(String username,String url,String deviceName);

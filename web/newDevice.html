@@ -48,6 +48,13 @@
                             <input class="form-control" id="inputDropboxPath"
                                    placeholder="Dropbox" type="text" name="dropbox">
                         </div>
+                        <div class="form-group has-error">
+                            <label class="control-label" >Synchronization</label>
+                            <select  class="form-control" id="inputSyncType">
+                                <option>Manual</option>
+                                <option>Automatic</option>
+                            </select>
+                       </div>
 
                         <input type="button" value="Confirm" class="active btn btn-success" onclick="addFunction()">
                         
@@ -58,10 +65,12 @@
                             var os = document.getElementById("inputOS").value.toString();
                             var browser = document.getElementById("inputBrowser").value.toString();
                             var dropbox = document.getElementById("inputDropboxPath").value.toString();
+                            var sync = document.getElementById("inputSyncType").value.toString();
+                            console.log(sync);
                             var username = getCookie("username");
                             $.post( "NewDestination", 
                                     {user: username,destName: destName,os:os,browser:browser,
-                                        dropboxPath: dropbox},
+                                        dropboxPath: dropbox,sync:sync},
                                     function(responseText) {
                                             console.log(responseText);
                                             window.close();

@@ -68,7 +68,7 @@ public class BusinessLogic implements BusinessLogicInterface{
     
     public void addBookmark(String username,String title,String url,String lasteditdate,String fatherfolder,String type,String description,String tag){
         if(checkBookmarks(username,title,url))
-            this.dt.addBookmark(this.dt.getID(username),title,url,lasteditdate,fatherfolder,type,description,tag);
+            this.dt.addBookmark(this.dt.getID(username),title,url,lasteditdate,fatherfolder,type.toLowerCase(),description,tag);
     }
     
     private boolean checkBookmarks(String username,String title,String url){
@@ -166,6 +166,21 @@ public class BusinessLogic implements BusinessLogicInterface{
     
     public void addDestination(String username,String device,String os,String browser,String dropboxPath){
         this.dt.addDestination(this.dt.getID(username),device,os,browser);
+    }
+    
+    public void addDestination(String username,String device,String os,String browser,String dropboxPath,String sync){
+        this.dt.addDestination(this.dt.getID(username),device,os,browser);
+        /*if(sync.equals("Automatic")){
+            LinkedList<Bookmark> list = getBookmarks(username);
+            if(dropboxPath.equals(null)){
+                for(int i=0;i<list.size();i++)
+                    if(list.get(i).getType().equals("Web"))
+                        addLocalized(username,list.get(i).getTitle(),device);
+            }else{
+                for(int i=0;i<list.size();i++)
+                    addLocalized(username,list.get(i).getTitle(),device);
+            }
+        }*/
     }
     
     public void addLocalized(String username,String bookTitle,String deviceName){
