@@ -51,7 +51,7 @@ public class BusinessLogic implements BusinessLogicInterface{
     }
     
     public LinkedList getDestinationBookmarks(String username,String deviceName){
-        return this.dt.getDestinationBookmarks(getDestinationID(username,deviceName));
+        return this.dt.getDestinationBookmarks(this.getDestinationID(username,deviceName));
     }
     
     public LinkedList getUnselectedDestinationBookmarks(String username,String deviceName){
@@ -327,20 +327,34 @@ public class BusinessLogic implements BusinessLogicInterface{
     }
     
     public void cloneAllBookmarks(String username, String device){
-        LinkedList<Bookmark> allBm = this.getBookmarks(username);
-        Bookmark current;
-        while(allBm.size()!=0){
-            current = allBm.pop();
-            this.addLocalized(username, current.getTitle(), device);
+        LinkedList<Bookmark> allBm = null;
+        try{
+            allBm = this.dt.getBookmarks(this.dt.getID(username));
+        }catch(Error e){
+            System.out.println("Error on load all bookmarks");
+            allBm = new LinkedList();
+        }finally{
+        
+            System.out.println("All bookmarks:\n"+allBm.size());
+            Bookmark current;
+            int max = allBm.size();
+            System.out.println("Max set on: "+max);
+            for(int i=0;i<max;i++){
+                current = allBm.remove(i);
+                System.out.println("Remaining bookmarks: ");
+                this.addLocalized(username, current.getTitle(), device);
+            }
+            System.out.println("All bookmarks localizated to: "+device);
         }
-        System.out.println("All bookmarks localizated to: "+device);
     }
     
     public void cloneDeviceBookmarks(String username, String deviceToClone, String device){
         LinkedList<Bookmark> destBm = this.getDestinationBookmarks(username, deviceToClone);
         Bookmark current;
-        while(destBm.size()!=0){
-            current = destBm.pop();
+        int max = destBm.size();
+        for(int i=0;i<max;i++){
+            current = destBm.remove(i);
+            System.out.println("Remaining bookmarks: "+destBm.size());
             this.addLocalized(username, current.getTitle(), device);
         }
     }

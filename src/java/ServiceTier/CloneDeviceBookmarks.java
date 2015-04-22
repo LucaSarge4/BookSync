@@ -46,7 +46,7 @@ public class CloneDeviceBookmarks extends HttpServlet {
             this.bl.cloneDeviceBookmarks(username,deviceToClone,device);
             out.print("ok");
         }else{
-            out.print("error");
+            //do-nothing
         }
         
     }

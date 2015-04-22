@@ -52,7 +52,7 @@ public class CreateNewDestination extends HttpServlet {
                 );
                 out.print("Added");
             }else{
-                out.print("error");
+                out.print("");
             }
         }
     }

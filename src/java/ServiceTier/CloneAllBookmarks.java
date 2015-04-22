@@ -45,7 +45,7 @@ public class CloneAllBookmarks extends HttpServlet {
             this.bl.cloneAllBookmarks(username, device);
             out.print("ok");
         }else{
-            out.print("error");
+            //do-nothing
         }
         
     }
