@@ -25,6 +25,7 @@
         <script src="js/jquery-2.1.3.js"></script>
         <script src="js/jquery.dataTables.min.js"></script>
         <script src="js/getCookie.js"></script>
+        <script src="js/exportDeviceBookmarks.js"></script>
         <script type="text/javascript" class="init">
             $(document).ready(function() {
                 var table = $('#bookmarksTable').DataTable();
@@ -51,9 +52,6 @@
                     }
                 } );
                 
-                $('#export').click( function () {
-                    var size = table.rows('.selected').data().length;
-                } );
             } );
         </script>
     </head>
@@ -73,7 +71,7 @@
                             <a id="delete" >Delete from destination</a>
                         </li>
                         <li class="" >
-                            <a id="export" >Export to HTML</a>
+                            <a onclick="exportDeviceBookmarks()" >Export to HTML</a>
                         </li>
                         <li class="" >
                             <a id="unselectedBookmarks">Unselected Bookmarks</a>

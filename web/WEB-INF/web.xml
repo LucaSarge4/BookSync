@@ -153,6 +153,10 @@
         <url-pattern>/ExportToHTML</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>BookmarkList</servlet-name>
+        <url-pattern>/BookmarkList</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>CloneAllBookmarks</servlet-name>
         <url-pattern>/plugin/CloneAllBookmarks</url-pattern>
     </servlet-mapping>

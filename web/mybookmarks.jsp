@@ -32,6 +32,7 @@
         <script src="js/jquery-2.1.3.js"></script>
         <script src="js/jquery.dataTables.min.js"></script>
         <script src="js/getCookie.js"></script>
+        <script src="js/exportBookmarks.js"></script>
         <script type="text/javascript" class="init">
         $(document).ready(function() {
             var table = $('#bookmarksTable').DataTable();
@@ -162,8 +163,8 @@
                                                     var contents = e.target.result;
                                                     $.post( "ImportFromHTML",
                                                         {username: user,bookmarks:contents},
-                                                        function(resposeText){
-                                                            window.alert(resposeText);
+                                                        function(responseText){
+                                                            window.alert(responseText);
                                                             window.location.reload();
                                                     });
                                             }
@@ -176,13 +177,8 @@
                                 </script>
                                 <li class="divider"></li>
                                 <li>
-                                    <a onclick="export()"> Export to HTML</a>
+                                    <a onclick="exportBookmarks()"> Export to HTML</a>
                                 </li>
-                                <script>
-                                    function exportBookmarks(){
-                                        
-                                    }
-                                </script>
                             </ul>
                         </li>
                         <li>
