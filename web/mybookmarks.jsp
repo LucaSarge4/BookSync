@@ -148,25 +148,38 @@
                             aria-expanded="false">Import/Export <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
                                 <li>
-                                    <a onclick="import()">Import from HTML</a>
+                                    <label for="files[]">Import From HTML</label>
+                                    <input type="file" id="fileinput" name="files[]" />
+                                   
                                 </li>
                                 <script>
-                                    function import(){
+                                    function importBookmarks(evt){
                                         var user = getCookie("username");
-                                        //utente seleziona file
-                                        $.post( "ImportFromHTML",
-                                            {username: user,bookmarks:book},
-                                            function(resposeText){
-                                                window.alert(resposeText);
-                                        });
+                                        var book = evt.target.files[0];
+                                        if (book) {
+                                            var r = new FileReader();
+                                            r.onloadend = function(e) { 
+                                                    var contents = e.target.result;
+                                                    $.post( "ImportFromHTML",
+                                                        {username: user,bookmarks:contents},
+                                                        function(resposeText){
+                                                            window.alert(resposeText);
+                                                            window.location.reload();
+                                                    });
+                                            }
+                                            r.readAsText(book);
+                                        } else { 
+                                            alert("Failed to load file");
+                                        }
                                     }
+                                    document.getElementById('fileinput').addEventListener('change', importBookmarks, false);
                                 </script>
                                 <li class="divider"></li>
                                 <li>
                                     <a onclick="export()"> Export to HTML</a>
                                 </li>
                                 <script>
-                                    function export(){
+                                    function exportBookmarks(){
                                         
                                     }
                                 </script>
