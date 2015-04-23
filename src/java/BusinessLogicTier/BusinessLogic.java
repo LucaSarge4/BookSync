@@ -67,12 +67,12 @@ public class BusinessLogic implements BusinessLogicInterface{
     }
     
     public void addBookmark(String username,String title,String url,String lasteditdate,String fatherfolder,String type,String description,String tag){
-        if(checkBookmarks(username,title,url))
+        if(this.checkBookmarks(username,title,url))
             this.dt.addBookmark(this.dt.getID(username),title,url,lasteditdate,fatherfolder,type.toLowerCase(),description,tag);
     }
     
     private boolean checkBookmarks(String username,String title,String url){
-        LinkedList<Bookmark> bm = getBookmarks(username);
+        LinkedList<Bookmark> bm = this.getBookmarks(username);
         for(int i=0;i<bm.size();i++){
             if(bm.get(i).getTitle().equals(title) || bm.get(i).getUrl().equals(url))
                 return false;
@@ -184,23 +184,25 @@ public class BusinessLogic implements BusinessLogicInterface{
     }
     
     public void addLocalized(String username,String bookTitle,String deviceName){
-        Bookmark bm = getBookmark(username,getBookIDByName(username,bookTitle));
+        Bookmark bm = this.getBookmark(username,this.getBookIDByName(username,bookTitle));
         String folder = bm.getFatherFolder();
         String folderID="";
         if(!folder.equals("Booksync"))
-           folderID =getBookIDByName(username,folder);
-        this.dt.localized(getBookIDByName(username,bookTitle),getDestinationID(username,deviceName));
+           folderID = this.getBookIDByName(username, folder);
+        System.out.println("While localizing found FOLDERID: "+folderID);
+        this.dt.localized(this.getBookIDByName(username,bookTitle),this.getDestinationID(username,deviceName));
         if(folder.equals("Booksync") || checkDestFolder(username,deviceName,folderID)){
             //do nothing
         }else{
-            addLocalized(username,folder,deviceName);   
+            this.addLocalized(username,folder,deviceName);   
         }
     }
     
     private String getBookIDByName(String username,String bookTitle){
         int index=-1;
-        LinkedList<Bookmark> list = getBookmarks(username);
-        for(int i=0;i<list.size();i++){
+        LinkedList<Bookmark> list = this.getBookmarks(username);
+        int max = list.size();
+        for(int i=0;i<max;i++){
             if(list.get(i).getTitle().equals(bookTitle))
                 index=i;
         }
