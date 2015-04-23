@@ -41,7 +41,7 @@ public class SyncFromHtmlFile extends HttpServlet {
         this.device = request.getParameter("device");
         this.bookmarks = request.getParameter("bookmarks");
         this.father = "";
-        //System.out.println("Loaded file: "+this.bookmarks);
+        System.out.println("Loaded file: "+this.bookmarks);
         this.removeHeading();
         this.evaluateAndProcessNext();
         out.print("Loaded");
@@ -119,7 +119,9 @@ public class SyncFromHtmlFile extends HttpServlet {
 
     private void removeHeading() {
         int n = this.bookmarks.trim().indexOf("<DT><H3>Booksync</H3>");
-        this.bookmarks = (this.bookmarks.trim().substring(n+21)).trim();
+        System.out.println("Index for cut head: "+n);
+        this.bookmarks = ((this.bookmarks.trim()).substring(n+21,this.bookmarks.length())).trim();
+        System.out.println("After cut: "+this.bookmarks);
         this.father = "Booksync";
     }
 
@@ -133,7 +135,7 @@ public class SyncFromHtmlFile extends HttpServlet {
         )).trim();
         String lasteditdate = (new Date()).toString();
         // add bookmark
-        //System.out.println("Adding folder: "+title+" with father: "+this.father);
+        System.out.println("Adding folder: "+title+" with father: "+this.father);
         this.bl.addBookmark(this.username, title, "",lasteditdate , this.father, "web", "", "");
         // don't need to localize, addLocalized allow to add folder when add bookmarks
         // change father after adding
@@ -166,7 +168,7 @@ public class SyncFromHtmlFile extends HttpServlet {
         )).trim();
         String lasteditdate = (new Date()).toString();
         // adding bookmark
-        //System.out.println("Adding bookmark "+title+" with father: "+this.father+" and url: "+url);
+        System.out.println("Adding bookmark "+title+" with father: "+this.father+" and url: "+url);
         this.bl.addBookmark(this.username, title, url, lasteditdate, this.father, "web", "", "");
         // adding bookmark to device
         this.bl.addLocalized(this.username, title, this.device);
@@ -176,7 +178,9 @@ public class SyncFromHtmlFile extends HttpServlet {
 
     private void startDL() {
         // <DL><p> is 7 char
+        System.out.println("Cutting description list tag");
         this.bookmarks = (this.bookmarks.trim().substring(7, this.bookmarks.trim().length())).trim();
+        System.out.println("After cut: "+this.bookmarks);
         // call next step
         this.evaluateAndProcessNext();
     }
