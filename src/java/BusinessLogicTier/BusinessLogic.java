@@ -355,8 +355,8 @@ public class BusinessLogic implements BusinessLogicInterface{
             int max = allBm.size();
             System.out.println("Max set on: "+max);
             for(int i=0;i<max;i++){
-                current = allBm.remove(i);
-                System.out.println("Remaining bookmarks: ");
+                current = allBm.get(i);
+                System.out.println("Adding bookmark: "+i);
                 this.addLocalized(username, current.getTitle(), device);
             }
             System.out.println("All bookmarks localizated to: "+device);
@@ -368,9 +368,10 @@ public class BusinessLogic implements BusinessLogicInterface{
         Bookmark current;
         int max = destBm.size();
         for(int i=0;i<max;i++){
-            current = destBm.remove(i);
-            System.out.println("Remaining bookmarks: "+destBm.size());
+            current = destBm.get(i);
+            System.out.println("Adding bookmark: "+i);
             this.addLocalized(username, current.getTitle(), device);
         }
+        System.out.println("Bookmarks localizated to: "+device);
     }
 }
