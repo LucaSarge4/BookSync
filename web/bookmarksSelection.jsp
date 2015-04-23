@@ -50,6 +50,10 @@
                         ); 
                     }
                 } );
+                
+                $('#back').click( function () {
+                        window.open ('mydevices.jsp','_self',false);
+                } );
             } );
         </script>
     </head>
@@ -72,7 +76,9 @@
                         <li class="" >
                             <a id="selectedBookmarks">Selected Bookmarks</a>
                         </li>
-                        
+                        <li class="" >
+                            <a id="back">Back</a>
+                        </li>
                     </ul>
                 </div>
             </div>

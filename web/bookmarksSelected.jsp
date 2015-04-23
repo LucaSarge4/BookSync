@@ -1,3 +1,4 @@
+<%@page import="java.net.URLEncoder"%>
 <%@page import="DataAccessTier.Bookmark"%>
 <%@page import="java.util.LinkedList"%>
 <%@page import="BusinessLogicTier.BusinessLogic"%>
@@ -11,7 +12,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>My Bookmarks</title>
+        <title>Device's Bookmarks</title>
         <!-- Bootstrap -->
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/jquery.dataTables.css" rel="stylesheet">
@@ -52,6 +53,11 @@
                     }
                 } );
                 
+                $('#back').click( function () {
+                        window.open ('mydevices.jsp','_self',false);
+                } );
+                
+                
             } );
         </script>
     </head>
@@ -76,12 +82,57 @@
                         <li class="" >
                             <a id="unselectedBookmarks">Unselected Bookmarks</a>
                         </li>
-                        
+                        <li class="" >
+                            <a id="back">Back</a>
+                        </li>
                     </ul>
                 </div>
             </div>
         </div>
-                        
+        <div class="section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                            <div class="form-group">
+                                <div class="col-sm-3">
+                                    <label for="folderForm">Select Bookmarks Folder</label>
+                                </div>
+                                <div class="col-sm-4">
+                                    <form method="post" action="mybookmarks.jsp" name="folderForm"  >
+                                        <select  name="folder" class="form-control" id="inputFatherFolder" >
+                                            <option value="prev" ></option>
+                                            <option value="All" >All Folder</option>
+                                            <option value="Booksync" >Booksync</option>
+                                            <%  BusinessLogicInterface bl = new BusinessLogic();
+                                                String username="";
+                                                Cookie cookie = null;
+                                                Cookie[] cookies = null;
+                                                // Get an array of Cookies associated with this domain
+                                                cookies = request.getCookies();
+                                                for (int i = 0; i < cookies.length; i++){
+                                                    cookie = cookies[i];
+                                                    if(cookie.getName().equals("username"))
+                                                        username=cookie.getValue();
+                                                }
+                                                LinkedList <Bookmark> bms = new LinkedList();
+                                                bms = bl.getBookmarks(username);
+                                                String selection ="";
+                                                for(int i=0;i<bms.size();i++){
+                                                    if(bms.get(i).getUrl().equals("")){
+                                                        out.write("<option value=\""+URLEncoder.encode(bms.get(i).getTitle(),"UTF-8")+"\">"+bms.get(i).getTitle()+"</option>");
+                                                    }
+                                                }
+                                            %>
+                                        </select> 
+                                        <br>
+                                        <input type="submit" value="Select">
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>             
                         
         
         <table class="table table-hover display" id="bookmarksTable">
@@ -95,11 +146,10 @@
                 </tr>
             </thead>
             <tbody>
-                <%  BusinessLogicInterface bl = new BusinessLogic();
-                    String username="";
-                    String deviceName="";
-                    Cookie cookie = null;
-                    Cookie[] cookies = null;
+                <%  bl = new BusinessLogic();
+                    username="";
+                    cookie = null;
+                    cookies = null;
                     // Get an array of Cookies associated with this domain
                     cookies = request.getCookies();
                     for (int i = 0; i < cookies.length; i++){
