@@ -83,13 +83,40 @@
                                 out.write("placeholder=\" "+bl.getBookmark(username, bookID).getTag()+"\" type=\"text\" name=\"tag\" disabled=\"true\">");
                             %>
                        </div>
-                        <div class="form-group has-error">
+                        <div class="form-group has-error" id="folderDet">
                             <label class="control-label" >Father Folder</label>
                             <%  
-                                out.write("<input class=\"form-control\" id=\"inputFatherFolder\"");
+                                out.write("<input class=\"form-control\" id=\"fatherFolder\"");
                                 out.write("placeholder=\" "+bl.getBookmark(username, bookID).getFatherFolder()+"\" type=\"text\" name=\"fatherFolder\" disabled=\"true\">");
                             %>
                         </div>
+                        
+                        <div class="form-group has-error" id="folder" hidden="true">
+                            <label class="control-label" >Father Folder</label>
+                            <select  class="form-control" id="inputFatherFolder">
+                                <option>Booksync</option>
+                                <%  bl = new BusinessLogic();
+                                    username="";
+                                    cookie = null;
+                                    cookies = null;
+                                    // Get an array of Cookies associated with this domain
+                                    cookies = request.getCookies();
+                                    for (int i = 0; i < cookies.length; i++){
+                                        cookie = cookies[i];
+                                        if(cookie.getName().equals("username"))
+                                            username=cookie.getValue();
+                                    }
+                                    LinkedList <Bookmark> bms = new LinkedList();
+                                    bms = bl.getBookmarks(username);
+
+                                    for(int i=0;i<bms.size();i++){
+                                        if(bms.get(i).getUrl().equals("")){
+                                            out.write("<option>"+bms.get(i).getTitle()+"</option>");
+                                        }
+                                    }
+                                %>
+                            </select>
+                       </div>
 
                         <input type="button" id="edit" value="Edit" class="active btn btn-success" onclick="editFunction()">
                         
@@ -101,7 +128,8 @@
                                 document.getElementById('inputUrl').disabled = false;
                                 document.getElementById('inputDescription').disabled = false;
                                 document.getElementById('inputTag').disabled = false;
-                                document.getElementById('inputFatherFolder').disabled = false;
+                                document.getElementById('folderDet').hidden = true;
+                                document.getElementById('folder').hidden = false;
                                 document.getElementById('edit').value="Confirm";
                             }else{
                                 var title = document.getElementById("inputTitle").value.toString();

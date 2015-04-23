@@ -1,3 +1,4 @@
+<%@page import="java.net.URLDecoder"%>
 <%@page import="java.net.URLEncoder"%>
 <%@page import="DataAccessTier.Bookmark"%>
 <%@page import="java.util.LinkedList"%>
@@ -105,6 +106,7 @@
                                             <option value="Booksync" >Booksync</option>
                                             <%  BusinessLogicInterface bl = new BusinessLogic();
                                                 String username="";
+                                                String deviceName="";
                                                 Cookie cookie = null;
                                                 Cookie[] cookies = null;
                                                 // Get an array of Cookies associated with this domain
@@ -114,8 +116,13 @@
                                                     if(cookie.getName().equals("username"))
                                                         username=cookie.getValue();
                                                 }
+                                                for (int i = 0; i < cookies.length; i++){
+                                                    cookie = cookies[i];
+                                                    if(cookie.getName().equals("destination"))
+                                                        deviceName=cookie.getValue();
+                                                }
                                                 LinkedList <Bookmark> bms = new LinkedList();
-                                                bms = bl.getBookmarks(username);
+                                                bms = bl.getDestinationBookmarks(username, deviceName);
                                                 String selection ="";
                                                 for(int i=0;i<bms.size();i++){
                                                     if(bms.get(i).getUrl().equals("")){
@@ -146,34 +153,28 @@
                 </tr>
             </thead>
             <tbody>
-                <%  bl = new BusinessLogic();
-                    username="";
-                    cookie = null;
-                    cookies = null;
-                    // Get an array of Cookies associated with this domain
-                    cookies = request.getCookies();
-                    for (int i = 0; i < cookies.length; i++){
-                        cookie = cookies[i];
-                        if(cookie.getName().equals("username"))
-                            username=cookie.getValue();
-                    }
-                    for (int i = 0; i < cookies.length; i++){
-                        cookie = cookies[i];
-                        if(cookie.getName().equals("destination"))
-                            deviceName=cookie.getValue();
-                    }
-                    LinkedList <Bookmark> bms = new LinkedList();
-                    bms = bl.getDestinationBookmarks(username, deviceName);
-                    
+                <%                     
                     for(int i=0;i<bms.size();i++){
-                        if(!bms.get(i).getUrl().equals("")){
-                            out.write("<tr>");
-                            out.write("<td>"+bms.get(i).getTitle()+"</td>");
-                            out.write("<td>"+bms.get(i).getUrl()+"</td>");
-                            out.write("<td>"+bms.get(i).getTag()+"</td>");
-                            out.write("<td>"+bms.get(i).getLastEditDate()+"</td>");
-                            out.write("<td>"+bms.get(i).getFatherFolder()+"</td>");
-                            out.write("</tr>");
+                        if(request.getParameter("folder")!=null && !URLDecoder.decode(request.getParameter("folder"), "UTF-8").equals("All")){
+                            if(!bms.get(i).getUrl().equals("") && URLDecoder.decode(request.getParameter("folder"), "UTF-8").equals(bms.get(i).getFatherFolder())){
+                                out.write("<tr>");
+                                out.write("<td>"+bms.get(i).getTitle()+"</td>");
+                                out.write("<td>"+bms.get(i).getUrl()+"</td>");
+                                out.write("<td>"+bms.get(i).getTag()+"</td>");
+                                out.write("<td>"+bms.get(i).getLastEditDate()+"</td>");
+                                out.write("<td>"+bms.get(i).getFatherFolder()+"</td>");
+                                out.write("</tr>");     
+                            }
+                            }else{
+                            if(!bms.get(i).getUrl().equals("")){
+                                out.write("<tr>");
+                                out.write("<td>"+bms.get(i).getTitle()+"</td>");
+                                out.write("<td>"+bms.get(i).getUrl()+"</td>");
+                                out.write("<td>"+bms.get(i).getTag()+"</td>");
+                                out.write("<td>"+bms.get(i).getLastEditDate()+"</td>");
+                                out.write("<td>"+bms.get(i).getFatherFolder()+"</td>");
+                                out.write("</tr>"); 
+                            }
                         }
                     }
                 %>

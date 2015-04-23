@@ -74,7 +74,7 @@ public class BusinessLogic implements BusinessLogicInterface{
     private boolean checkBookmarks(String username,String title,String url){
         LinkedList<Bookmark> bm = this.getBookmarks(username);
         for(int i=0;i<bm.size();i++){
-            if(bm.get(i).getTitle().equals(title) || bm.get(i).getUrl().equals(url))
+            if(bm.get(i).getTitle().equals(title) && bm.get(i).getUrl().equals(url))
                 return false;
         }
         return true;
@@ -171,15 +171,19 @@ public class BusinessLogic implements BusinessLogicInterface{
     public void addDestination(String username,String device,String os,String browser,String dropboxPath,String sync){
         this.dt.addDestination(this.dt.getID(username),device,os,browser);
         if(sync.equals("Automatic")){
-            LinkedList<Bookmark> list = getBookmarks(username);
-            if(dropboxPath.equals(null)){
-                for(int i=0;i<list.size();i++)
-                    if(list.get(i).getType().equals("Web"))
-                        addLocalized(username,list.get(i).getTitle(),device);
-            }else{
-                for(int i=0;i<list.size();i++)
-                    addLocalized(username,list.get(i).getTitle(),device);
-            }
+            autoSync(username,device,dropboxPath);
+        }
+    }
+    
+    private void autoSync(String username,String deviceName,String dropboxPath){
+        LinkedList<Bookmark> list = getBookmarks(username);
+        if(dropboxPath.equals(null)){
+            for(int i=0;i<list.size();i++)
+                if(list.get(i).getType().equals("web"))
+                    this.dt.localized(list.get(i).getBookID(),this.getDestinationID(username,deviceName));
+        }else{
+            for(int i=0;i<list.size();i++)
+                this.dt.localized(list.get(i).getBookID(),this.getDestinationID(username,deviceName));
         }
     }
     
